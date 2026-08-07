@@ -46,4 +46,4 @@ Every command must explain its purpose, parameters, permissions, location, contr
 
 A topic is not complete because it was watched, read, or tested in a quiz. Completion requires a concept explanation, a reproducible lab, deliberate failure exercises, security and operations notes, customer use cases, and verified evidence. Unverified knowledge stays marked as research or developing.
 
-Start with `CURRICULUM-MAP.md`, then `RESOURCE-MAP.md`, then `10-DAY-SPRINT.md`.
+Start with `START-HERE.md`, then `MASTERY-STANDARD.md`, `CURRICULUM-MAP.md`, `CERTIFICATION-MAP.md`, `RESOURCE-MAP.md`, and `10-DAY-SPRINT.md`.

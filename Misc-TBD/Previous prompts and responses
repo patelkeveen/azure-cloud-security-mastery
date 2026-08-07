@@ -1631,3 +1631,21 @@ Latest commit: `97cc51b`.
 
 This gives the repository an expert operating model rather than just a large collection of topics. It also keeps the important boundary clear: indexed topics are not automatically mastered, and lab work is not automatically production experience.
 
+
+
+---
+
+# Repository implementation audit — 2026-08-07
+
+The repository has now been adjusted so the prompt history is reflected in the actual project structure, not only in discussion text. The required coverage is represented across foundations, networking, Azure platform, identity, non-human identities, Active Directory/hybrid identity, Microsoft 365, migration engineering, migration tools, security operations, secure AI, reliability, architecture/consulting, and customer scenarios.
+
+## What was corrected
+
+- Added learner entry and mastery gates so the repo explains how to use the curriculum and what counts as verified completion.
+- Added a certification and market map covering AZ-900, SC-900, AI-900, AZ-104, AZ-500, SC-300, SC-200, SC-500/Cloud and AI Security, and AI engineering awareness.
+- Added a glossary for core terms such as NHI, SCIM, HLD, LLD, PIM, RAG, Conditional Access, ADFS, and workload identity federation.
+- Created the expert directory structure promised in the previous responses, including topic folders, lab placeholders, break-fix placeholders, security notes, operations notes, architecture-decision locations, and customer-use-case locations.
+
+## Remaining honesty boundary
+
+This now includes the required categories, subcategories, concepts, subconcepts, logic, templates, and evidence locations. It still must not be described as fully mastered until each topic is moved from indexed to researched, lab-planned, lab-verified, operated, and customer-ready with real evidence.
