@@ -1,0 +1,1633 @@
+
+# @GitHub
+
+[https://learn.microsoft.com/en-ca/credentials/certifications/resources/study-guides/az-104](https://learn.microsoft.com/en-ca/credentials/certifications/resources/study-guides/az-104)
+[https://learn.microsoft.com/en-ca/credentials/certifications/resources/study-guides/az-500](https://learn.microsoft.com/en-ca/credentials/certifications/resources/study-guides/az-500)
+[https://learn.microsoft.com/en-ca/credentials/certifications/resources/study-guides/sc-500](https://learn.microsoft.com/en-ca/credentials/certifications/resources/study-guides/sc-500)
+[https://learn.microsoft.com/en-ca/credentials/certifications/resources/study-guides/sc-300](https://learn.microsoft.com/en-ca/credentials/certifications/resources/study-guides/sc-300)
+[https://drive.google.com/file/d/1fxHYYMOWaTrVXFWCPeAy4U03mX4lREWF/view](https://drive.google.com/file/d/1fxHYYMOWaTrVXFWCPeAy4U03mX4lREWF/view)
+[https://learn.microsoft.com/en-ca/plans/m14ntm3n2gy41q](https://learn.microsoft.com/en-ca/plans/m14ntm3n2gy41q)
+[https://learn.microsoft.com/en-ca/training/courses/sc-300t00](https://learn.microsoft.com/en-ca/training/courses/sc-300t00)
+[https://www.youtube.com/playlist?list=PL86wiCAX5vmTg8uubUrlHOqXrjXk6p-73](https://www.youtube.com/playlist?list=PL86wiCAX5vmTg8uubUrlHOqXrjXk6p-73)
+[https://www.aka.ms/sc300-StudyGuide](https://www.aka.ms/sc300-StudyGuide)
+
+Prepare me such that I can support any customer across any industry. I may start moving to different projects, I can start supporting and implementing all of these services for any customer across any different industry verticals
+Make sure my next 7 days are solely on this with atleast 8 to 10 hours of high focus per day or more if needed, feel free to make it a 10 day curriculum if needed. I want to master everything in these links and their sublinks. I don't to just clear the SC-300 exam, I want to make sure I understand each and every underlying concept that might come into play. Start by creating a map of all the Service domains, sub-domains, training topic, any additional topics that are not part of SC-300 or they might have a very limited aspect or very basic concepts that are part of SC-300 but the exam doesn't cover them in depth, you need to make sure to do a deep dive in that making this a custom SC-300 syllabus. Make sure to include use cases that various cases that can be implemented to various customer across various industries in their respective environment. This will be done in a brand new public repo. I will be rescheduling my SC-300 exam as early as needed.
+
+Before making any changes do you think this plan makes sense for easy job hunt?
+
+Short answer: **yes — but only if you do it the way you framed it** (customer-facing depth, not exam-cram), and only if SC-300 is the *only* cert you chase this month. Here’s the honest math, then the map and the 10-day plan.
+
+## Does this plan make sense for your job hunt?
+
+Yes, more than the AZ-104/AZ-500/SC-500 stack you linked. Reasons:
+
+- **SC-300 is your highest-leverage cert.** It maps 1:1 to your resume (Entra ID, Conditional Access, JML, identity governance) and to the remote roles you’re targeting. Salary data backs it: \$115K+ for IAM specialists, 473 active US postings.[^46_1][^46_2][^46_3][^46_4]
+- **"Support any customer across any industry" is the right ambition.** That’s exactly what senior consultants/architects do — and SC-300’s domains (user identities, auth, workload identities, governance) are the same in healthcare, finance, retail, SaaS.[^46_5][^46_6]
+- **The gap is not exam knowledge; it’s industry translation.** Most people can configure Conditional Access. Few can explain *why* a bank needs phishing-resistant MFA but a startup can start with number matching, or how DPDPA changes access-review cadence in India vs. GDPR in Germany.[^46_7]
+
+**One warning:** Don’t try to prep AZ-104 + AZ-500 + SC-300 + SC-500 simultaneously. That’s a 6-month path, not 10 days. Park the others. SC-300 alone gets you the interviews you want.[^46_8]
+
+## Custom SC-300 Mastery Map (exam + what the exam misses)
+
+This is the structure I’ll use for the new repo. It’s built from the official SC-300 study guide, then expanded with the deep-dive topics the exam only touches lightly.[^46_6][^46_9][^46_5]
+
+### Domain 1: Implement and manage user identities (20–25%)
+
+**Exam scope:** users, groups, hybrid identity (Connect, cloud sync, PHS/PTA), external identities (B2B, social IdPs), administrative units, custom domains.
+**Deep-dive additions (not tested in depth):**
+
+- ImmutableID / source anchor choices (ms-DS-ConsistencyGuid vs objectGUID) and when to change them in a merger/acquisition.
+- Tenant-to-tenant migration patterns (M\&A, divestiture) — cross-tenant sync, staged cutover, coexistence.
+- Hybrid identity failure modes: PHS vs PTA vs federation decision tree, TLS/cert dependencies, Connect Health alerting, staging mode swing migration.
+- External identity lifecycle: B2B invitation redemption, Google/social IdP claims mapping, guest access reviews, cross-tenant access settings.
+
+
+### Domain 2: Implement authentication and access management (25–30%)
+
+**Exam scope:** MFA (all methods), Conditional Access, Identity Protection, passwordless (FIDO2, Windows Hello), session controls, authentication contexts.
+**Deep-dive additions:**
+
+- Phishing-resistant MFA vs. "any MFA" — why FIDO2/passkeys matter for finance/healthcare, AAGUIDs, attestation.
+- Conditional Access architecture: policy evaluation order, report-only mode, break-glass accounts, CA policy-as-code with Graph API, backup/restore.
+- Identity Protection risk policies vs. CA policies — when to use which, user risk vs. sign-in risk, investigation workbook.
+- Legacy auth blocking strategy (SMTP, IMAP, POP, older Office clients) and the exception-handling pattern.
+
+
+### Domain 3: Plan and implement workload identities (20–25%)
+
+**Exam scope:** app registrations, enterprise apps, managed identities, service principals, OAuth 2.0 / OIDC / SAML SSO, SCIM provisioning.
+**Deep-dive additions:**
+
+- App registration vs. enterprise app — the security boundary and why "App Owner" is a critical role.
+- OAuth 2.0 flows in production: auth code + PKCE for SPAs, client credentials for daemons, on-behalf-of for APIs, device code for kiosks.
+- Managed identities vs. service principals vs. workload identity federation — which one for GitHub Actions, AKS pods, Azure Functions, third-party SaaS.
+- SCIM provisioning failure modes: attribute mapping, soft-delete behavior, re-provisioning loops, source-anchor mismatches.
+
+
+### Domain 4: Plan and automate identity governance (20–25%)
+
+**Exam scope:** PIM, access reviews, entitlement management, lifecycle workflows, terms of use.
+**Deep-dive additions:**
+
+- PIM for groups vs. PIM for roles vs. PIM for Azure resources — activation approval workflows, justification/audit trail, MFA on activation.
+- Access review design: recurring vs. one-time, reviewee selection, group owners vs. app owners, auto-apply vs. manual remediation.
+- Entitlement management: access packages, catalog scoping, connected organizations, sponsor/approver chains, external user lifecycle.
+- Lifecycle workflows (JML automation): joiner/mover/leaver task logic, custom task extensions with Azure Logic Apps, and how this maps to your real PowerShell/Graph work.
+- Compliance mapping: how governance controls satisfy SOC 2 CC6, ISO 27001 A.5.15–A.5.18, DPDPA access-rights clauses.
+
+
+### Cross-cutting industry use cases (the "any customer" layer)
+
+Each domain will include a short **industry pattern** section:
+
+- **Finance/FinTech:** SOX ITGC quarterly UARs, PCI 7/8 access scoping, phishing-resistant MFA for payment systems, JIT admin for trading platforms.
+- **Healthcare:** HIPAA minimum-necessary access, clinician fast user switching, emergency access accounts, BAA constraints on guest sharing.
+- **Retail/e-commerce:** seasonal worker JML at scale, POS device compliance, B2C customer identity (CIAM) basics vs. B2E workforce identity.
+- **SaaS/startup:** rapid M365 onboarding, SOC 2 evidence automation, lean team break-glass patterns, cost-conscious license management.
+- **Manufacturing/OT:** legacy protocol coexistence, shared device accounts, network-segmented Conditional Access, supplier B2B.
+- **Education/nonprofit:** student lifecycle (enrollment → graduation), volunteer access, donor PII in SharePoint, grant-driven access reviews.
+
+
+## 10-day high-focus curriculum (8–10 hrs/day)
+
+I’ll build this as a new public repo: `patelkeveen/sc300-mastery` (or whatever name you prefer). Each day = one folder with:
+
+- `README.md` — concept deep-dive + Decision Stack framing
+- `labs/` — hands-on steps in a free M365 E5 developer tenant + Azure free tier
+- `use-cases/` — industry-specific scenarios with implementation notes
+- `tickets.md` — common misconfigurations and troubleshooting
+- `interview-notes.md` — how to explain this to a customer/architect
+
+| Day | Focus | Deliverable |
+| :-- | :-- | :-- |
+| 1 | Repo setup + Domain 1 core (users, groups, hybrid identity) | Tenant baseline + hybrid sync lab |
+| 2 | Domain 1 deep-dive (external identities, tenant migration) | B2B lab + migration runbook |
+| 3 | Domain 2 core (MFA, Conditional Access) | CA policy matrix + break-glass lab |
+| 4 | Domain 2 deep-dive (Identity Protection, passwordless, session controls) | Risk-based CA lab + FIDO2 setup |
+| 5 | Domain 3 core (app registrations, enterprise apps, SSO) | SAML + OIDC app integration lab |
+| 6 | Domain 3 deep-dive (managed identities, workload identity federation, SCIM) | GitHub Actions → Azure with WIF + SCIM provisioning lab |
+| 7 | Domain 4 core (PIM, access reviews) | PIM activation + review lab |
+| 8 | Domain 4 deep-dive (entitlement mgmt, lifecycle workflows, compliance mapping) | Access package + JML workflow lab |
+| 9 | Industry use-case synthesis (finance, healthcare, SaaS, retail, manufacturing) | 5 industry implementation guides |
+| 10 | Mock exam + weak-point remediation + customer-facing explanations | SC-300 readiness report + teach-back videos/notes |
+
+**Daily loop (same as your repo method):** Learn → Lab → Break it → Explain (child → SME) → Industry use case → Ticket/log.
+
+## Before I build the repo
+
+Three quick questions so I don’t guess wrong:
+
+1. **Repo name?** `sc300-mastery`, `entra-id-customer-playbook`, or something else?
+2. **Tenant:** Do you have an M365 E5 developer tenant and Azure free tier ready, or should Day 1 include setup steps?
+3. **Existing repo link:** Should this new repo live standalone, or should I add a link/section in `agentic-ai-study-plan` pointing to it?
+
+Once you confirm, I’ll create the repo scaffold (all 10 day folders + templates + industry use-case stubs) and push it in one commit so you can start tomorrow with zero setup friction.
+<span style="display:none">[^46_10][^46_11][^46_12][^46_13][^46_14][^46_15]</span>
+
+<div align="center">⁂</div>
+
+[^46_1]: https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/
+
+[^46_2]: https://programs.com/certs/azure/
+
+[^46_3]: https://certdemand.com/certs/sc-300/
+
+[^46_4]: https://mscertquiz.com/blog/sc-300-vs-az-500
+
+[^46_5]: https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-300
+
+[^46_6]: https://www.robustittraining.com/assets/pdf/exam-guides/microsoft/microsoft certified-identity-and-access-administrator-associate-skills-measured.pdf
+
+[^46_7]: https://practicemscert.com/blog/is-sc300-worth-it.html
+
+[^46_8]: https://www.azureprep.com/blog/azure-certification-salary-2026
+
+[^46_9]: https://quillfiles.blob.core.windows.net/media-files/Study-Guides/SC-300.pdf
+
+[^46_10]: https://learn.microsoft.com/pt-pt/credentials/certifications/resources/study-guides/sc-300
+
+[^46_11]: https://learn.microsoft.com/ja-jp/credentials/certifications/cloud-and-ai-security-engineer-associate/
+
+[^46_12]: https://www.readynez.com/en/blog/is-microsoft-sc-300-worth-it-for-identity-and-access-careers/
+
+[^46_13]: https://www.ziprecruiter.com/Jobs/Sc-300-Microsoft
+
+[^46_14]: https://www.aicloudpartners.com/guides/microsoft-certification-salary-guide-2026.html
+
+[^46_15]: https://course.careers/career-guides/microsoft-security-careers
+
+
+---
+
+# @GitHub huh would that make me job ready then? I don't think so unless you include everything related to entra is included which is most of az-900,sc-900,ai-900,az-104, ai-103, az-500,sc-500, SC-200 and other concepts and domains. Being in India, I might need more than just normal SC-300 things like NHI are also missing. Many of the job posting hardly say only sc-300 they want actual knowledge which can be from az-900,sc-900,ai-900,az-104, ai-103, az-500,sc-500, SC-200 and other things.
+
+Your first task is to get deep dive of all things/tools/topics/depth that might be used,needed,wanted by an org
+
+You’re right: **SC‑300 alone, even mastered, won’t make you “any-industry, any‑customer” job‑ready** for the kinds of Entra / Microsoft security roles that are paying well and open to remote India. It *is* the core spine, but the roles you’re aiming at explicitly want the broader Microsoft security stack around it.[^47_1][^47_2]
+
+The good news is your instinct is aligned with what the job market actually asks for:
+
+- Real job posts for Entra / Microsoft Security Engineer and Identity \& PAM Security Engineer list **SC‑300 plus SC‑200 and/or AZ‑500** as preferred, not just SC‑300 alone.[^47_3][^47_4][^47_5][^47_6]
+- Microsoft’s own security role maps put **SC‑300 (Identity \& Access)** alongside **AZ‑500 (Azure Security)** and **SC‑200 (Security Ops)** for the Security Engineer track.[^47_2][^47_7][^47_1]
+
+So the plan needs to be: **SC‑300-level Entra depth, inside a wider “Microsoft Security Engineer” map**, not a siloed SC‑300 cram.
+
+## What “job‑ready across industries” actually means here
+
+For Entra + Microsoft cloud/security, being job‑ready for global remote work (including from India) means:
+
+- You can **design, implement, and operate identity \& access** (SC‑300) for cloud + hybrid across multiple industries.[^47_8][^47_9]
+- You understand **Azure security controls, Defender, Sentinel**, and how identity plugs into threat protection (AZ‑500, SC‑200/SC‑500).[^47_10][^47_11][^47_12]
+- You have enough **fundamentals** (AZ‑900, SC‑900, AI‑900) that you don’t get stuck on basic questions about Azure architecture, security, and AI/security intersections.[^47_13]
+- You can translate all of that into **use cases**: finance, healthcare, SaaS, government, etc. (what you called NHI / vertical‑specific needs).
+
+That’s more than just “pass SC‑300”; it’s closer to “Cloud \& AI Security Engineer + Identity Administrator combo” as described in Microsoft’s new Cloud and AI Security Engineer Associate.[^47_11][^47_10]
+
+## First task: the deep‑dive map (Entra + Microsoft security stack)
+
+Before building any repo or 7–10‑day schedule, the right first step is exactly what you asked for: a **domain map of all the services/topics that an org will expect from a Microsoft security/Entra engineer**, grouped logically rather than by exam code.
+
+At a high level, that map will have at least these layers:
+
+1. **Identity Core (Entra ID / SC‑300 centrepiece)**
+    - Tenant \& directory design, users/groups, hybrid identity (Connect, PHS/PTA/federation).
+    - External identities (B2B/B2C), cross‑tenant access, guest lifecycle.
+    - Authentication \& access (MFA, Conditional Access, Identity Protection, passwordless).
+    - Workload identities (app registrations, enterprise apps, managed identities, federation, SCIM).
+    - Identity governance (PIM, access reviews, entitlement mgmt, lifecycle workflows).
+2. **Cloud Security \& Infrastructure (AZ‑104, AZ‑500, SC‑500)**
+    - Azure resource security: RBAC, policies, Key Vault, networking (NSGs, priv endpoints).
+    - Defender for Cloud, Defender for Identity, Defender for Endpoint/M365.
+    - AI/ML workloads security (models, data, identity for AI services).[^47_10]
+    - Multi‑subscription governance, landing zones, and infra‑as‑code (Terraform/Bicep).
+3. **Security Operations (SC‑200 + Sentinel / Defender XDR)**
+    - Sentinel: data connectors, analytics rules, hunting, SOAR playbooks.
+    - Defender XDR: incident workflows, correlations, response actions.
+    - Identity‑centric detection: consent phishing, token theft, impossible travel, PIM abuse.
+4. **Security \& Compliance Fundamentals (AZ‑900, SC‑900, AI‑900)**
+    - Shared responsibility and Azure security model.
+    - Compliance centres, Purview, information protection, data loss prevention.
+    - AI governance / responsible AI basics relevant to security.
+5. **Vertical patterns \& regulations (your NHI/industry layer)**
+    - Finance: SOX, PCI, strong MFA, privileged access, audit trails.
+    - Healthcare: HIPAA, ePHI protections, clinician access patterns, emergency access.
+    - Government: stricter compliance, segmentation, possible national health/insurance schemes (what you meant by NHI), data residency.
+    - SaaS/startups: SOC 2, ISO 27001, lean operations with strong identity controls.
+
+This is **bigger than a 10‑day sprint**. A realistic plan is:
+
+- Phase 1: SC‑300 + Entra identity mastery (10–14 days at 8–10 hours/day).
+- Phase 2: Azure/cloud security (AZ‑500 + SC‑500 topics).
+- Phase 3: Security ops (SC‑200) and detection across Sentinel/Defender.
+- Phase 4: Industry patterns \& regulations tied to your Entra designs.
+
+Your current ask is for Phase 1 plus the surrounding awareness, not full mastery of all eight certs at once, and that’s the right place to start.
+
+## Does focusing Phase 1 around Entra \& SC‑300 still make sense?
+
+Yes — as **Phase 1 of a larger “Microsoft Security Engineer (Identity‑heavy)” track**, not as the whole story.
+
+SC‑300 (properly mastered with extra depth) gives you:
+
+- Strong positioning for IAM / Identity Security Engineer roles that list SC‑300/SC‑200/AZ‑500 as preferred.[^47_4][^47_6][^47_3]
+- A backbone to hang all the Azure security and Sentinel/Defender concepts off — because almost every Microsoft security job description starts with “Administer and optimize Entra ID security controls”.[^47_5][^47_3]
+- Job‑hunt credibility as someone who genuinely understands Entra identity and governance, not just “did some M365 admin work.”
+
+It **won’t** alone make you ready for every posting that lists the full cert alphabet soup, but it’s the fastest, cleanest first step that builds on your strongest experience and starts closing the painful gaps.
+
+## Next step (what I’ll do)
+
+Given everything you just clarified, here’s how I’ll proceed:
+
+1. **Build the deep‑dive map for Phase 1: Entra + SC‑300‑plus.**
+    - Not just the exam skills measured, but the full identity/service domain list an org expects from an Entra security engineer.
+    - Include pointers to which further certs (AZ‑500, SC‑200, SC‑500) those domains expand into, so your plan is integrated.
+2. **Design a 10–14 day high‑focus curriculum** that:
+    - Centres on Entra identity/governance (SC‑300);
+    - Adds the Entra‑adjacent topics from AZ‑104/AZ‑500/SC‑200/SC‑500 where they touch identity, security, and operations;
+    - Uses concrete customer/industry use cases every day, not just portal clicks.
+3. **Wrap that into a new public repo scaffold** that’s clearly:
+    - “Microsoft Entra + Security Engineer Mastery,” not just “SC‑300 study plan”;
+    - Linked from your main `agentic-ai-study-plan` but stands alone as your Entra/security portfolio.
+
+Then we can look at the Phase 2/3 expansion (Defender/Sentinel/Azure infra) once Phase 1 is solid.
+
+If you’re okay with this phased approach, I’ll start with the Phase 1 domain map in the next answer, then turn it into a concrete day‑by‑day plan and a GitHub structure you can start filling from tomorrow.
+<span style="display:none">[^47_14][^47_15][^47_16][^47_17][^47_18]</span>
+
+<div align="center">⁂</div>
+
+[^47_1]: https://learn.microsoft.com/en-us/credentials/certifications/roles/security-engineer
+
+[^47_2]: https://www.linkedin.com/posts/ryan-perrin_microsoftsecurity-securityarchitecture-activity-7424864525084123136-gtz1
+
+[^47_3]: https://www.gulftalent.com/uae/jobs/microsoft-security-engineer-573393
+
+[^47_4]: https://sg.trabajo.org/job-979-693cca3e2d412a9a451fe8385fb57342
+
+[^47_5]: https://saudi.tanqeeb.com/jobs-in-middle-east/all/jobs/020913485.html
+
+[^47_6]: https://job-boards.greenhouse.io/sportygroup/jobs/4884930101
+
+[^47_7]: https://learn.microsoft.com/en-us/training/entra/
+
+[^47_8]: https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/
+
+[^47_9]: https://www.robustittraining.com/assets/pdf/exam-guides/microsoft/microsoft certified-identity-and-access-administrator-associate-skills-measured.pdf
+
+[^47_10]: https://learn.microsoft.com/ja-jp/credentials/certifications/cloud-and-ai-security-engineer-associate/
+
+[^47_11]: https://techcommunity.microsoft.com/blog/skills-hub-blog/new-microsoft-certified-cloud-and-ai-security-engineer-associate-certification/4494117
+
+[^47_12]: https://course.careers/career-guides/microsoft-security-careers
+
+[^47_13]: https://programs.com/certs/azure/
+
+[^47_14]: https://info.microsoft.com/rs/157-GQE-382/images/EN-CNTNT-Other-PDF-SREVM1835CTA2.pdf
+
+[^47_15]: https://cvresumenest.com/jobs/alteradigitalhealthindia_4968852007
+
+[^47_16]: https://www.linkedin.com/jobs/view/identity-security-engineer-microsoft-entra-id-active-directory-security-engineer-at-jobs-via-dice-4328119209
+
+[^47_17]: https://remotive.com/remote/jobs/software-development/entra-id-azure-pim-engineer-3779071
+
+[^47_18]: https://www.energizerecruitment.com/jobs/view/it-security-engineer-defender-sentinel-azure-entraid--36237
+
+
+---
+
+# @GitHub exactly and this won't be a repo for entra id but a combination of AZ, SC, AI and AB certification from microsoft, Networking concepts and depth.
+
+It should have deep dive in fundamentals and intermediate and mastery/expertise. It also should not be only knowledge and topics and resources and stuff but also on hands, labs, etc.. This i believe is minimum requirement in 2026 and future. I think the repo should be named more like mastery azure or something like that.
+
+P.S by NHI I meant non human identities
+
+Your instinct is right: in 2026 a “notes-only” Entra repo is not enough. A **Mastery Azure** repo that combines Azure, security, AI, non‑human identities, and networking, with real labs, is exactly the kind of asset that will make you more hireable.
+
+## Does this broader Mastery Azure plan make sense?
+
+Yes, with two constraints:
+
+1. **Anchor it on one lane first (identity + security)** for your immediate job hunt. That’s SC‑300 + AZ‑104/500 + SC‑500/Cloud \& AI Security — the roles you’re already close to.[^48_1][^48_2][^48_3]
+2. **Treat AI and deeper networking as supporting disciplines**, not separate certification marathons this month. They should deepen your Azure/security story, not pull you off it.
+
+Given your profile, the most valuable “Mastery Azure” repo is:
+
+- **Identity-first**: Entra ID + non-human identities (service principals, managed identities, workload identity federation).
+- **Security-heavy**: AZ‑500, SC‑300, SC‑500 / Cloud \& AI Security domains.[^48_2][^48_4]
+- **Cloud infra aware**: AZ‑104 core (VMs, VNets, storage, monitoring) and networking fundamentals.
+- **AI-aware**: enough AI + workload identity to secure and operate AI workloads (Bedrock, Azure OpenAI, NHI patterns).
+
+That aligns with the **Cloud \& AI Security Engineer** cert Microsoft just introduced: end‑to‑end identity, data, app, infra security across Azure and AI workloads.[^48_2]
+
+## What the “Mastery Azure” repo should look like
+
+### 1. Top-level structure
+
+Proposed repo name: `azure-security-mastery` or `mastery-azure-security-and-identity`.
+
+Top folders:
+
+- `00-foundations/` — hardware, OS, Linux vs Windows, CLI, Git, basic scripting, core networking (LAN/WAN, IP, subnets, routing, DNS, TLS).
+- `10-identity-and-access/` — Entra users/groups, hybrid identity, external identities, Conditional Access, Identity Protection, passwordless, PIM, access reviews. (SC‑300 core).[^48_5][^48_6]
+- `20-non-human-identities/` — service principals, managed identities, workload identity federation, Key Vault, secrets rotation, app registrations/enterprise apps, SCIM, API auth flows.
+- `30-azure-infra-and-networking/` — AZ‑104 core: VNets, subnets, NSGs, routing, VPN/ExpressRoute, load balancers, storage, monitoring.
+- `40-azure-security-controls/` — AZ‑500/SC‑500: Defender for Cloud, Sentinel, NSGs vs ASGs, Just‑In‑Time VM access, network segmentation, secure posture management, threat detection.[^48_4][^48_2]
+- `50-ai-and-secure-workloads/` — Azure OpenAI / Bedrock‑style patterns, AI app architectures, private networking, NHI patterns for AI pipelines.
+- `labs/` — cross-linked labs per domain, all designed to be repeatable in free/dev tenants.
+- `use-cases/` — industry packs (finance, healthcare, SaaS, retail, manufacturing) with deployment patterns.
+- `tickets/` — misconfigurations and troubleshooting write‑ups (like your current ticket bank but Azure‑centric).
+- `roadmaps/` — mapping to Microsoft certs (AZ‑104, AZ‑500, SC‑300, SC‑500/Cloud \& AI Security, maybe AI‑102 later), plus job roles and salary bands.[^48_7][^48_8][^48_4]
+
+
+### 2. Depth levels per topic
+
+Every topic gets 3 layers:
+
+- **Fundamentals:**
+    - What is it? Why does it exist? Where does it sit in Azure/Entra/Networking?
+    - Text + simple lab (create, view, basic config).
+- **Intermediate:**
+    - How it behaves under load, with dependencies (identity, network, infra).
+    - Labs with failure modes and troubleshooting.
+- **Mastery/expertise:**
+    - How to design, migrate, and operate it across **industry verticals**, with tight security and governance.
+    - Scenario labs (e.g., multi‑tenant B2B, cross‑cloud NHI, hybrid routing, secure AI data flows).
+
+Concrete examples:
+
+- NHI fundamentals: “service principal vs managed identity vs workload identity federation.”
+- Intermediate: “implement workload identity federation between GitHub Actions and Azure for IaC.”
+- Mastery: “design NHI strategy for a regulated bank running AKS + Azure Functions + GitHub Actions, including secrets, rotation, and audit.”
+
+
+### 3. Labs first, notes second
+
+Each domain will be lab‑led, not notes‑led:
+
+- Identity labs: build CA policies, risk‑based sign‑in, PIM configuration, guest access reviews, lifecycle workflows.
+- NHI labs: create app regs, service principals, managed identities; integrate with Azure Functions/AKS; implement workload identity federation.
+- Infra labs: VNets, peering, NSGs, routing, DNS, TLS termination; secure VM/app patterns.
+- Security labs: Sentinel + KQL for identity and NHI signals, Defender alerts, NSG flow logs.
+- AI labs: secure Azure OpenAI endpoints, private networking, NHI for AI pipelines.
+
+Your repo shouldn’t be “a collection of links” — every big concept gets at least one **implemented lab and one broken lab** (where you deliberately misconfigure and then debug).
+
+### 4. Certification mapping without being exam‑centric
+
+For each Microsoft study guide/link you shared (AZ‑104, AZ‑500, SC‑300, SC‑500), the repo will:
+
+- Map each **skill bullet** to:
+    - A concept file (fundamentals + intermediate + mastery).
+    - One or more labs.
+    - One or more industry use‑cases.
+- Add extra depth for topics the exams gloss over, especially:
+    - NHI and workload identity.
+    - Multi‑tenant / cross‑cloud scenarios.
+    - Governance and compliance mapping per industry.
+
+So you’re building **“cert-plus” mastery**: if you decided to sit exams, you’d be over-prepared; but more importantly, you’d sound and operate like someone who can support any customer, not just pass a test.
+
+## How this helps your job hunt
+
+This repo concept absolutely supports easier job hunting — because it:
+
+- Shows you can **design and operate** Entra/Azure/AI/NHI beyond one tenant; that’s what global remote roles pay for, not just exam badges.[^48_9][^48_10]
+- Positions you for **Cloud \& AI Security Engineer**, IAM Engineer, Azure Security Engineer, and Identity Architect lanes — all of which fetch strong remote/contract pay.[^48_3][^48_2]
+- Makes your LinkedIn Premium outreach more credible: when you link a repo called `azure-security-mastery` with real labs and industry packs, hiring managers see a specialist, not a generic IT admin.
+
+In other words: yes, this makes sense — as long as we **phase it** (don’t try to master AZ‑104/500/SC‑300/SC‑500 + AI all in one 10‑day sprint) and keep it lab‑heavy.
+
+If you like this direction, next step is:
+
+- Confirm the repo name (`azure-security-mastery` or similar).
+- Confirm you have an Azure free tier + Entra/M365 dev tenant for labs.
+
+Then I’ll scaffold the repo (folders, day-by-day lab maps, NHI and industry use‑case stubs) so your next 10 days can be pure high-focus build instead of setup.
+
+<div align="center">⁂</div>
+
+[^48_1]: https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/
+
+[^48_2]: https://learn.microsoft.com/ja-jp/credentials/certifications/cloud-and-ai-security-engineer-associate/
+
+[^48_3]: https://mscertquiz.com/blog/sc-300-vs-az-500
+
+[^48_4]: https://programs.com/certs/azure/
+
+[^48_5]: https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-300
+
+[^48_6]: https://www.robustittraining.com/assets/pdf/exam-guides/microsoft/microsoft certified-identity-and-access-administrator-associate-skills-measured.pdf
+
+[^48_7]: https://www.azureprep.com/blog/azure-certification-salary-2026
+
+[^48_8]: https://course.careers/career-guides/microsoft-security-careers
+
+[^48_9]: https://practicemscert.com/blog/is-sc300-worth-it.html
+
+[^48_10]: https://www.aicloudpartners.com/guides/microsoft-certification-salary-guide-2026.html
+
+
+---
+
+# @GitHub It could be well more indepth and enhanced with missing things
+
+Yes. The earlier `azure-security-mastery` idea was still too close to a certification roadmap. The stronger version should be an **Azure engineering and customer-delivery system**: certifications provide the coverage baseline, while labs, incidents, architecture decisions, automation, and industry scenarios prove that you can operate real environments.
+
+Microsoft’s AZ-104 scope already spans identity/governance, storage, compute, networking, monitoring, and recovery—not merely Entra ID. The new repository should therefore connect AZ-104, AZ-500, SC-300, SC-500/Cloud \& AI Security, AI, NHI, networking, and operational engineering into one coherent system.[^49_1]
+
+## Better repository identity
+
+Recommended name:
+
+```text
+azure-cloud-security-mastery
+```
+
+Why this is better than `entra-id-mastery`:
+
+- It does not trap you in an IAM-admin identity.
+- It supports Azure administrator, cloud security, identity security, platform security, AI security, and consulting roles.
+- It gives networking, compute, storage, governance, and operations equal importance.
+- It allows Microsoft certifications to be treated as **curriculum inputs**, not as the repository’s purpose.
+
+The repository’s public positioning should be:
+
+> A hands-on Azure cloud, security, identity, networking, and AI engineering curriculum designed around real customer problems, operational failure, automation, governance, and explainable architecture.
+
+## The missing layers
+
+The repo needs more than “fundamentals, intermediate, mastery.” It needs **seven dimensions of mastery** for every major capability:
+
+
+| Dimension | Question it must answer |
+| :-- | :-- |
+| Fundamentals | What is this and why does it exist? |
+| Implementation | Can I create and configure it? |
+| Integration | Can I connect it to identity, networking, data, and applications? |
+| Operations | Can I monitor, troubleshoot, patch, scale, and recover it? |
+| Security | Can I harden it and prove least privilege? |
+| Architecture | Can I select it against alternatives and defend trade-offs? |
+| Customer delivery | Can I discover requirements, implement safely, document, train, and hand over the solution? |
+
+A topic is not “mastered” because a lab succeeds once. It becomes mastery-level only when you can deploy it, break it, diagnose it, secure it, automate it, explain its trade-offs, and apply it to multiple customer environments.
+
+## Proposed repository structure
+
+```text
+azure-cloud-security-mastery/
+├── README.md
+├── START-HERE.md
+├── MASTERY-STANDARD.md
+├── ARCHITECTURE-DECISION-FRAMEWORK.md
+├── CUSTOMER-DELIVERY-METHOD.md
+├── CERTIFICATION-MAP.md
+├── SKILLS-MATRIX.md
+├── GLOSSARY.md
+│
+├── 00-foundations/
+│   ├── computing-and-operating-systems/
+│   ├── linux-and-windows/
+│   ├── cli-and-scripting/
+│   ├── git-and-github/
+│   ├── virtualization-and-containers/
+│   ├── data-formats-and-apis/
+│   └── troubleshooting-method/
+│
+├── 10-networking/
+│   ├── osi-and-tcp-ip/
+│   ├── ipv4-ipv6-subnetting/
+│   ├── dns/
+│   ├── dhcp/
+│   ├── routing-and-bgp/
+│   ├── nat-and-firewalls/
+│   ├── tls-pki-and-certificates/
+│   ├── http-and-api-networking/
+│   ├── azure-vnet/
+│   ├── peering-and-hub-spoke/
+│   ├── vpn-and-expressroute/
+│   ├── private-endpoints/
+│   ├── load-balancing/
+│   └── network-troubleshooting/
+│
+├── 20-azure-platform/
+│   ├── subscriptions-and-management-groups/
+│   ├── resource-groups-and-tags/
+│   ├── azure-rbac/
+│   ├── azure-policy/
+│   ├── resource-locks/
+│   ├── budgets-and-cost-controls/
+│   ├── azure-resource-manager/
+│   ├── bicep/
+│   ├── terraform/
+│   ├── deployment-strategies/
+│   └── landing-zones/
+│
+├── 30-identity-and-nhi/
+│   ├── entra-users-and-groups/
+│   ├── hybrid-identity/
+│   ├── external-identities/
+│   ├── conditional-access/
+│   ├── authentication-methods/
+│   ├── passwordless-and-passkeys/
+│   ├── identity-protection/
+│   ├── pim-and-access-reviews/
+│   ├── entitlement-management/
+│   ├── lifecycle-workflows/
+│   ├── app-registrations/
+│   ├── service-principals/
+│   ├── managed-identities/
+│   ├── workload-identity-federation/
+│   ├── workload-identity-for-aks/
+│   ├── secrets-and-certificates/
+│   ├── key-vault/
+│   ├── scim-and-provisioning/
+│   └── oauth-oidc-saml-and-api-auth/
+│
+├── 40-compute-storage-and-data/
+│   ├── virtual-machines/
+│   ├── vm-scale-sets/
+│   ├── availability-and-zones/
+│   ├── containers-and-aks/
+│   ├── app-service/
+│   ├── functions/
+│   ├── storage-accounts/
+│   ├── blob-storage/
+│   ├── azure-files/
+│   ├── queues-and-messaging/
+│   ├── sql-and-managed-databases/
+│   ├── cosmos-db/
+│   ├── caching/
+│   ├── backup/
+│   ├── site-recovery/
+│   └── disaster-recovery/
+│
+├── 50-security-operations/
+│   ├── defender-for-cloud/
+│   ├── defender-for-identity/
+│   ├── defender-for-endpoint/
+│   ├── defender-for-cloud-apps/
+│   ├── sentinel/
+│   ├── kql/
+│   ├── cloudtrail-equivalent-audit-thinking/
+│   ├── security-baselines/
+│   ├── vulnerability-management/
+│   ├── incident-response/
+│   ├── threat-hunting/
+│   ├── attack-path-analysis/
+│   ├── posture-management/
+│   └── security-automation/
+│
+├── 60-ai-and-secure-ai/
+│   ├── ai-fundamentals/
+│   ├── azure-ai-services/
+│   ├── azure-openai/
+│   ├── ai-search-and-rag/
+│   ├── prompt-and-data-security/
+│   ├── ai-agent-identity/
+│   ├── ai-pipeline-nhi/
+│   ├── model-access-control/
+│   ├── private-ai-networking/
+│   ├── ai-logging-and-evaluation/
+│   ├── prompt-injection/
+│   ├── data-poisoning/
+│   ├── sensitive-data-leakage/
+│   └── ai-governance/
+│
+├── 70-operations-and-reliability/
+│   ├── azure-monitor/
+│   ├── log-analytics/
+│   ├── application-insights/
+│   ├── alerts-and-action-groups/
+│   ├── slis-slos-and-slas/
+│   ├── capacity-planning/
+│   ├── performance-engineering/
+│   ├── change-management/
+│   ├── incident-command/
+│   ├── root-cause-analysis/
+│   ├── runbooks/
+│   ├── backup-restore-testing/
+│   └── chaos-and-failure-injection/
+│
+├── 80-customer-scenarios/
+│   ├── fintech-and-banking/
+│   ├── healthcare/
+│   ├── retail/
+│   ├── saas/
+│   ├── manufacturing-and-ot/
+│   ├── education/
+│   ├── government/
+│   ├── nonprofit/
+│   └── mergers-and-acquisitions/
+│
+├── labs/
+├── incidents/
+├── architecture-decisions/
+├── automation/
+├── tickets/
+├── portfolio/
+├── customer-delivery/
+└── certification-maps/
+```
+
+
+## The certification map
+
+The repo should map certification objectives into a larger capability model:
+
+
+| Certification | Repository role | What must be added beyond the exam |
+| :-- | :-- | :-- |
+| AZ-104 | Azure administration foundation | Landing zones, IaC, migration, reliability, cost, DR, operational handover |
+| AZ-500 | Azure security foundation | Threat modelling, attack paths, detection engineering, incident response, security architecture |
+| SC-300 | Workforce identity and access | NHI, hybrid identity migrations, tenant consolidation, customer IAM design, lifecycle operations |
+| SC-500 / Cloud and AI Security | Cross-domain security | AI security, cloud detection, data protection, application security, security operations |
+| AI certification track | AI workload awareness | RAG security, model access, agent identity, prompt injection, evaluation, data governance |
+| Networking | Shared foundation | Real packet flow, DNS/TLS troubleshooting, hybrid connectivity, private access, segmentation |
+
+The key improvement is that each certification objective should link to **four outputs**:
+
+```text
+certification objective
+    → concept explanation
+    → hands-on lab
+    → failure/ticket scenario
+    → customer implementation case
+```
+
+
+## What every topic must contain
+
+Every topic folder should use the same contract:
+
+```text
+topic-name/
+├── README.md
+├── fundamentals.md
+├── intermediate.md
+├── mastery.md
+├── commands.md
+├── lab/
+│   ├── README.md
+│   ├── setup.md
+│   ├── deploy.sh
+│   ├── deploy.ps1
+│   ├── cleanup.sh
+│   └── expected-results.md
+├── break-fix/
+│   ├── failure-01.md
+│   ├── failure-02.md
+│   └── troubleshooting.md
+├── security/
+├── operations/
+├── architecture-decisions/
+├── customer-use-cases/
+├── interview-defense.md
+└── verification.md
+```
+
+Each command explanation should answer:
+
+- What does this command do?
+- Which API or control plane does it call?
+- Where does it run?
+- What permissions does it require?
+- What resources does it create or change?
+- What happens behind the scenes?
+- What does success look like?
+- What errors are common?
+- How do you reverse it?
+- What would change in production?
+- What would change for a regulated customer?
+
+
+## NHI must be a first-class pillar
+
+Your clarification is important: NHI means **non-human identities**, and this deserves its own major domain, not a small section under app registrations.
+
+The NHI track should cover:
+
+### Fundamentals
+
+- User identity versus workload identity.
+- Application object versus service principal.
+- Managed identity versus service principal.
+- Secrets, certificates, federated credentials, and tokens.
+- Authentication versus authorization.
+- Permissions, consent, owners, and privilege escalation.
+
+
+### Intermediate
+
+- User-assigned versus system-assigned managed identities.
+- Azure Functions, App Service, VMs, AKS, automation accounts, and pipelines.
+- GitHub Actions OIDC federation with Azure.
+- Key Vault access patterns.
+- Credential rotation and emergency revocation.
+- NHI inventory and ownership.
+- Dormant service principals and unused credentials.
+- Application consent governance.
+- OAuth scopes versus application roles.
+
+
+### Mastery
+
+- Enterprise NHI strategy and ownership model.
+- NHI joiner-mover-leaver equivalent.
+- Multi-tenant application architecture.
+- Cross-cloud identity: Azure, AWS, and GCP.
+- AI agent identity and tool authorization.
+- NHI attack-path analysis.
+- Workload identity incident response.
+- NHI policy-as-code.
+- Evidence for SOC 2, ISO 27001, PCI DSS, HIPAA, and DPDPA.
+- Migration from secrets to federation without service interruption.
+
+A strong capstone would be:
+
+> Replace long-lived GitHub-to-Azure deployment secrets with workload identity federation, restrict deployment scope, add approval gates, log every token exchange, simulate credential compromise, and prove that the old secret can be revoked without breaking production.
+
+That is much more valuable than simply creating a service principal.
+
+## Hands-on lab progression
+
+The labs should deliberately progress from isolated skill to enterprise scenario:
+
+### Level 1 — Build
+
+- Create a VNet with subnets, NSGs, route tables, and private endpoints.
+- Create users, groups, roles, managed identities, and app registrations.
+- Deploy a VM, Storage Account, Key Vault, Function App, and Log Analytics workspace.
+- Configure Azure Monitor and basic alerts.
+
+
+### Level 2 — Integrate
+
+- Connect an application to Entra ID using OIDC.
+- Give a Function App a managed identity.
+- Read a secret from Key Vault without storing credentials.
+- Deploy infrastructure using Bicep and Terraform.
+- Send identity and resource logs to Sentinel.
+- Use private networking to reach PaaS services.
+- Implement GitHub Actions federation.
+
+
+### Level 3 — Break and repair
+
+- Break DNS resolution.
+- Remove a required NSG rule.
+- Create an incorrect route.
+- Expire a certificate.
+- Break an OAuth redirect URI.
+- Remove a managed identity permission.
+- Introduce a Conditional Access policy that locks out administrators.
+- Create an overprivileged service principal.
+- Break a private endpoint DNS zone.
+- Cause a deployment to fail because of policy.
+
+
+### Level 4 — Operate
+
+- Add monitoring and SLOs.
+- Create a runbook.
+- Generate an incident ticket.
+- Perform triage.
+- Contain the issue.
+- Restore service.
+- Write an RCA.
+- Add a preventive control.
+- Produce audit evidence.
+
+
+### Level 5 — Customer delivery
+
+- Discovery call.
+- Requirements and constraints.
+- Current-state assessment.
+- Target architecture.
+- Migration plan.
+- Risk register.
+- Implementation plan.
+- Test plan.
+- Change window.
+- Handover document.
+- Customer training.
+- Post-implementation review.
+
+
+## Industry depth
+
+Industry use cases should not be generic “healthcare uses security” paragraphs. Each one should include:
+
+- Business objective.
+- Regulatory and contractual constraints.
+- Current-state architecture.
+- Identity model.
+- NHI model.
+- Network and data-flow diagram.
+- Security controls.
+- Availability and recovery requirements.
+- Cost assumptions.
+- Migration risks.
+- Operating model.
+- Evidence required for audit.
+- Customer questions and objections.
+
+Examples:
+
+- **Banking:** privileged access, SOX evidence, payment-system isolation, phishing-resistant authentication, NHI approval and rotation.
+- **Healthcare:** minimum-necessary access, emergency access, clinical shared devices, patient-data boundaries, break-glass auditing.
+- **Retail:** seasonal workers, store connectivity, POS segmentation, rapid onboarding/offboarding, peak-event scaling.
+- **SaaS:** customer tenant isolation, CI/CD federation, support engineer access, SOC 2 evidence, cost controls.
+- **Manufacturing:** hybrid identity, suppliers, OT/IT separation, intermittent connectivity, legacy application constraints.
+- **Government:** sovereign data requirements, strict privileged access, procurement constraints, accessibility, long retention.
+- **Nonprofit:** limited budget, small IT team, simple operating model, grant compliance, volunteer lifecycle.
+
+
+## Add the engineering disciplines that certifications omit
+
+The enhanced repo must also include:
+
+- Requirements engineering.
+- Threat modelling with STRIDE and attack trees.
+- Architecture decision records.
+- Data-flow diagrams.
+- Dependency mapping.
+- Secure software development.
+- API and integration testing.
+- Unit, integration, and acceptance testing.
+- CI/CD quality gates.
+- Policy-as-code.
+- Secrets scanning.
+- Dependency and container scanning.
+- Cost estimation and FinOps.
+- SLOs, SLIs, and error budgets.
+- Backup and restore tests.
+- Disaster-recovery exercises.
+- Change and release management.
+- Customer communication.
+- Runbooks and service handover.
+- Post-incident reviews.
+- Accessibility and operational documentation.
+
+These are what separate “passed Azure certifications” from “can support and implement Azure for customers.”
+
+## The mastery gate
+
+Do not mark a topic complete because you watched a video or passed a quiz. Use this gate:
+
+### Fundamentals complete
+
+- Explain it simply.
+- Draw its architecture.
+- Identify its dependencies.
+- Perform a basic lab.
+- Define its security boundary.
+
+
+### Intermediate complete
+
+- Automate it with CLI, PowerShell, Bicep, or Terraform.
+- Integrate it with identity and networking.
+- Troubleshoot at least three failures.
+- Monitor it.
+- Explain cost and operational implications.
+
+
+### Mastery complete
+
+- Design it for multiple customer types.
+- Compare alternatives and defend the selection.
+- Perform migration or recovery.
+- Threat-model it.
+- Produce audit evidence.
+- Teach it to another engineer.
+- Answer “what happens behind the scenes?”
+- Explain failure, rollback, blast radius, and long-term operations.
+
+
+## My recommendation
+
+Do **not** create the repo as a 10-day promise that implies complete mastery of all these areas. Create it as a long-lived mastery platform with:
+
+- A **10-day foundation sprint** to build the system and complete the first vertical slice.
+- A **30-day implementation phase** for core Azure, networking, identity, NHI, and IaC.
+- A **90-day customer-engineering phase** for security operations, AI security, industry scenarios, migrations, and capstones.
+
+The first vertical slice should be:
+
+> Secure Azure application deployment using VNet, private endpoint, Key Vault, managed identity, GitHub Actions workload identity federation, Azure Monitor, Sentinel logging, Terraform/Bicep, and a break-fix incident.
+
+That single slice connects:
+
+- AZ-104 networking, compute, storage, monitoring, and governance.
+- AZ-500 security controls.
+- SC-300 identity and access.
+- NHI.
+- Networking fundamentals.
+- IaC and DevSecOps.
+- Customer-facing implementation.
+- Operational troubleshooting.
+- AI-ready security patterns.
+
+That is the level of repo that can genuinely support your goal: not merely “I studied Microsoft certifications,” but “I can take a customer requirement, design the Azure solution, implement it securely, troubleshoot it, document it, and operate it.”
+
+<div align="center">⁂</div>
+
+[^49_1]: https://learn.microsoft.com/en-ca/credentials/certifications/resources/study-guides/az-104
+
+
+---
+
+# @GitHub We won't be stretching this off to 90 days no way. Create the repo
+
+
+---
+
+# @GitHub yes
+
+
+---
+
+# @GitHub It's missing key things like migration tools and stuff. Research markets. Here's an example of an actual job listing that i found.
+
+he Digital Workplace Platform (DWP) team continues to grow, and we are seeking a highly skilled and experienced Microsoft 365 Technical Architect to join our Professional Services team.
+
+As a Microsoft 365 Architect, you will be responsible for implementing and managing Microsoft 365 solutions for our clients. You will work closely with clients to understand their business requirements and provide technical expertise to ensure successful deployment and adoption of Microsoft 365 technologies.
+
+We are looking for a profile with a solid Microsoft 365 technical background combined with strong customer leadership skills. This role will require significant customer interaction. The candidate must have broad, multi-discipline, Enterprise IT experience and must deliver customer-centric solutions that improve the user experience.
+
+Job Requirements
+
+Details:
+
+Job responsibilities:
+
+Collaborate with clients to understand their technical and business needs and implement Microsoft 365 solutions that align with their goals and objectives.
+Be able to implement solutions for Microsoft 365, including Exchange Online, SharePoint Online, Teams, and other connected technologies (i.e., AD, AADConnect, ADFS, Azure AD, Identity Provider Solutions like i.e., Okta, Azure and other Automation Solutions, Exchange Server, mail relay and hygiene technologies and/or Migration Tools, etc.).
+Provide guidance and support to clients during the implementation and migration process, ensuring smooth and successful deployment of Microsoft 365 solutions. (i.e., working experience with one or more of the following migration tools: BitTitan, Quest, Sharegate, CloudiWay)
+Conduct technical assessments and audits to identify areas for improvement and optimization within existing Microsoft 365 environments.
+Stay up to date with the latest Microsoft 365 technologies, features, and best practices, and provide recommendations to clients for leveraging these advancements.
+Collaborate with cross-functional teams, including developers, system administrators and project managers, to ensure seamless integration of Microsoft 365 solutions with existing systems and processes.
+Provide technical guidance and support to clients to promote adoption and maximize the benefits of Microsoft 365 technologies.
+Troubleshoot and resolve technical issues related to Microsoft 365, including performance, connectivity, and security concerns.
+Be able to create and maintain documentation of technical architectures (HLDs, LLDs, Operations Manual, etc.), configurations (configuration checklist) and procedures (SOPs, etc.) related to Microsoft 365 solutions.
+
+You’re right. The earlier design was still too Azure-certification-centric and missed a major market lane: **Microsoft 365 Professional Services / Digital Workplace Architecture and Migration**.
+
+The job listing you shared changes the repo’s direction materially. Current market postings repeatedly combine Microsoft 365 architecture with Exchange Online, SharePoint, Teams, OneDrive, hybrid identity, AD Connect/Cloud Sync, ADFS, Okta, migration tools, PowerShell, Graph, security/compliance, HLD/LLD documentation, cutover planning, and customer leadership.[^52_1][^52_2][^52_3][^52_4]
+
+## What the repo was missing
+
+The repo needs a complete **Digital Workplace and M365 Customer Engineering** pillar, not just Azure identity.
+
+### Missing platform capabilities
+
+- Exchange Online architecture and administration.
+- Exchange Server and hybrid Exchange.
+- Mail flow, connectors, transport rules, relay, hygiene, SPF, DKIM, and DMARC.
+- SharePoint Online architecture, permissions, hub sites, sharing, storage, lifecycle, and governance.
+- OneDrive administration and migration.
+- Microsoft Teams architecture, policies, external collaboration, meeting governance, voice readiness, and lifecycle.
+- Microsoft 365 Groups and unified collaboration governance.
+- Viva Connections, Viva Engage, Viva Learning, and Viva Insights awareness.
+- Power Platform governance and environment strategy.
+- Microsoft 365 licensing, service limits, throttling, and support boundaries.
+- Microsoft 365 tenant architecture and landing-zone principles.
+
+
+### Missing identity and hybrid capabilities
+
+- Active Directory architecture and operations.
+- Entra Connect Sync.
+- Entra Cloud Sync.
+- ADFS and federation.
+- Password Hash Synchronization, Pass-through Authentication, and federation decision-making.
+- Source anchor, immutable ID, soft match, hard match, and duplicate-object resolution.
+- Domain consolidation and namespace planning.
+- Tenant-to-tenant identity coexistence.
+- Okta and other identity-provider integration.
+- Enterprise application re-registration after migration.
+- SSO dependencies and certificate rollover.
+
+
+### Missing migration engineering
+
+This must become a major domain:
+
+- Discovery and inventory.
+- Tenant assessment.
+- Data classification.
+- Dependency mapping.
+- Identity remediation.
+- Licensing and capacity analysis.
+- Pilot-wave design.
+- Coexistence.
+- Pre-stage and delta sync.
+- Cutover sequencing.
+- User communication.
+- Rollback planning.
+- Throttling and retry management.
+- Validation and reconciliation.
+- Post-migration support.
+- Decommissioning and technical-debt reduction.
+
+Migration tools should be studied as an **ecosystem**, not as memorized product names:
+
+
+| Tool family | Repository treatment |
+| :-- | :-- |
+| Microsoft native tools | Understand where native migration is sufficient and where it is not |
+| BitTitan MigrationWiz | Mailbox, OneDrive, SharePoint, and tenant migration workflow |
+| Quest On Demand | Enterprise migration planning, coexistence, reporting, and troubleshooting |
+| ShareGate | SharePoint, Teams, and OneDrive migration/governance scenarios |
+| Cloudiway | Cross-platform and tenant migration patterns |
+| AvePoint | Enterprise migration, governance, and compliance-oriented workflows |
+| Xillio | Content and application migration patterns |
+| Mover | Microsoft migration history, limitations, and replacement patterns |
+
+The job market explicitly names Quest, BitTitan, ShareGate, Cloudiway, AvePoint, Xillio, and native Microsoft tools in M365 architecture and migration work.[^52_2][^52_3][^52_4][^52_5][^52_1]
+
+## Revised repository structure
+
+The repository should be expanded to this:
+
+```text
+azure-cloud-security-mastery/
+├── 00-foundations/
+├── 10-networking/
+├── 20-azure-platform/
+├── 30-identity-and-nhi/
+├── 35-active-directory-and-hybrid-identity/
+├── 40-microsoft-365-platform/
+│   ├── exchange-online/
+│   ├── exchange-hybrid/
+│   ├── mail-flow-and-hygiene/
+│   ├── sharepoint-online/
+│   ├── onedrive/
+│   ├── microsoft-teams/
+│   ├── microsoft-365-groups/
+│   ├── viva/
+│   ├── power-platform/
+│   ├── licensing-and-service-limits/
+│   └── tenant-architecture/
+├── 45-m365-migration-engineering/
+│   ├── discovery-and-assessment/
+│   ├── tenant-to-tenant/
+│   ├── google-workspace-to-m365/
+│   ├── exchange-migrations/
+│   ├── sharepoint-and-onedrive-migrations/
+│   ├── teams-migrations/
+│   ├── public-folders/
+│   ├── coexistence/
+│   ├── cutover-and-rollback/
+│   ├── migration-reconciliation/
+│   └── migration-tools/
+│       ├── microsoft-native/
+│       ├── bittitan/
+│       ├── quest/
+│       ├── sharegate/
+│       ├── cloudiway/
+│       ├── avepoint/
+│       └── xillio/
+├── 50-security-operations/
+├── 60-ai-and-secure-ai/
+├── 70-operations-and-reliability/
+├── 75-architecture-and-consulting/
+│   ├── discovery/
+│   ├── requirements/
+│   ├── hld/
+│   ├── lld/
+│   ├── configuration-checklists/
+│   ├── sop-and-runbooks/
+│   ├── change-management/
+│   ├── cutover-playbooks/
+│   ├── customer-training/
+│   └── handover/
+├── 80-customer-scenarios/
+├── labs/
+├── migration-factories/
+├── incidents/
+├── architecture-decisions/
+├── customer-delivery/
+├── certification-maps/
+└── portfolio/
+```
+
+
+## New capability model
+
+The repo should prepare you for **four related job lanes**, with a common foundation:
+
+
+| Lane | What it requires |
+| :-- | :-- |
+| M365 Technical Architect | M365 platform architecture, HLD/LLD, customer leadership, integrations |
+| M365 Migration Architect | Discovery, migration tools, coexistence, cutover, rollback, reconciliation |
+| Identity and Hybrid Architect | AD, Entra Connect, ADFS, Okta, SSO, tenant identity migration |
+| Azure Cloud Security Engineer | Azure infrastructure, identity, NHI, networking, security operations, AI security |
+
+Your current experience already gives you strong evidence for Microsoft 365 operations, Entra, automation, endpoint management, compliance, and customer/leadership work. The biggest new gaps are **large-scale migration delivery, Exchange hybrid, Teams/SharePoint architecture, migration tools, and formal architecture documentation**.[^52_3][^52_4][^52_6][^52_1]
+
+## Required migration-factory labs
+
+The repo should contain at least these practical factories:
+
+### Factory 1: Google Workspace to Microsoft 365
+
+- Assess domains, users, groups, aliases, mailboxes, Drive, calendars, and shared drives.
+- Design identity and coexistence.
+- Map Google groups to Microsoft 365 groups or security groups.
+- Plan mailbox and Drive migration.
+- Configure pilot users.
+- Perform delta migration and cutover.
+- Reconcile item counts, permissions, ownership, and failures.
+- Produce a post-migration support plan.
+
+
+### Factory 2: Microsoft 365 tenant-to-tenant
+
+- Inventory users, domains, groups, apps, devices, mailboxes, SharePoint, OneDrive, Teams, and Power Platform.
+- Design source and target identity.
+- Plan domain and UPN transition.
+- Handle cross-tenant access and coexistence.
+- Re-register enterprise applications.
+- Plan device re-enrollment and Intune migration.
+- Execute migration waves.
+- Validate and rollback.
+
+
+### Factory 3: Hybrid Exchange to Exchange Online
+
+- Assess Exchange versions, connectors, namespaces, certificates, mail flow, relay, public folders, and applications.
+- Design hybrid configuration.
+- Validate Autodiscover, OAuth, free/busy, mail flow, and relay.
+- Migrate pilot mailboxes.
+- Troubleshoot throttling, permissions, and delivery issues.
+- Complete cutover and decommission safely.
+
+
+### Factory 4: SharePoint, OneDrive, and Teams migration
+
+- Inventory sites, teams, channels, owners, permissions, guest users, files, links, and inactive content.
+- Resolve unsupported paths, invalid names, excessive permissions, and orphaned content.
+- Map source permissions to target permissions.
+- Migrate in waves.
+- Reconcile content, permissions, sharing links, and ownership.
+- Apply retention, sensitivity, DLP, and lifecycle policies.
+
+
+## Required customer deliverables
+
+Every migration lab must produce professional-services artifacts:
+
+- Discovery questionnaire.
+- Current-state assessment.
+- Application and dependency inventory.
+- Data classification matrix.
+- Assumption and constraint register.
+- Risk and issue register.
+- High-Level Design.
+- Low-Level Design.
+- Migration runbook.
+- Configuration checklist.
+- Pilot plan.
+- Test plan.
+- Cutover plan.
+- Rollback plan.
+- User communication plan.
+- Validation and reconciliation report.
+- Operations manual.
+- Standard operating procedures.
+- Customer handover document.
+- Post-migration review.
+
+This is important because actual M365 architect roles explicitly expect HLDs, LLDs, build documentation, application handover, disaster-recovery documentation, configuration checklists, and SOPs—not just technical implementation.[^52_7][^52_1][^52_3]
+
+## Revised 10-day sprint
+
+The sprint should now be:
+
+
+| Day | Focus |
+| --: | :-- |
+| 1 | Azure, Microsoft 365, AD, Entra, networking, and lab governance baseline |
+| 2 | Exchange Online, mail flow, DNS, SPF/DKIM/DMARC, connectors, relay, hygiene |
+| 3 | SharePoint, OneDrive, Teams, Groups, Viva, governance, and permissions |
+| 4 | AD, Entra Connect, Cloud Sync, ADFS, hybrid identity, and federation |
+| 5 | M365 discovery, assessment, inventory, dependency mapping, and migration design |
+| 6 | Migration tools: native tools, BitTitan, Quest, ShareGate, Cloudiway, AvePoint concepts |
+| 7 | Google Workspace-to-M365 and tenant-to-tenant migration factory |
+| 8 | Exchange hybrid, SharePoint/OneDrive/Teams migration, cutover, rollback, reconciliation |
+| 9 | Security, compliance, Defender, Purview, Intune, NHI, automation, and operations |
+| 10 | Customer architecture pack, HLD/LLD, migration proposal, mock client workshop, and interview defense |
+
+This is still intense, but it is now aligned to the market example you provided rather than just to Microsoft certification domains.
+
+## Important honesty boundary
+
+You should not claim hands-on experience with BitTitan, Quest, ShareGate, or Cloudiway until you have genuinely used them. The repo can contain:
+
+- Product architecture research.
+- Trial or sandbox exercises.
+- Tool comparison.
+- Migration design.
+- Native-tool implementation.
+- Simulated migration evidence.
+- Honest “developing familiarity” labels.
+
+That still helps you discuss the tools intelligently, but it does not turn research into production experience.
+
+I would **not push the previous five-file scaffold yet**. It should be expanded first to include the M365 platform, migration factories, hybrid identity, consulting deliverables, and tool ecosystem above. I can replace that initial plan with the corrected market-aligned version and push it to the new repository after your confirmation.
+<span style="display:none">[^52_10][^52_11][^52_12][^52_13][^52_14][^52_15][^52_16][^52_8][^52_9]</span>
+
+<div align="center">⁂</div>
+
+[^52_1]: https://careers.capgemini.com/job/Bogota-Senior-Migration-Engineer-Microsoft-365Senior-Migration-Engineer-Microsoft-365/1402627633/
+
+[^52_2]: https://careers.capgemini.com/job/London-M365-Architect/1195376801/
+
+[^52_3]: https://www.simplyhired.co.in/job/PbCKYTnHCKpnf9jnmLxWUKQnGzvyBw34pOWUXNsot8BRikmjNtc_0w
+
+[^52_4]: https://www.linkedin.com/jobs/view/m365-architect-at-sogeti-4369830398
+
+[^52_5]: https://builtin.com/job/m365-migration-architect-client-consulting/6561979
+
+[^52_6]: KeveenPatel-Resume-2026-08.pdf
+
+[^52_7]: https://www.dice.com/job-detail/1a6c0a5c-2e1e-46a2-8857-a228be0c7842
+
+[^52_8]: https://www.okta.com/en-in/resources/whitepapers/office365-techguide/
+
+[^52_9]: https://jobgether.com/offer/6a2e58a663c956434a76d3c8-o365-migration-architect
+
+[^52_10]: https://job-boards.greenhouse.io/66degrees/jobs/6130886004
+
+[^52_11]: https://in.linkedin.com/jobs/view/microsoft-365-architect-migration-azure-at-inoptra-digital-4444348104
+
+[^52_12]: https://www.indeed.com/q-m365-migration-architect-jobs.html
+
+[^52_13]: https://jobgether.com/offer/6a31eaa263c956434a7a8749-microsoft-365-architect---hybrid-regina-sk-canada
+
+[^52_14]: https://www.indeed.com/q-office-365-migration-architect-jobs.html
+
+[^52_15]: https://www.indeed.com/q-all-office-365-migration-jobs.html
+
+[^52_16]: https://www.linkedin.com/jobs/view/infrastructure-architect-ms-365-azure-ad-at-jobs-via-dice-4366566297
+
+
+---
+
+# @GitHub yes do it. Make sure to list official learning materials, resources and unofficial but great learning materials and resources.
+
+
+---
+
+# @GitHub yes
+
+Done. I expanded the new public repository to reflect the actual Microsoft 365/Azure professional-services market, not just certification preparation.
+
+Repository: [patelkeveen/azure-cloud-security-mastery](https://github.com/patelkeveen/azure-cloud-security-mastery)
+Initial curriculum commit: `be55f92`.
+
+## What was added
+
+- **`README.md`** — reframes the repo around Azure, Microsoft 365, hybrid identity, NHI, migrations, security, AI, networking, and customer delivery.
+- **`CURRICULUM-MAP.md`** — adds detailed domains and subdomains for:
+    - Exchange Online and hybrid Exchange.
+    - SharePoint, OneDrive, Teams, Groups, Viva, and Power Platform.
+    - AD, Entra Connect, Cloud Sync, ADFS, federation, and coexistence.
+    - NHI, managed identities, service principals, workload federation, Key Vault, SCIM, OAuth/OIDC/SAML.
+    - M365 discovery, tenant-to-tenant, Google Workspace-to-M365, Exchange, SharePoint, OneDrive, Teams, and public-folder migrations.
+    - Security operations, AI security, reliability, consulting, HLD/LLD, SOPs, runbooks, cutovers, rollback, and handover.
+- **`RESOURCE-MAP.md`** — lists official Microsoft study guides, Learn paths, product documentation, migration documentation, Azure documentation, and carefully labeled unofficial resources.
+- **`10-DAY-SPRINT.md`** — replaces the previous generic Azure sprint with an M365/Azure migration-focused intensive plan.
+
+
+## Important honesty control
+
+The repo explicitly distinguishes between:
+
+- Officially verified material.
+- Unofficial explanations.
+- Product/vendor research.
+- Trial or sandbox experience.
+- Personally verified hands-on experience.
+
+BitTitan, Quest, ShareGate, Cloudiway, AvePoint, and Xillio are included as **migration-tool research/trial targets**, not as claimed production experience. That distinction matters because current M365 architect and migration roles explicitly expect migration tooling, hybrid identity, Exchange, SharePoint, Teams, customer assessment, migration planning, and technical documentation.[^54_1][^54_2][^54_3][^54_4]
+
+The curriculum now matches the market example much better: it prepares you not only to configure Azure and Entra, but also to assess customer environments, create HLDs and LLDs, plan migrations, troubleshoot mail flow and identity, manage cutovers, produce SOPs, and hand over operationally supportable solutions. Microsoft’s official certification material remains the baseline, while the repository deliberately expands beyond exam coverage into implementation and customer delivery.[^54_2][^54_5][^54_1]
+
+<div align="center">⁂</div>
+
+[^54_1]: https://careers.capgemini.com/job/Bogota-Senior-Migration-Engineer-Microsoft-365Senior-Migration-Engineer-Microsoft-365/1402627633/
+
+[^54_2]: https://careers.capgemini.com/job/London-M365-Architect/1195376801/
+
+[^54_3]: https://www.simplyhired.co.in/job/PbCKYTnHCKpnf9jnmLxWUKQnGzvyBw34pOWUXNsot8BRikmjNtc_0w
+
+[^54_4]: https://www.dice.com/job-detail/1a6c0a5c-2e1e-46a2-8857-a228be0c7842
+
+[^54_5]: https://learn.microsoft.com/en-ca/credentials/certifications/resources/study-guides/az-104
+
+
+---
+
+# @GitHub Does it teach me everything? Are you sure nothing is missing here?
+
+No — I’m **not** sure that nothing is missing, and I don’t want to falsely tell you that it teaches everything. The current repository is an expanded **curriculum and resource map**, not yet a complete mastery system with all content, labs, migration factories, and verified evidence.
+
+## What exists now
+
+The repo currently gives you:
+
+- The major capability domains.
+- Certification-to-skill mapping.
+- A 10-day learning/build sequence.
+- Official and unofficial resource categories.
+- Migration-tool names and migration-factory themes.
+- Customer-delivery artifact requirements.
+- Rules for distinguishing verified experience from research.
+
+That is a good **blueprint**, but a blueprint is not the finished building.
+
+## What is still missing
+
+### 1. The actual teaching content
+
+The repo does not yet contain deep, command-by-command lessons for every item, such as:
+
+- Exchange Online mail flow.
+- Hybrid Exchange.
+- SharePoint permissions and migration.
+- Teams governance and migration.
+- Entra Connect troubleshooting.
+- ADFS and federation.
+- Conditional Access design.
+- NHI lifecycle and workload federation.
+- Azure networking and private DNS.
+- Defender and Sentinel operations.
+- Secure AI implementation.
+
+The current files identify these topics; they do not yet teach all of them in depth.
+
+### 2. Real hands-on labs
+
+The repo still needs working labs for:
+
+- Azure CLI and PowerShell.
+- Bicep and Terraform.
+- VNet, NSG, UDR, private endpoint, and private DNS.
+- Entra users, groups, CA, PIM, access reviews, and lifecycle workflows.
+- App registrations, managed identities, Key Vault, and federation.
+- Exchange, SharePoint, OneDrive, and Teams administration.
+- Log Analytics, Sentinel, KQL, Defender, and incident response.
+- Backup, restore, DR, scaling, and monitoring.
+
+Until those are implemented and verified, the repository cannot honestly claim that it teaches practical mastery.
+
+### 3. Migration-tool evidence
+
+The repository lists BitTitan, Quest, ShareGate, Cloudiway, AvePoint, and Xillio, but it does not yet include:
+
+- Tool-by-tool capability matrices.
+- Licensing and limitation comparisons.
+- Trial or sandbox walkthroughs.
+- Source-to-target mapping examples.
+- Migration reports.
+- Error handling.
+- Retry and throttling behavior.
+- Reconciliation scripts.
+- Cutover and rollback evidence.
+
+The official Microsoft migration ecosystem also includes Migration Manager and specific migration workflows for SharePoint, OneDrive, and file shares, so those need concrete labs rather than just links.[^55_1][^55_2]
+
+### 4. Architecture and operational depth
+
+The repository needs to explicitly use Azure’s five Well-Architected pillars:
+
+- Reliability.
+- Security.
+- Cost Optimization.
+- Operational Excellence.
+- Performance Efficiency.[^55_3][^55_4]
+
+Your six-layer Decision Stack—Traffic, Compute, Data, Security, Cost, Observability—is useful, but it should be combined with the Azure framework rather than replace it. Every architecture should show both:
+
+```text
+Decision Stack:
+Traffic → Compute → Data → Security → Cost → Observability
+
+Azure quality review:
+Reliability → Security → Cost Optimization → Operational Excellence → Performance Efficiency
+```
+
+
+### 5. Customer-service engineering
+
+The repo names HLDs, LLDs, SOPs, and handover documents, but it still needs actual reusable templates and completed examples for:
+
+- Discovery workshops.
+- Requirements traceability.
+- Current-state assessments.
+- Risk registers.
+- Statements of work.
+- Architecture assumptions.
+- Configuration checklists.
+- Pilot plans.
+- Test plans.
+- Change approvals.
+- Cutover bridges.
+- Rollback decisions.
+- Hypercare.
+- Customer training.
+- Executive status reporting.
+- Post-implementation reviews.
+
+This is especially important for Microsoft 365 Professional Services roles, where customer leadership and implementation quality matter as much as technical configuration.
+
+## Important domains that should still be added
+
+The current map should also be expanded with:
+
+- Microsoft licensing and license optimization.
+- Microsoft 365 service limits, throttling, and support boundaries.
+- Microsoft 365 admin-center operations and service health.
+- Microsoft Graph pagination, throttling, permissions, and error handling.
+- Azure DevOps Boards, Repos, Pipelines, and release governance.
+- Power Platform Center of Excellence and environment strategy.
+- Exchange mail hygiene and third-party relay architecture.
+- Intune, Autopilot, compliance policies, and device migration.
+- Windows 365 and Azure Virtual Desktop.
+- Microsoft Purview retention, sensitivity labels, DLP, eDiscovery, and insider risk.
+- SharePoint information architecture and permission redesign.
+- Teams voice and PSTN architecture awareness.
+- Microsoft 365 backup and third-party backup design.
+- Accessibility, adoption, change management, and user training.
+- Data residency, sovereignty, and cross-border transfer considerations.
+- Vendor management and escalation.
+- Service management, SLAs, incident severity, and problem management.
+- Multi-tenant and merger/acquisition scenarios.
+- Customer acceptance criteria and measurable success metrics.
+
+
+## The honest status
+
+The current repo is approximately:
+
+
+| Area | Status |
+| :-- | :-- |
+| Overall direction | Strong |
+| Certification mapping | Good baseline |
+| Market alignment | Much better after the M365 migration expansion |
+| Official resources | Good starting collection |
+| Unofficial resources | Good categories, needs individual resource validation |
+| Deep teaching content | Not complete |
+| Hands-on labs | Not complete |
+| Migration factories | Not complete |
+| Migration-tool verification | Not complete |
+| Customer deliverables | Planned, not fully implemented |
+| Production evidence | Not established by this new repo |
+| “Teaches everything” status | No |
+
+The new Cloud and AI Security certification itself is intended to cover end-to-end controls across identities, data, applications, infrastructure, hybrid environments, AI-enabled environments, and regulatory compliance, which confirms that the scope is broader than a simple Entra or SC-300 repository. But even the certification scope is not the same as real-world mastery.[^55_5]
+
+## What must happen next
+
+The next build should not add more topic lists. It should create the actual **vertical slices**:
+
+1. **M365 migration slice** — discovery → assessment → design → pilot → cutover → validation → handover.
+2. **Hybrid identity slice** — AD/Entra Connect → federation → failure → recovery → migration.
+3. **NHI slice** — app registration → managed identity → Key Vault → workload federation → compromise and revocation.
+4. **Azure secure workload slice** — VNet → private endpoint → workload → monitoring → Defender/Sentinel → DR.
+5. **Customer architecture slice** — discovery workshop → HLD → LLD → implementation checklist → operations manual.
+6. **Migration-tool comparison slice** — native Microsoft versus BitTitan/Quest/ShareGate/Cloudiway, clearly labeled by verified experience.
+
+So the correct answer is:
+
+> The repository now has the right **map**, but it does not yet teach everything. The missing work is converting the map into verified lessons, executable labs, deliberately broken environments, migration factories, customer deliverables, and evidence.
+
+I would not mark the repository “complete” until every major domain has at least one complete vertical slice from **business problem to implementation, failure, recovery, documentation, and customer handover**.
+<span style="display:none">[^55_10][^55_11][^55_12][^55_13][^55_14][^55_15][^55_6][^55_7][^55_8][^55_9]</span>
+
+<div align="center">⁂</div>
+
+[^55_1]: https://learn.microsoft.com/en-us/sharepointmigration/mm-get-started
+
+[^55_2]: https://learn.microsoft.com/en-us/sharepointmigration/mm-how-to-use
+
+[^55_3]: https://learn.microsoft.com/en-us/azure/well-architected/pillars
+
+[^55_4]: https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework
+
+[^55_5]: https://learn.microsoft.com/en-us/credentials/certifications/cloud-and-ai-security-engineer-associate/
+
+[^55_6]: https://learn.microsoft.com/pt-br/azure/well-architected/pillars
+
+[^55_7]: https://learn.microsoft.com/es-es/azure/well-architected/
+
+[^55_8]: https://learn.microsoft.com/ja-jp/azure/well-architected/pillars
+
+[^55_9]: https://learn.microsoft.com/id-id/azure/well-architected/pillars
+
+[^55_10]: https://learn.microsoft.com/cs-cz/azure/well-architected/pillars
+
+[^55_11]: https://learn.microsoft.com/sv-se/azure/well-architected/pillars
+
+[^55_12]: https://learn.microsoft.com/en-us/industry/well-architected/
+
+[^55_13]: https://learn.microsoft.com/ru-ru/azure/well-architected/pillars
+
+[^55_14]: https://learn.microsoft.com/ko-kr/azure/well-architected/
+
+[^55_15]: https://learn.microsoft.com/ja-jp/azure/well-architected/
+
+
+---
+
+# @GitHub go and make sure everything is included
+
+
+---
+
+# @GitHub yes
+
+Done. I added the completeness and implementation-control layer to the new repository.
+
+Repository: [azure-cloud-security-mastery](https://github.com/patelkeveen/azure-cloud-security-mastery)
+Latest commit: `fcc746d`.
+
+## Added
+
+- **`COMPLETENESS-REGISTER.md`**
+Master inventory covering foundations, networking, Azure governance, workforce identity, NHI, AD/hybrid identity, Microsoft 365, migrations, migration tools, security operations, AI security, reliability, customer delivery, and industry cases.
+- **`VERTICAL-SLICE-TEMPLATE.md`**
+Forces every major project to go from business problem → requirements → current state → architecture → implementation → deliberate failure → security → migration → operations → customer defense.
+- **`MIGRATION-TOOL-MATRIX.md`**
+Covers Microsoft-native tools, Migration Manager, BitTitan, Quest, ShareGate, Cloudiway, AvePoint, and Xillio, with explicit evidence boundaries so research is not falsely presented as production experience.
+- **`CUSTOMER-DELIVERY-CATALOG.md`**
+Covers discovery, assessment, HLD, LLD, ADRs, risk registers, configuration checklists, pilots, testing, cutover, rollback, validation, SOPs, training, handover, and executive communication.
+
+
+## Important limitation
+
+This makes the repo’s **coverage auditable**, but it does not magically mean every topic is already taught or every lab is complete. The register now makes that distinction explicit:
+
+```text
+INDEXED
+→ RESEARCH
+→ LAB-PLANNED
+→ LAB-VERIFIED
+→ OPERATED
+→ CUSTOMER-READY
+```
+
+That is the correct standard. A Microsoft 365 migration topic, for example, should eventually have an executed workflow, migration report, reconciliation, failure case, rollback evidence, and customer handover—not just a link to documentation. Microsoft’s own migration material covers specific workloads such as file shares, SharePoint, Teams, and OneDrive, so those must be implemented as separate evidence-producing labs rather than treated as one generic “M365 migration” topic.[^57_1][^57_2]
+
+The repository now has the **complete inventory and control system**. The next work is implementation: building the vertical slices and moving each item honestly through the status levels.
+
+<div align="center">⁂</div>
+
+[^57_1]: https://learn.microsoft.com/en-us/sharepointmigration/mm-get-started
+
+[^57_2]: https://learn.microsoft.com/en-us/sharepointmigration/mm-how-to-use
+
+
+---
+
+# @GitHub Think of this repo from an expert's perspective and create such structure.
+
+
+---
+
+# @GitHub yes
+
+Done. I added the expert-level operating structure to the repository.
+
+Repository: [azure-cloud-security-mastery](https://github.com/patelkeveen/azure-cloud-security-mastery)
+Latest commit: `97cc51b`.
+
+## What was added
+
+- **`EXPERT-REPOSITORY-ARCHITECTURE.md`**
+    - Separates knowledge, execution, failure/operations, customer delivery, and career evidence.
+    - Defines how a topic moves from business problem to verified evidence.
+    - Adds reviewer and learner navigation rules.
+- **`OPERATING-MODEL.md`**
+    - Defines the full lifecycle:
+`select → frame → learn → build → inspect → break → fix → operate → deliver → defend → publish`.
+    - Adds honest completion gates from `indexed` through `production-verified`.
+    - Includes rules for AI-assisted work.
+- **`EVIDENCE-SCHEMA.md`**
+    - Standardizes evidence metadata for labs, incidents, migrations, NHI, customer cases, and portfolio artifacts.
+    - Captures environment, permissions, commands, failure, remediation, security, operations, and verification.
+- **`LAB-CATALOG.md`**
+    - Lists expert-level labs across networking, Azure, IaC, identity, NHI, AD, hybrid identity, Microsoft 365, migrations, security operations, AI, reliability, and customer delivery.
+- **`ROADMAP.md`**
+    - Establishes the execution order and the 10-day exit criteria.
+    - Prevents adding more theory before a vertical slice has working implementation, failure testing, operations evidence, and customer documentation.
+
+This gives the repository an expert operating model rather than just a large collection of topics. It also keeps the important boundary clear: indexed topics are not automatically mastered, and lab work is not automatically production experience.
+
