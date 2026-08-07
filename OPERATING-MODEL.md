@@ -51,3 +51,15 @@ Every completed item is reviewed for correctness, reproducibility, security, cos
 ## AI-assisted work rule
 
 AI may accelerate research, scaffolding, and drafting. The learner must still understand the implementation, inspect permissions and data flow, test failure cases, review security, and explain every important line or command without hiding behind the tool.
+
+## Continuous review rule
+
+After every task — lab, command, failure exercise, migration step, or document — the repository is reviewed and updated before the task is considered done:
+
+1. Re-read the affected files and check they still match reality.
+2. Update the stage gate (INDEXED → RESEARCH → LAB-PLANNED → LAB-VERIFIED → OPERATED → CUSTOMER-READY) only when evidence supports it.
+3. Update `COMPLETENESS-REGISTER.md`, the command journal, the evidence index, and the gap log.
+4. Record what broke, what was learned, what remains unverified, and what the next task is.
+5. Commit with a message that states what was verified, not just what was written.
+
+A task is not finished when the work is done; it is finished when the repository reflects the work accurately.
