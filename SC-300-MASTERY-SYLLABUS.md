@@ -166,7 +166,7 @@ decode it, and narrate every claim. Then explain why a CA policy fired.
 
 | Training Topic | Scope | Deep-dive extension |
 |---|---|---|
-| Plan CA policies | `[CORE]` | **Policy evaluation logic: ALL policies evaluate; grant controls within a policy are OR unless "require all"; block always wins.** Persona-based design; naming conventions; the Microsoft-recommended baseline set |
+| Plan CA policies | `[CORE]` | **Policy evaluation logic: ALL policies evaluate; block always wins; multiple grant controls default to "Require ALL the selected controls" — you must explicitly pick "Require one of the selected controls" to get OR** (verified against MS docs 2026-08-09; an earlier revision of this table stated the inverse). Persona-based design; naming conventions; the Microsoft-recommended baseline set |
 | Policy assignments | `[CORE]` | Users/groups/roles/guests; **exclusion strategy**; break-glass exclusion (mandatory); workload identities as targets |
 | Policy controls | `[CORE]` | Grant vs Session; require MFA / compliant device / Hybrid joined / approved app / app protection policy; **authentication strength** (replaces "require MFA" granularity) |
 | Test and troubleshoot | `[CORE]`→`[SHALLOW]` | **What-If tool**; **report-only mode**; reading the CA tab of a sign-in log; "policy not applied" reason codes. This is the daily job |
