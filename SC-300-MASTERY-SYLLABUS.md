@@ -11,6 +11,24 @@
 
 ---
 
+## Written layers — the map links to the territory
+
+Every layer below is written. This document is the index; those are the content.
+
+| Layer | Document | Scope |
+|---|---|---|
+| 1 | [Identity protocols](30-identity-and-nhi/oauth-oidc-saml-and-api-auth/LAYER-1-IDENTITY-PROTOCOLS.md) | OAuth, OIDC, JWT, SAML, SCIM, consent |
+| 2 | [Domain 1 — user identities](30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) | Tenant, identities, external, hybrid |
+| 3 | [Domain 2 — auth & Conditional Access](30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md) | Auth methods, CA, ID Protection, GSA |
+| 4 | [Domain 3 — workload identities](30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md) | App/SP, managed identity, federation, MDA |
+| 5 | [Domain 4 — identity governance](30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md) | EM, access reviews, PIM, monitoring/KQL |
+| 6 | [SC-500 bridge](60-ai-and-secure-ai/ai-agent-identity/LAYER-6-SC500-BRIDGE-AI-SECURITY.md) | Entra Agent ID, AI security |
+| 7 | [Industry verticals](80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) | Nine sectors |
+
+Coverage of everything else: **[COVERAGE.md](COVERAGE.md)** — generated, not asserted.
+
+---
+
 ## 0. How to read this map
 
 Four columns, matching the industry-standard training taxonomy:

@@ -1,0 +1,65 @@
+name: Coverage register
+
+# The repo must not be able to overstate itself.
+#
+# COVERAGE.md is generated from the filesystem. If someone adds or removes content
+# without regenerating it, the register becomes a claim rather than a measurement -
+# which is exactly the failure this repo had before 2026-08-09, when every root-level
+# index asserted broad coverage and none of them referenced the content that existed.
+#
+# This job fails the build when the committed register no longer matches reality.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  coverage-is-current:
+    # Windows because the generator uses Windows path conventions, matching the
+    # environment this repo is authored in.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify COVERAGE.md matches the filesystem
+        shell: pwsh
+        run: |
+          ./tools/Build-CoverageRegister.ps1 -Check
+
+      - name: Show current coverage
+        if: always()
+        shell: pwsh
+        run: |
+          if (Test-Path COVERAGE.md) {
+            Get-Content COVERAGE.md -TotalCount 25
+          }
+
+  links-resolve:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check relative markdown links in root docs and layer files
+        shell: pwsh
+        run: |
+          $bad = @()
+          $docs = @(Get-ChildItem -File -Filter *.md) +
+                  @(Get-ChildItem -Recurse -File -Filter 'LAYER-*.md')
+          foreach ($d in $docs) {
+            $text = Get-Content $d.FullName -Raw
+            foreach ($m in [regex]::Matches($text, '\[[^\]]*\]\(([^)#:]+\.(?:md|ps1))\)')) {
+              $rel = $m.Groups[1].Value
+              $target = Join-Path $d.DirectoryName $rel
+              if (-not (Test-Path $target)) {
+                $bad += "$($d.Name) -> $rel"
+              }
+            }
+          }
+          if ($bad) {
+            Write-Host "BROKEN LINKS:" -ForegroundColor Red
+            $bad | ForEach-Object { Write-Host "  $_" }
+            exit 1
+          }
+          Write-Host "All relative links resolve." -ForegroundColor Green
