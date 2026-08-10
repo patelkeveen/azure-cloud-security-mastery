@@ -12,8 +12,8 @@ Each topic ships six facet folders that **are** the content contract:
 | State | Meaning | Count | Share |
 |---|---|---:|---:|
 | **WRITTEN** | Concept prose **and** >=3 of 6 facets carry evidence | 0 | 0% |
-| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 6 | 4.2% |
-| STUB | Scaffold README only - nothing written | 138 | 95.8% |
+| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 21 | 14.6% |
+| STUB | Scaffold README only - nothing written | 123 | 85.4% |
 | EMPTY | Not even a README | 0 | 0% |
 | | **Total topics** | **144** | |
 
@@ -42,7 +42,7 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | `00-foundations` | 7 | 0 | 0 | 7 | 0 |
 | `10-networking` | 14 | 0 | 0 | 14 | 0 |
 | `20-azure-platform` | 11 | 0 | 0 | 11 | 0 |
-| `30-identity-and-nhi` | 20 | 0 | 5 | 15 | 0 |
+| `30-identity-and-nhi` | 20 | 0 | 20 | 0 | 0 |
 | `35-active-directory-and-hybrid-identity` | 8 | 0 | 0 | 8 | 0 |
 | `40-microsoft-365-platform` | 13 | 0 | 0 | 13 | 0 |
 | `45-m365-migration-engineering` | 11 | 0 | 0 | 11 | 0 |
@@ -58,11 +58,26 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 
 | State | Topic | KB | Facets | Missing |
 |---|---|---:|---:|---|
-| PARTIAL | `30-identity-and-nhi/conditional-access` | 20 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| PARTIAL | `30-identity-and-nhi/entra-users-and-groups` | 40.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| PARTIAL | `30-identity-and-nhi/oauth-oidc-saml-and-api-auth` | 16.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| PARTIAL | `30-identity-and-nhi/pim-and-access-reviews` | 18.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| PARTIAL | `30-identity-and-nhi/service-principals` | 20.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/app-registrations` | 3.9 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/authentication-methods` | 3.8 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/conditional-access` | 23.8 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/entitlement-management` | 3.8 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/entra-users-and-groups` | 44.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/external-identities` | 3.5 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/hybrid-identity` | 4.5 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/identity-protection` | 4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/key-vault` | 4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/lifecycle-workflows` | 4.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/managed-identities` | 3.8 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/nhi-incident-response` | 4.9 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/oauth-oidc-saml-and-api-auth` | 21.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/passwordless-and-passkeys` | 4.5 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/pim-and-access-reviews` | 22.5 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/scim-and-provisioning` | 4.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/secrets-and-certificates` | 4.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/service-principals` | 24.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/workload-identity-federation` | 4.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `30-identity-and-nhi/workload-identity-for-aks` | 4.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/ai-agent-identity` | 15.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `00-foundations/cli-and-scripting` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `00-foundations/computing-and-operating-systems` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
@@ -96,21 +111,6 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | stub | `20-azure-platform/resource-locks` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `20-azure-platform/subscriptions-and-management-groups` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `20-azure-platform/terraform` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/app-registrations` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/authentication-methods` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/entitlement-management` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/external-identities` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/hybrid-identity` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/identity-protection` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/key-vault` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/lifecycle-workflows` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/managed-identities` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/nhi-incident-response` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/passwordless-and-passkeys` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/scim-and-provisioning` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/secrets-and-certificates` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/workload-identity-federation` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `30-identity-and-nhi/workload-identity-for-aks` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `35-active-directory-and-hybrid-identity/ad-ds` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `35-active-directory-and-hybrid-identity/adfs-and-federation` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `35-active-directory-and-hybrid-identity/dns-kerberos-ldap-gpo` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
