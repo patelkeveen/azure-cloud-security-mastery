@@ -1,5 +1,20 @@
 # Resource Map
 
+> **Scope note.** This file is a **breadth index** — entry points across Azure, M365, migration,
+> security and AI. It is deliberately shallow: most entries are documentation *roots*, which
+> means "go read this set", not "this has been read".
+>
+> For the identity track, **[SC-300-RESOURCE-LIBRARY.md](SC-300-RESOURCE-LIBRARY.md) supersedes
+> this file.** That one is depth-first and tiered by authority — RFCs and NIST, Microsoft,
+> hands-on, rival vendors (Okta/Auth0), offensive research, tooling, practitioners, adjacent
+> market — with a stated reason to read each item.
+>
+> ⚠ **AZ-500 retires 2026-08-31.** Its successor is **SC-500**. Study AZ-500 material for
+> content; do not sit the exam.
+>
+> Five links in this file were dead (404) until 2026-08-09. External URLs are now gated in CI
+> by `.github/workflows/coverage.yml` — a dead link fails the build.
+
 Resources are labeled **official**, **unofficial**, or **reference**. Official documentation is the authority for current behavior, limits, pricing, and certification scope. Unofficial material is used for explanations and practical perspective, then verified against official documentation.
 
 ## Official Microsoft learning
@@ -17,9 +32,9 @@ Resources are labeled **official**, **unofficial**, or **reference**. Official d
 - [SC-300T00 course](https://learn.microsoft.com/en-ca/training/courses/sc-300t00)
 - [Microsoft Learn SC-300 plan](https://learn.microsoft.com/en-ca/plans/m14ntm3n2gy41q)
 - [Microsoft Learn](https://learn.microsoft.com/training/)
-- [Microsoft 365 training](https://learn.microsoft.com/training/microsoft-365/)
+- [Microsoft 365 training](https://learn.microsoft.com/en-us/training/m365/)
 - [Azure training](https://learn.microsoft.com/training/azure/)
-- [Microsoft security training](https://learn.microsoft.com/training/security/)
+- [Microsoft security training](https://learn.microsoft.com/en-us/training/browse/?subjects=security)
 
 ### Official product documentation
 
@@ -45,10 +60,10 @@ Resources are labeled **official**, **unofficial**, or **reference**. Official d
 
 ### Official migration and deployment material
 
-- [Microsoft 365 migration center](https://learn.microsoft.com/microsoft-365/enterprise/migration-center)
-- [Exchange migration documentation](https://learn.microsoft.com/exchange/mailbox-migration/migration-methods)
+- [Microsoft 365 migration center](https://learn.microsoft.com/en-us/microsoft-365/enterprise/)
+- [Exchange migration documentation](https://learn.microsoft.com/en-us/exchange/mailbox-migration/mailbox-migration)
 - [SharePoint and OneDrive migration](https://learn.microsoft.com/sharepointmigration/migrate-to-sharepoint-online)
-- [Teams migration and interoperability](https://learn.microsoft.com/microsoftteams/teams-and-groups-overview)
+- [Teams migration and interoperability](https://learn.microsoft.com/en-us/microsoftteams/)
 - [Microsoft 365 tenant-to-tenant guidance](https://learn.microsoft.com/microsoft-365/enterprise/cross-tenant-mailbox-migration)
 - [Azure Migrate](https://learn.microsoft.com/azure/migrate/)
 - [Azure CLI documentation](https://learn.microsoft.com/cli/azure/)
@@ -84,3 +99,4 @@ For each important resource record:
 - What remains unverified.
 
 Do not copy a blog's claim into a portfolio or resume without reproducing it or verifying it in official documentation.
+

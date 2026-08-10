@@ -63,3 +63,45 @@ jobs:
             exit 1
           }
           Write-Host "All relative links resolve." -ForegroundColor Green
+
+  external-links-resolve:
+    # A resource map whose links 404 is worse than no resource map: it looks
+    # authoritative and sends you nowhere. Five of forty were dead on 2026-08-09.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check every external URL in markdown
+        shell: pwsh
+        run: |
+          $urls = @{}
+          Get-ChildItem -Recurse -File -Filter *.md |
+            Where-Object { $_.FullName -notmatch '\\\.git\\' } |
+            ForEach-Object {
+              $f = $_
+              foreach ($m in [regex]::Matches((Get-Content $f.FullName -Raw), '\]\((https?://[^)\s]+)\)')) {
+                $u = $m.Groups[1].Value
+                if (-not $urls.ContainsKey($u)) { $urls[$u] = @() }
+                $urls[$u] += $f.Name
+              }
+            }
+          Write-Host "Checking $($urls.Count) unique external URLs..."
+          $bad = @()
+          foreach ($u in $urls.Keys) {
+            try {
+              $r = Invoke-WebRequest -Uri $u -Method Head -MaximumRedirection 5 -TimeoutSec 20 -ErrorAction Stop
+              if ($r.StatusCode -ge 400) { $bad += "$($r.StatusCode)  $u  [$($urls[$u] -join ', ')]" }
+            } catch {
+              $c = $_.Exception.Response.StatusCode.value__
+              # Some hosts reject HEAD or rate-limit CI. Only fail on definite 404/410.
+              if ($c -in 404, 410) { $bad += "$c  $u  [$($urls[$u] -join ', ')]" }
+              elseif (-not $c)     { Write-Host "  unreachable (not failing): $u" }
+              else                 { Write-Host "  HTTP $c (not failing): $u" }
+            }
+          }
+          if ($bad) {
+            Write-Host "DEAD LINKS:" -ForegroundColor Red
+            $bad | ForEach-Object { Write-Host "  $_" }
+            exit 1
+          }
+          Write-Host "No dead external links." -ForegroundColor Green
