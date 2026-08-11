@@ -1,87 +1,225 @@
 # Lifecycle Workflows
 
-> **Concept facet.** Depth in
-> [Layer 5 §1](../pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md).
-> ⚠ **Requires the Entra ID Governance SKU — not included in P2.**
+> Written to [`CONTENT-STANDARD.md`](../../CONTENT-STANDARD.md).
+> ✅ Verified against Microsoft Learn **2026-08-10** (licensing updated 2026-07-30).
+> ⚠ **Requires the Microsoft Entra ID Governance SKU — not included in P2 at any level.**
 
-## What it is
+---
 
-Automation for **joiner, mover, leaver** — the three moments when access should change and usually
-doesn't. Workflows trigger on attribute-driven conditions (hire date, department change,
-termination date) and execute a task sequence.
+## 1. What it is
 
-## Why it exists
-
-Because the leaver process is the weakest control in almost every organisation, and it fails
-quietly. Nobody notices that someone who left in March still has access in September — until an
-audit, or an incident.
-
-The measurable question, from [DAY-05](../../DAILY-EXECUTION/DAY-05.md): **"how long from
-termination to access actually revoked — measured, not intended?"** Nobody knows. Finding out is
-frequently the first real deliverable of an engagement.
-
-## How it works underneath
+Automating the **joiner–mover–leaver** process against attributes already in the directory: run a
+set of tasks a number of days **before, on, or after** someone's `employeeHireDate` or
+`employeeLeaveDateTime`.
 
 ```
-TRIGGER (attribute-based, e.g. employeeHireDate - 7 days)
-  → SCOPE (a rule selecting which users)
-    → TASK SEQUENCE (built-in tasks, executed in order)
+TRIGGER          attribute + offset      "7 days before employeeHireDate"
+   └─ SCOPE      a rule selecting users  "department eq 'Sales'"
+        └─ TASKS ordered actions         generate TAP · email manager · add to groups
 ```
 
-Built-in tasks cover the common needs: enable/disable an account, add to or remove from groups and
-Teams, assign or remove licences, generate a Temporary Access Pass, send email, and — via **custom
-task extensions** — call a **Logic App** to reach any system with an API.
+---
 
-That extension point is what makes it a real integration platform rather than a checkbox: HR system,
-badge access, laptop provisioning, third-party SaaS.
+## 2. Why it exists — and the security case, not the HR one
 
-## When and where
+Joiner–mover–leaver is usually pitched as HR efficiency. **The security case is stronger:**
 
-- **High-churn populations** — retail seasonal waves, education cohorts, clinical rotations
-- **Any regulated environment** where you must *evidence* that leavers lost access on time
-- Where onboarding currently depends on a person remembering a checklist
+- **The leaver who was never disabled** is the most common finding in any identity assessment
+- **Offboarding depends on a human being told**, and during redundancies or a resignation nobody
+  processes, they are not told
+- **Movers keep everything** — the accumulation problem
+  [`../entitlement-management/`](../entitlement-management/) §2 describes
 
-The scenario that sells it: hiring 3,000 seasonal staff in six weeks means offboarding 3,000 in
-another six. Manual offboarding at that rate does not happen.
+> ⭐ **The point is removing the human dependency from the leaver path.** `employeeLeaveDateTime` is
+> already in the directory because HR put it there. A workflow acts on it whether or not anyone
+> remembers to raise a ticket.
 
-## The licensing reality — check before designing
+**Pair it with session revocation.** Disabling an account does not evict live tokens — see
+[`../../50-security-operations/incident-response/`](../../50-security-operations/incident-response/) §5.
+A leaver workflow that only disables the account leaves refresh tokens working.
 
-**Lifecycle Workflows genuinely requires Entra ID Governance.** It is *not* in P2. This is the one
-governance feature where the SKU boundary bites hardest, because it is the feature customers most
-want after seeing entitlement management.
+---
 
-Licence counting is by **population in scope**, not by administrator — a workflow touching 400 new
-hires needs 400 licences plus one for the administrator.
+## 3. ⚠ Licensing — the boundary that ends most conversations ✅
 
-**Do not design a JML programme around this and discover the licensing gap at implementation.**
-Confirm entitlement in discovery.
+| Feature | Free | P1 | **P2** | **ID Governance** | Entra Suite |
+|---|:---:|:---:|:---:|:---:|:---:|
+| **Lifecycle Workflows** | ✗ | ✗ | ⭐ **✗** | **✅** | ✅ |
+| LCW + custom extensions (Logic Apps) | ✗ | ✗ | ✗ | ✅ | ✅ |
 
-## Relationship to the other governance pieces
+> ⭐ **Lifecycle Workflows is not in P2 at all.** Not a reduced version — absent. This is the single
+> most common licensing misunderstanding in identity governance, because entitlement management and
+> access reviews *do* have P2 tiers and people reasonably assume LCW follows the pattern.
 
-| Need | Tool |
-|---|---|
-| Automatic, time-triggered lifecycle events | **Lifecycle Workflows** |
-| Requestable, approved, expiring access | [Entitlement management](../entitlement-management/) |
-| Periodic recertification of existing access | Access reviews |
-| Just-in-time privilege | [PIM](../pim-and-access-reviews/) |
+✅ **Limits with an ID Governance licence:** **50 workflows** total, **100 custom task extensions**.
 
-They compose. A joiner workflow grants baseline access; an access package grants role-specific
-access on request; access reviews recertify it; PIM elevates it temporarily.
+**Licence counting** ✅ is by **users in scope plus the administrator**: a workflow that processes
+400 new hires across a year needs **401**. ⭐ Note that leaver licences **can be reassigned** after
+the workflow runs — 40 offboarded users free 40 licences.
 
-## The traps
+---
 
-1. **Designing it at P2.** The most common wasted design effort in identity governance.
-2. **Triggering on attributes nobody populates.** `employeeHireDate` and `employeeLeaveDateTime`
-   must actually flow from HR. In hybrid environments that is a *sync* problem first.
-3. **Offboarding that disables the account but does not deprovision SaaS.** SCIM
-   ([`../scim-and-provisioning/`](../scim-and-provisioning/)) is the other half; without it, live
-   accounts remain in every connected application.
-4. **No dry run.** Test with a scoped pilot group before letting a workflow touch the real
-   population — a mis-scoped leaver workflow is a mass-disablement incident.
+## 4. Worked example — a leaver workflow that actually closes the door
 
-## Evidence this topic needs
+```powershell
+Connect-MgGraph -Scopes 'LifecycleWorkflows.ReadWrite.All'
 
-- `lab/` — a joiner workflow from a template; scoped to test users; observe execution history.
-- `break-fix/` — trigger on an unpopulated attribute; observe silence, then diagnose.
-- `operations/` — workflow versioning, scheduling, history reporting.
-- `customer-use-cases/` — retail seasonal; education cohort turnover.
+$params = @{
+  displayName = 'Leaver - last day'
+  description = 'Disable, remove access, notify on the last day of employment'
+  isEnabled   = $true
+  executionConditions = @{
+    '@odata.type' = '#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions'
+    scope = @{
+      '@odata.type' = '#microsoft.graph.identityGovernance.ruleBasedSubjectSet'
+      rule = "(department eq 'Sales')"
+    }
+    trigger = @{
+      '@odata.type' = '#microsoft.graph.identityGovernance.timeBasedAttributeTrigger'
+      timeBasedAttribute = 'employeeLeaveDateTime'
+      offsetInDays = 0                      # ⭐ ON the leave date
+    }
+  }
+  tasks = @(
+    @{ displayName='Remove from all groups';  taskDefinitionId='b3a31406-2a15-4c9a-b25b-a658fa5f07fc'; continueOnError=$false; arguments=@() }
+    @{ displayName='Remove all licenses';     taskDefinitionId='8fa97d28-3e52-4985-b3a9-a1126f9b8b4e'; continueOnError=$false; arguments=@() }
+    @{ displayName='Disable user account';    taskDefinitionId='1dfdfcc7-52fa-4c2e-bf3a-e3919cc12950'; continueOnError=$false; arguments=@() }
+  )
+}
+New-MgIdentityGovernanceLifecycleWorkflow -BodyParameter $params
+```
+
+⚠ **Task definition IDs are fixed GUIDs published by Microsoft** — look up the current list rather
+than copying them from anywhere, including here.
+
+**Then verify it actually ran, per user:**
+
+```powershell
+Get-MgIdentityGovernanceLifecycleWorkflowRun -LifecycleWorkflowId <id> |
+  Select-Object StartedDateTime, ProcessingStatus, SuccessfulUsersCount,
+                FailedUsersCount, TotalUsersCount | Sort-Object StartedDateTime -Descending
+```
+
+```
+StartedDateTime       ProcessingStatus  SuccessfulUsersCount  FailedUsersCount  TotalUsersCount
+--------------------  ----------------  --------------------  ----------------  ---------------
+2026-08-09 03:00:12   completed                            7                 2                9   <-- ⚠
+2026-08-08 03:00:09   completed                           12                 0               12
+```
+
+⭐ **`ProcessingStatus: completed` with `FailedUsersCount: 2` is the trap.** The *workflow* completed;
+**two leavers were not offboarded.** A dashboard reading "completed" is exactly the kind of green
+light that hides a security failure — drill into the per-user task report every time.
+
+**The prerequisite nobody checks first:**
+
+```powershell
+Get-MgUser -All -Property UserPrincipalName,EmployeeHireDate,EmployeeLeaveDateTime |
+  Where-Object { -not $_.EmployeeLeaveDateTime -and -not $_.EmployeeHireDate } |
+  Measure-Object | Select-Object @{n='UsersWithNoLifecycleAttributes';e={$_.Count}}
+```
+
+⭐ **A perfect workflow over unpopulated attributes does nothing, silently.** The attributes must be
+populated — by HR-driven provisioning, API-driven provisioning, or sync — **before** the workflow is
+worth building. This is the same failure shape as an empty dynamic group.
+
+---
+
+## 5. What breaks
+
+**Assuming P2 includes it.** §3 — it does not, at all.
+
+**Unpopulated `employeeHireDate` / `employeeLeaveDateTime`.** §4 — silent no-op.
+
+**Reading `completed` as success.** §4 — check `FailedUsersCount`.
+
+**Disabling without revoking sessions.** Refresh tokens keep working.
+
+**`continueOnError = true` on a leaver task.** The workflow reports success having skipped the
+disable step.
+
+**Building leaver automation before joiner automation.** Leaver is the security win; joiner is the
+convenience. Most projects do them in the wrong order.
+
+**Exceeding 50 workflows** through per-department duplication instead of scoping rules.
+
+**No manual-trigger path** for immediate terminations, which never align with an HR date field.
+
+---
+
+## 6. Customer discovery questions
+
+1. Is **ID Governance** licensed? *(If only P2, this conversation is about procurement.)*
+2. Are `employeeHireDate` and `employeeLeaveDateTime` **populated**, and by what?
+3. What happens today when someone leaves — a ticket, or automation?
+4. How is an **immediate termination** handled outside the HR date?
+5. Does the leaver process include **session revocation**, or only account disable?
+6. Does anyone check `FailedUsersCount`, or just that the workflow ran?
+7. How many workflows exist against the **50** limit?
+8. Are movers handled at all, or only joiners and leavers?
+
+---
+
+## 7. Remember it
+
+**Hook — "Trigger, scope, tasks."** An attribute plus an offset, a rule selecting users, an ordered
+list of actions.
+
+**Analogy — a payroll run, not a to-do list.** Offboarding as a ticket is a to-do list: it depends
+on someone remembering, and during a redundancy round or a messy exit nobody does. **Lifecycle
+Workflows makes it a payroll run** — it fires on a date already in the system, for everyone matching
+the rule, whether or not anyone is watching. **And like payroll, "the run completed" is not the same
+as "everyone got paid"** — which is exactly the `FailedUsersCount` trap.
+
+**The one thing:** ⭐ **Lifecycle Workflows requires the ID Governance SKU and is entirely absent
+from P2.** Entitlement management and access reviews have P2 tiers; LCW does not. Assuming it
+follows the pattern is the most common licensing error in this area.
+
+> Folded into the interleaved deck in [`RETENTION.md`](../../RETENTION.md).
+
+---
+
+## 8. Self-test
+
+1. What are the three components of a workflow?
+2. Which licence is required, and is there a P2 tier?
+3. What are the workflow and custom-extension limits?
+4. How are licences counted, and what is special about leaver licences?
+5. A workflow shows `ProcessingStatus: completed`. Is everyone offboarded?
+6. What silently prevents a correct workflow from doing anything?
+7. Why is disabling the account insufficient for a leaver?
+8. Why build joiner automation before leaver automation — or is that backwards?
+9. How do you handle an immediate termination?
+
+<details>
+<summary>Answers</summary>
+
+1. **Trigger** (time-based attribute + offset), **scope** (rule-based subject set), **tasks**
+   (ordered actions).
+2. **Microsoft Entra ID Governance.** **No P2 tier — it is absent from P2 entirely.**
+3. **50 workflows**, **100 custom task extensions**.
+4. **Users in scope plus the administrator.** ⭐ Leaver licences can be **reassigned** after the run.
+5. **Not necessarily** — check **`FailedUsersCount`**. The workflow completing is not the same as
+   every user being processed.
+6. **Unpopulated `employeeHireDate` / `employeeLeaveDateTime`.** Silent no-op.
+7. Existing **refresh tokens keep working** — you must also revoke sessions.
+8. **Backwards.** Leaver is the **security** win; joiner is convenience. Do leaver first.
+9. A **manual/on-demand trigger** — immediate terminations never align with an HR date field.
+
+</details>
+
+---
+
+## 9. Evidence this topic needs
+
+- **`lab/`** — build the §4 leaver workflow; run it on-demand against a test user; inspect the
+  per-user task report. ✗ **Requires ID Governance.**
+- **`break-fix/`** ⭐ — run a workflow against users with **unpopulated** lifecycle attributes and
+  prove it silently does nothing. Then set `continueOnError = true` on the disable task and show a
+  "successful" run that left the account enabled.
+- **`security/`** — leaver workflow including **session revocation**; `FailedUsersCount` monitored
+  and alerted; immediate-termination path documented.
+- **`operations/`** — attribute population source confirmed; workflow count against the 50 limit.
+- **`architecture-decisions/`** — ADR: leaver-first sequencing, and the ID Governance licensing
+  decision with the capability gap that drives it.
+- **`customer-use-cases/`** — §6 answered; a JML design as an engagement deliverable.
