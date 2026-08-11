@@ -1,5 +1,10 @@
 # Certification and Market Coverage Map
 
+> ⚠ **SUPERSEDED (2026-08-10).** **[`CERT-MAP.md`](CERT-MAP.md) is authoritative** — it carries the
+> corrected six-certification mapping, including **SC-200**, which this file predates.
+> See [`ARCHITECTURE.md`](ARCHITECTURE.md) §7.
+
+
 Certifications are inputs, not the destination. This repo maps Microsoft objectives to customer-delivery capability.
 
 ## Microsoft certification baselines
