@@ -13,9 +13,9 @@ them is how 123 placeholder topics went unnoticed.
 
 | Depth | Meaning | Count | Share |
 |---|---|---:|---:|
-| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 63 | 43.8% |
+| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 64 | 44.4% |
 | THIN | >=3 KB prose, few or no worked examples | 0 | 0% |
-| NONE | Placeholder or near-empty - **not study material** | 81 | 56.2% |
+| NONE | Placeholder or near-empty - **not study material** | 80 | 55.6% |
 
 ## Honest state
 
@@ -25,8 +25,8 @@ Each topic ships six facet folders that **are** the content contract:
 | State | Meaning | Count | Share |
 |---|---|---:|---:|
 | **WRITTEN** | Concept prose **and** >=3 of 6 facets carry evidence | 0 | 0% |
-| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 63 | 43.8% |
-| STUB | Scaffold README only - nothing written | 81 | 56.2% |
+| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 64 | 44.4% |
+| STUB | Scaffold README only - nothing written | 80 | 55.6% |
 | EMPTY | Not even a README | 0 | 0% |
 | | **Total topics** | **144** | |
 
@@ -60,7 +60,7 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | `40-microsoft-365-platform` | 13 | 0 | 0 | 13 | 0 |
 | `45-m365-migration-engineering` | 11 | 0 | 0 | 11 | 0 |
 | `50-security-operations` | 14 | 0 | 14 | 0 | 0 |
-| `60-ai-and-secure-ai` | 14 | 0 | 7 | 7 | 0 |
+| `60-ai-and-secure-ai` | 14 | 0 | 8 | 6 | 0 |
 | `70-operations-and-reliability` | 13 | 0 | 0 | 13 | 0 |
 | `75-architecture-and-consulting` | 10 | 0 | 0 | 10 | 0 |
 | `80-customer-scenarios` | 9 | 0 | 0 | 9 | 0 |
@@ -130,6 +130,7 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | PARTIAL | `60-ai-and-secure-ai/ai-agent-identity` | 30.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/ai-search-and-rag` | 11.7 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/azure-openai` | 11.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `60-ai-and-secure-ai/data-poisoning` | 19.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/model-access-control` | 10.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/private-ai-networking` | 10.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/prompt-injection` | 11.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
@@ -181,7 +182,6 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | stub | `60-ai-and-secure-ai/ai-logging-and-evaluation` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `60-ai-and-secure-ai/ai-pipeline-nhi` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `60-ai-and-secure-ai/azure-ai-services` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `60-ai-and-secure-ai/data-poisoning` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `60-ai-and-secure-ai/prompt-and-data-security` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `70-operations-and-reliability/alerts-and-action-groups` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `70-operations-and-reliability/application-insights` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
