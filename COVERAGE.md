@@ -13,9 +13,9 @@ them is how 123 placeholder topics went unnoticed.
 
 | Depth | Meaning | Count | Share |
 |---|---|---:|---:|
-| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 77 | 53.5% |
+| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 88 | 61.1% |
 | THIN | >=3 KB prose, few or no worked examples | 0 | 0% |
-| NONE | Placeholder or near-empty - **not study material** | 67 | 46.5% |
+| NONE | Placeholder or near-empty - **not study material** | 56 | 38.9% |
 
 ## Honest state
 
@@ -25,8 +25,8 @@ Each topic ships six facet folders that **are** the content contract:
 | State | Meaning | Count | Share |
 |---|---|---:|---:|
 | **WRITTEN** | Concept prose **and** >=3 of 6 facets carry evidence | 0 | 0% |
-| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 77 | 53.5% |
-| STUB | Scaffold README only - nothing written | 67 | 46.5% |
+| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 88 | 61.1% |
+| STUB | Scaffold README only - nothing written | 56 | 38.9% |
 | EMPTY | Not even a README | 0 | 0% |
 | | **Total topics** | **144** | |
 
@@ -54,7 +54,7 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 |---|---:|---:|---:|---:|---:|
 | `00-foundations` | 7 | 0 | 7 | 0 | 0 |
 | `10-networking` | 14 | 0 | 14 | 0 | 0 |
-| `20-azure-platform` | 11 | 0 | 0 | 11 | 0 |
+| `20-azure-platform` | 11 | 0 | 11 | 0 | 0 |
 | `30-identity-and-nhi` | 20 | 0 | 20 | 0 | 0 |
 | `35-active-directory-and-hybrid-identity` | 8 | 0 | 8 | 0 | 0 |
 | `40-microsoft-365-platform` | 13 | 0 | 0 | 13 | 0 |
@@ -92,6 +92,17 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | PARTIAL | `10-networking/routing-and-bgp` | 10.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `10-networking/tls-pki-and-certificates` | 12.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `10-networking/vpn-and-expressroute` | 10.9 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/azure-policy` | 13 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/azure-rbac` | 13.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/azure-resource-manager` | 13 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/bicep` | 11 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/budgets-and-cost-controls` | 13.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/deployment-strategies` | 13.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/landing-zones` | 12.7 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/resource-groups-and-tags` | 11.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/resource-locks` | 12.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/subscriptions-and-management-groups` | 13.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `20-azure-platform/terraform` | 11.8 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `30-identity-and-nhi/app-registrations` | 13.7 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `30-identity-and-nhi/authentication-methods` | 13.7 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `30-identity-and-nhi/conditional-access` | 34.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
@@ -148,17 +159,6 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | PARTIAL | `60-ai-and-secure-ai/prompt-and-data-security` | 19.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/prompt-injection` | 11.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/sensitive-data-leakage` | 10.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/azure-policy` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/azure-rbac` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/azure-resource-manager` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/bicep` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/budgets-and-cost-controls` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/deployment-strategies` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/landing-zones` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/resource-groups-and-tags` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/resource-locks` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/subscriptions-and-management-groups` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `20-azure-platform/terraform` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `40-microsoft-365-platform/exchange-hybrid` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `40-microsoft-365-platform/exchange-online` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `40-microsoft-365-platform/intune-and-device-management` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
