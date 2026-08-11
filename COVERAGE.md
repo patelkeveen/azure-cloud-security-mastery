@@ -13,9 +13,9 @@ them is how 123 placeholder topics went unnoticed.
 
 | Depth | Meaning | Count | Share |
 |---|---|---:|---:|
-| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 70 | 48.6% |
+| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 77 | 53.5% |
 | THIN | >=3 KB prose, few or no worked examples | 0 | 0% |
-| NONE | Placeholder or near-empty - **not study material** | 74 | 51.4% |
+| NONE | Placeholder or near-empty - **not study material** | 67 | 46.5% |
 
 ## Honest state
 
@@ -25,8 +25,8 @@ Each topic ships six facet folders that **are** the content contract:
 | State | Meaning | Count | Share |
 |---|---|---:|---:|
 | **WRITTEN** | Concept prose **and** >=3 of 6 facets carry evidence | 0 | 0% |
-| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 70 | 48.6% |
-| STUB | Scaffold README only - nothing written | 74 | 51.4% |
+| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 77 | 53.5% |
+| STUB | Scaffold README only - nothing written | 67 | 46.5% |
 | EMPTY | Not even a README | 0 | 0% |
 | | **Total topics** | **144** | |
 
@@ -52,7 +52,7 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 
 | Domain | Topics | Written | Partial | Stub | Empty |
 |---|---:|---:|---:|---:|---:|
-| `00-foundations` | 7 | 0 | 0 | 7 | 0 |
+| `00-foundations` | 7 | 0 | 7 | 0 | 0 |
 | `10-networking` | 14 | 0 | 14 | 0 | 0 |
 | `20-azure-platform` | 11 | 0 | 0 | 11 | 0 |
 | `30-identity-and-nhi` | 20 | 0 | 20 | 0 | 0 |
@@ -71,6 +71,13 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 
 | State | Topic | KB | Facets | Missing |
 |---|---|---:|---:|---|
+| PARTIAL | `00-foundations/cli-and-scripting` | 12 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `00-foundations/computing-and-operating-systems` | 13 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `00-foundations/data-formats-and-apis` | 13.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `00-foundations/git-and-github` | 13.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `00-foundations/linux-and-windows` | 13.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `00-foundations/troubleshooting-method` | 13 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `00-foundations/virtualization-and-containers` | 14.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `10-networking/azure-vnet` | 10.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `10-networking/dhcp` | 9.7 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `10-networking/dns` | 11.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
@@ -141,13 +148,6 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | PARTIAL | `60-ai-and-secure-ai/prompt-and-data-security` | 19.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/prompt-injection` | 11.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/sensitive-data-leakage` | 10.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `00-foundations/cli-and-scripting` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `00-foundations/computing-and-operating-systems` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `00-foundations/data-formats-and-apis` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `00-foundations/git-and-github` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `00-foundations/linux-and-windows` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `00-foundations/troubleshooting-method` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `00-foundations/virtualization-and-containers` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `20-azure-platform/azure-policy` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `20-azure-platform/azure-rbac` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `20-azure-platform/azure-resource-manager` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
