@@ -214,23 +214,52 @@ if (-not (Get-MgApplication -Filter "displayName eq 'SC300-Lab-App'" -ErrorActio
 }
 
 # --- Output ------------------------------------------------------------------
+# ⭐ Credentials go to a locked-down FILE, never to stdout.
+#
+# stdout reaches shell history, terminal scrollback, screen shares, CI logs and AI agent
+# transcripts. A break-glass credential's only real property is PROVABLE SOLE CUSTODY - you
+# must be able to say exactly who has held it. Printing it destroys that at the moment of
+# creation, which is why the earlier "shown once, not stored anywhere" design was wrong:
+# not stored is not the same as not disclosed.
 if ($Apply -and $bgCreds) {
-    Write-Host "`n" ('=' * 70) -ForegroundColor Red
-    Write-Host " BREAK-GLASS CREDENTIALS - SHOWN ONCE, NOT STORED ANYWHERE" -ForegroundColor Red
-    Write-Host ('=' * 70) -ForegroundColor Red
-    $bgCreds | Format-Table -AutoSize | Out-String | Write-Host
+    $credDir = Join-Path $env:USERPROFILE '.breakglass'    # ⚠ deliberately OUTSIDE the repo
+    if (-not (Test-Path $credDir)) { New-Item -ItemType Directory -Path $credDir -Force | Out-Null }
+
+    $acl = Get-Acl $credDir
+    $acl.SetAccessRuleProtection($true, $false)
+    $acl.Access | ForEach-Object { [void]$acl.RemoveAccessRule($_) }
+    $acl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule(
+        [System.Security.Principal.WindowsIdentity]::GetCurrent().Name,
+        'FullControl','ContainerInherit,ObjectInherit','None','Allow')))
+    Set-Acl -Path $credDir -AclObject $acl
+
+    $credFile = Join-Path $credDir ("seed-breakglass-{0}.txt" -f (Get-Date -Format 'yyyyMMdd-HHmmss'))
+    @(
+        "Break-glass credentials (Seed-LabTenant)"
+        "Tenant  : $TenantDomain"
+        "Created : $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss zzz')"
+        ""
+    ) + ($bgCreds | ForEach-Object { "{0}`r`n    {1}`r`n" -f $_.UPN, $_.Password }) |
+        Set-Content -Path $credFile -Encoding utf8
+
+    Write-Host "`n" ('=' * 70) -ForegroundColor Yellow
+    Write-Host " BREAK-GLASS CREDENTIALS WRITTEN - NOT PRINTED" -ForegroundColor Yellow
+    Write-Host ('=' * 70) -ForegroundColor Yellow
+    Write-Host "  $credFile" -ForegroundColor White
     Write-Host @"
+
  Do now, before anything else:
-   1. Record these somewhere real (password manager / sealed envelope).
+   1. Move them to a password manager / sealed envelope, then DELETE the file.
       Real-world practice splits them across two custodians.
    2. Assign Global Administrator to both.
    3. EXCLUDE both from every Conditional Access policy you create.
    4. Alert on their sign-in - they should never be used.
+   5. Do NOT make them PIM-eligible: activation failure is the scenario they exist for.
 
  Locking yourself out of your own tenant on day one is a rite of passage.
  Skip it.
 "@ -ForegroundColor Yellow
-    Write-Host ('=' * 70) -ForegroundColor Red
+    Write-Host ('=' * 70) -ForegroundColor Yellow
 }
 
 Write-Host "`nNext: verify dynamic membership populated (allow a few minutes):" -ForegroundColor Cyan

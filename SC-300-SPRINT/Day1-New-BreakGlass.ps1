@@ -33,13 +33,28 @@
     .\Day1-New-BreakGlass.ps1 -Apply
 
 .NOTES
-    Passwords are printed ONCE and never written to disk by this script. Put them somewhere real
-    before you close the window. If you lose them, delete the accounts and re-run.
+    ⭐ Passwords are NEVER printed. They are written to a single locked-down file outside the
+    repository (see -CredentialPath). Move them to a password manager and delete the file.
+    If you lose them, delete the accounts and re-run - that is cheaper than a weak recovery path.
+
+    ⚠ Run this yourself, in your own shell. Do not have an automation or an agent run it on your
+    behalf: a break-glass credential that has passed through a third party can no longer be said
+    to be in sole custody, which is the only property that makes it worth having.
 #>
 [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
 param(
     [switch]$Apply,
-    [string]$Prefix = 'breakglass'
+    [string]$Prefix = 'breakglass',
+
+    # ⭐ Credentials are written to a FILE, never to stdout.
+    #
+    # Why: stdout ends up in shell history, terminal scrollback, CI logs, screen shares and -
+    #      increasingly - AI agent transcripts. A break-glass credential's entire value is
+    #      PROVABLE SOLE CUSTODY: you must be able to say exactly who has held it. Anything that
+    #      broadcasts it destroys that property at the moment of creation.
+    #
+    # ⚠ Default is deliberately OUTSIDE the repository so it cannot be committed by accident.
+    [string]$CredentialPath = (Join-Path $env:USERPROFILE '.breakglass')
 )
 
 $ErrorActionPreference = 'Stop'
@@ -118,12 +133,51 @@ foreach ($n in 1..2) {
 
 Write-Host ""
 
-if ($Apply -and ($created | Where-Object Password -ne '(unchanged)')) {
-    Write-Host "=== PASSWORDS - SHOWN ONCE ================================" -ForegroundColor Red
-    $created | Where-Object Password -ne '(unchanged)' |
-        ForEach-Object { Write-Host ("  {0}`n    {1}" -f $_.Upn, $_.Password) -ForegroundColor White }
+$fresh = @($created | Where-Object Password -ne '(unchanged)')
+
+if ($Apply -and $fresh.Count) {
+    # --- Write credentials to a locked-down file, NEVER to stdout ---------------
+    if (-not (Test-Path $CredentialPath)) {
+        New-Item -ItemType Directory -Path $CredentialPath -Force | Out-Null
+    }
+
+    # ⭐ ACL: this user only. Break inheritance, remove everyone else.
+    #    00-foundations/linux-and-windows sec.3 - an explicit, non-inherited ACE is a
+    #    deliberate act, and this is one of the few places that is exactly what you want.
+    $acl = Get-Acl $CredentialPath
+    $acl.SetAccessRuleProtection($true, $false)          # protected, drop inherited rules
+    $acl.Access | ForEach-Object { [void]$acl.RemoveAccessRule($_) }
+    $acl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule(
+        [System.Security.Principal.WindowsIdentity]::GetCurrent().Name,
+        'FullControl','ContainerInherit,ObjectInherit','None','Allow')))
+    Set-Acl -Path $CredentialPath -AclObject $acl
+
+    $file = Join-Path $CredentialPath ("breakglass-{0}.txt" -f (Get-Date -Format 'yyyyMMdd-HHmmss'))
+
+    $lines = @(
+        "Break-glass credentials - $((Get-MgOrganization).DisplayName)"
+        "Tenant domain : $domain"
+        "Created       : $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss zzz')"
+        "Created by    : $($ctx.Account)"
+        ""
+        "TRANSFER THESE TO A PASSWORD MANAGER OR SEALED ENVELOPE, THEN DELETE THIS FILE."
+        "Real-world practice splits them across two custodians."
+        ""
+    ) + ($fresh | ForEach-Object { "{0}`r`n    {1}`r`n" -f $_.Upn, $_.Password })
+
+    Set-Content -Path $file -Value $lines -Encoding utf8
+    (Get-Item $file).Attributes = 'Normal'
+
+    Write-Host "=== CREDENTIALS WRITTEN ===================================" -ForegroundColor Yellow
+    Write-Host "  $file" -ForegroundColor White
     Write-Host ""
-    Write-Host "  Store these offline NOW. This script does not write them to disk." -ForegroundColor Red
+    Write-Host "  ⭐ Passwords were NOT printed. stdout reaches shell history, scrollback," -ForegroundColor DarkGray
+    Write-Host "     screen shares, CI logs and agent transcripts. A break-glass credential's" -ForegroundColor DarkGray
+    Write-Host "     value is provable sole custody - broadcasting it destroys that at creation." -ForegroundColor DarkGray
+    Write-Host ""
+    Write-Host "  Folder ACL is restricted to $([System.Security.Principal.WindowsIdentity]::GetCurrent().Name)." -ForegroundColor DarkGray
+    Write-Host "  ⚠ It is OUTSIDE the repo so it cannot be committed. Move to a password" -ForegroundColor Red
+    Write-Host "    manager and delete the file today." -ForegroundColor Red
     Write-Host ""
 }
 
