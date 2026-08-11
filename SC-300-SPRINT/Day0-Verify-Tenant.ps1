@@ -135,7 +135,18 @@ $unlicensed = @($users | Where-Object { $_.AssignedLicenses.Count -eq 0 -and $_.
 Write-Host ("  Users: {0}   Licensed: {1}   Unlicensed (member): {2}" -f `
     @($users).Count, $licensed.Count, $unlicensed.Count)
 
-if ($unlicensed.Count) {
+if ($licensed.Count -eq 0 -and @($skus | Where-Object { $_.PrepaidUnits.Enabled -gt 0 }).Count -gt 0) {
+    Write-Host "  [STOP] ⭐ Seats are OWNED but ZERO are ASSIGNED. Nothing is licensed." -ForegroundColor Red
+    Write-Host "         Every P2/Defender/Intune feature is inert until a seat lands on a user." -ForegroundColor Red
+    Write-Host "         This is licensing-and-service-limits sec.1 - the gate is SILENT." -ForegroundColor DarkGray
+    Write-Host ""
+    Write-Host "         Fix (UsageLocation FIRST - assignment fails without it):" -ForegroundColor Yellow
+    Write-Host '           Update-MgUser -UserId <upn> -UsageLocation CA' -ForegroundColor Gray
+    Write-Host '           $sku = (Get-MgSubscribedSku | ? SkuPartNumber -eq "SPE_E5").SkuId' -ForegroundColor Gray
+    Write-Host '           Set-MgUserLicense -UserId <upn> -AddLicenses @{SkuId=$sku} -RemoveLicenses @()' -ForegroundColor Gray
+    Write-Host ""
+}
+elseif ($unlicensed.Count) {
     Write-Host "  [WARN] Unlicensed members - P2 features will NOT apply to these accounts:" -ForegroundColor Yellow
     $unlicensed | Select-Object -First 15 UserPrincipalName, AccountEnabled | Format-Table -AutoSize
 }
@@ -153,10 +164,20 @@ Write-Host ""
 # --- 5. What is STILL blocked --------------------------------------------------
 Write-Host "=== 5. Still blocked ======================================" -ForegroundColor Cyan
 $azConnected = $false
+$azSubs = @()
 try {
     $azAccount = az account list --only-show-errors 2>$null | ConvertFrom-Json
-    $azConnected = @($azAccount).Count -gt 0
+    # ⭐ BUG FIX: `az account list` returns a TENANT-LEVEL placeholder entry even when the
+    #    account has no subscription at all - it appears as name 'N/A(tenant level account)'
+    #    with a tenantId as its id. Counting rows therefore reports a subscription that does
+    #    not exist, which would wrongly unblock every Sentinel/Defender-for-Cloud lab.
+    #    Filter to entries that are actually subscriptions.
+    $azSubs = @($azAccount | Where-Object {
+        $_.name -ne 'N/A(tenant level account)' -and $_.id -ne $_.tenantId
+    })
+    $azConnected = $azSubs.Count -gt 0
 } catch { $azConnected = $false }
+$azAccount = $azSubs
 
 if ($azConnected) {
     Write-Host "  [OK  ] Azure subscription(s) present:" -ForegroundColor Green
