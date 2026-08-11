@@ -45,21 +45,53 @@ $FACETS = @('lab','security','operations','break-fix','customer-use-cases','arch
 
 $SCAFFOLD_README_MAX = 1024   # the generated contract README is ~740 B
 
+# --- Measure CONTENT, not storage ----------------------------------------------
+# A file's meaning does not change with its line endings, but its BYTE COUNT does:
+# CRLF costs one extra byte per line. Git checks this repo out with CRLF on Windows
+# (core.autocrlf defaults to true, including on GitHub's windows-latest runners) and
+# with LF elsewhere - so a raw .Length measurement makes this register PLATFORM
+# DEPENDENT.
+#
+# That is not theoretical. It is why CI failed on 2026-08-10 and 2026-08-11 while
+# -Check passed locally: 66 of 144 topics measured a different size on the runner
+# than on the authoring machine, so a locally-correct COVERAGE.md could never match.
+# An instrument whose reading depends on where you stand is not an instrument.
+#
+# Fix: subtract the CR of every CRLF pair before measuring. Latin-1 maps bytes 1:1
+# to chars, so the scan is lossless and fast on binary content too.
+$LATIN1 = [System.Text.Encoding]::GetEncoding('iso-8859-1')
+
+function Get-ContentBytes {
+    param([System.IO.FileInfo]$File)
+    try {
+        $raw = [System.IO.File]::ReadAllBytes($File.FullName)
+        $crs = ([regex]::Matches($LATIN1.GetString($raw), "`r`n")).Count
+        return $raw.Length - $crs
+    } catch {
+        return $File.Length
+    }
+}
+
+function Measure-ContentBytes {
+    param($Files)
+    $sum = 0
+    foreach ($f in $Files) { $sum += Get-ContentBytes $f }
+    return $sum
+}
+
 function Get-TopicState {
     param([System.IO.DirectoryInfo]$Dir)
 
     # Prose sitting directly in the topic folder (README + any deep documents)
     $topFiles = Get-ChildItem $Dir.FullName -File -Force -ErrorAction SilentlyContinue |
                 Where-Object { $_.Name -ne '.gitkeep' }
-    $topBytes = ($topFiles | Measure-Object Length -Sum).Sum
-    if (-not $topBytes) { $topBytes = 0 }
+    $topBytes = Measure-ContentBytes $topFiles
 
     # Does real content exist beyond the generated scaffold README?
     $nonScaffold = $topFiles | Where-Object {
-        $_.Name -ne 'README.md' -or $_.Length -gt $SCAFFOLD_README_MAX
+        $_.Name -ne 'README.md' -or (Get-ContentBytes $_) -gt $SCAFFOLD_README_MAX
     }
-    $conceptBytes = ($nonScaffold | Measure-Object Length -Sum).Sum
-    if (-not $conceptBytes) { $conceptBytes = 0 }
+    $conceptBytes = Measure-ContentBytes $nonScaffold
 
     # Which facets have anything in them?
     $filled = @()
@@ -73,8 +105,9 @@ function Get-TopicState {
     }
     $facetBytes = 0
     foreach ($f in $filled) {
-        $facetBytes += (Get-ChildItem (Join-Path $Dir.FullName $f) -File -Recurse -Force -ErrorAction SilentlyContinue |
-                        Where-Object { $_.Name -ne '.gitkeep' } | Measure-Object Length -Sum).Sum
+        $facetBytes += Measure-ContentBytes (
+            Get-ChildItem (Join-Path $Dir.FullName $f) -File -Recurse -Force -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -ne '.gitkeep' })
     }
 
     $total = $conceptBytes + $facetBytes
@@ -99,7 +132,7 @@ function Get-TopicState {
     if (Test-Path $readme) {
         $text     = Get-Content $readme -Raw -ErrorAction SilentlyContinue
         $examples = ([regex]::Matches($text, '(?m)^```')).Count / 2   # fenced blocks
-        $kb       = (Get-Item $readme).Length / 1KB
+        $kb       = (Get-ContentBytes (Get-Item $readme)) / 1KB
         $depth = if     ($kb -lt 1)                     { 'NONE' }   # scaffold
                  elseif ($kb -ge 8 -and $examples -ge 4){ 'DEEP' }   # meets the standard
                  elseif ($kb -ge 3)                     { 'THIN' }   # prose, few/no examples
@@ -204,7 +237,7 @@ if ($layers) {
     $null = $sb.AppendLine('|---|---:|')
     foreach ($l in $layers) {
         $rel = $l.FullName.Replace("$repo\", '').Replace('\', '/')
-        $null = $sb.AppendLine("| [$($l.Name)]($rel) | $([math]::Round($l.Length/1KB,1)) |")
+        $null = $sb.AppendLine("| [$($l.Name)]($rel) | $([math]::Round((Get-ContentBytes $l)/1KB,1)) |")
     }
 } else {
     $null = $sb.AppendLine('_None found._')
@@ -249,7 +282,12 @@ $target  = Join-Path $repo 'COVERAGE.md'
 
 if ($Check) {
     $existing = if (Test-Path $target) { Get-Content $target -Raw } else { '' }
-    if ($existing.TrimEnd() -ne $content.TrimEnd()) {
+    # Compare TEXT, not bytes - for the same reason the sizes above are normalised.
+    # Otherwise a CRLF checkout fails against an LF-authored register even when every
+    # measurement agrees, and the failure looks like stale content rather than a
+    # line-ending artefact. That misdiagnosis cost a red build for two days.
+    $norm = { param($s) ($s -replace "`r`n", "`n").TrimEnd() }
+    if ((& $norm $existing) -ne (& $norm $content)) {
         Write-Host "COVERAGE.md is STALE. Run tools/Build-CoverageRegister.ps1" -ForegroundColor Red
         exit 1
     }
@@ -257,7 +295,10 @@ if ($Check) {
     exit 0
 }
 
-$content | Set-Content $target -Encoding utf8
+# Write LF, matching .gitattributes. AppendLine emits the platform newline, which on
+# Windows would put CRLF in a file the repo has declared LF - a diff on every run.
+[System.IO.File]::WriteAllText($target, ($content -replace "`r`n", "`n"),
+    (New-Object System.Text.UTF8Encoding $false))
 Write-Host "Wrote $target" -ForegroundColor Green
 Write-Host "  WRITTEN $written / $total  ($pct%)   PARTIAL $partial   STUB $stub   EMPTY $empty"
 Write-Host "  DEEP    $deep / $total  ($deepPct%)   THIN $thin   NONE $nodepth   <- reading depth"
