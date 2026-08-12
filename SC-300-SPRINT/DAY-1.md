@@ -38,9 +38,22 @@ Connect-MgGraph -Scopes 'Organization.Read.All','Directory.Read.All','User.Read.
 ## Lab 1.2 — Break-glass, before any policy exists *(30 min)*
 
 ```powershell
+# ⭐ Connect with the FULL scope set first. A narrower existing session silently wins,
+#    and the role assignment then fails 403 while the user is still created.
+Connect-MgGraph -Scopes 'User.ReadWrite.All','RoleManagement.ReadWrite.Directory',
+                        'Directory.ReadWrite.All','Policy.Read.All'
+
 .\Day1-New-BreakGlass.ps1            # dry run — read the plan
-.\Day1-New-BreakGlass.ps1 -Apply     # ⭐ store the passwords offline BEFORE closing the window
+.\Day1-New-BreakGlass.ps1 -Apply     # credentials go to %USERPROFILE%\.breakglass
+
+# ⭐ VERIFY, always. The script now reads the role back, but confirm independently:
+.\Repair-BreakGlassRole.ps1          # diagnoses scope vs role, repairs if needed
 ```
+
+> ⭐ **`Authorization_RequestDenied` looks identical whether the token lacks the SCOPE or the
+> caller lacks the ROLE.** Effective rights on a delegated token are the **intersection** of the
+> two. Telling them apart is the skill —
+> [`oauth-oidc-saml-and-api-auth`](../30-identity-and-nhi/oauth-oidc-saml-and-api-auth/).
 
 **Then, manually — the script deliberately does not do these:**
 

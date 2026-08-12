@@ -1,5 +1,5 @@
 {
-  "checkedUtc": "2026-08-11T19:28:34.8163187Z",
+  "checkedUtc": "2026-08-12T05:59:50.7807483Z",
   "tenant": "K-Win",
   "tenantId": "b6464ac2-0b24-4e5f-be10-b4270b90d4ce",
   "skus": [
@@ -15,8 +15,8 @@
       "SkuPartNumber": "SPE_E5",
       "SkuId": "06ebc4ee-1bb5-47dd-8120-11324bc54e06",
       "Enabled": 25,
-      "Assigned": 0,
-      "Spare": 25,
+      "Assigned": 1,
+      "Spare": 24,
       "Warning": 0
     }
   ],
@@ -172,12 +172,13 @@
       "Capability": "Defender for Office 365 P2                                [SC-200]"
     }
   ],
-  "userCount": 1,
-  "licensedCount": 0,
+  "userCount": 3,
+  "licensedCount": 1,
   "unlicensedUpns": [
-    "Kev@KWin.onmicrosoft.com"
+    "breakglass1@KWin.onmicrosoft.com",
+    "breakglass2@KWin.onmicrosoft.com"
   ],
   "trialExpires": "2026-09-10",
   "daysRemaining": 29,
-  "azureSubscription": true
+  "azureSubscription": false
 }

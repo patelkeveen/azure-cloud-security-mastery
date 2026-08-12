@@ -66,9 +66,34 @@ $Scopes = @(
     'Policy.Read.All'
 )
 
-if (-not (Get-MgContext)) { Connect-MgGraph -Scopes $Scopes -NoWelcome }
+# ⭐ Check the SCOPES, not merely that a context exists.
+#
+# The original bug: `if (-not (Get-MgContext))` reuses whatever session already exists. A
+# context established earlier with narrower scopes silently wins, the role assignment then
+# fails 403 Authorization_RequestDenied, and nothing obvious says why.
+#
+# ⭐ And Authorization_RequestDenied looks IDENTICAL whether the token lacks the SCOPE or the
+#    caller lacks the ROLE. Effective rights on a delegated token are the INTERSECTION of the
+#    two. Telling them apart is the skill - see 30-identity-and-nhi/oauth-oidc-saml-and-api-auth.
 $ctx = Get-MgContext
+$missing = @()
+if ($ctx) { $missing = @($Scopes | Where-Object { $_ -notin $ctx.Scopes }) }
+
+if (-not $ctx -or $missing.Count) {
+    if ($ctx) {
+        Write-Host "  [WARN] Existing Graph session is missing required scope(s):" -ForegroundColor Yellow
+        $missing | ForEach-Object { Write-Host "         $_" -ForegroundColor Yellow }
+        Write-Host "         Reconnecting with the full set - a narrower session would fail 403 later." -ForegroundColor DarkGray
+    }
+    Connect-MgGraph -Scopes $Scopes -NoWelcome
+    $ctx = Get-MgContext
+}
 if (-not $ctx) { throw "Not connected to Graph." }
+
+$stillMissing = @($Scopes | Where-Object { $_ -notin $ctx.Scopes })
+if ($stillMissing.Count) {
+    throw "Consent was not granted for: $($stillMissing -join ', '). Role assignment would fail 403."
+}
 
 $domain = (Get-MgOrganization).VerifiedDomains | Where-Object IsInitial | Select-Object -Expand Name
 Write-Host ""
@@ -120,14 +145,51 @@ foreach ($n in 1..2) {
                 forceChangePasswordNextSignIn = $false   # ⭐ deliberate: a forced change can itself block emergency access
             }
         }
-        New-MgDirectoryRoleMemberByRef -DirectoryRoleId $gaRole.Id `
+        # ⭐ -ErrorAction Stop is load-bearing. Without it this cmdlet writes a NON-TERMINATING
+        #    error: the catch never fires, execution continues, and the success line below
+        #    prints over a role assignment that did not happen. That is exactly the
+        #    "deployed is not enforced" failure this repo keeps finding - here in our own tool,
+        #    reporting a security control that does not exist. See 00-foundations/cli-and-scripting sec.5.
+        New-MgDirectoryRoleMemberByRef -DirectoryRoleId $gaRole.Id -ErrorAction Stop `
             -BodyParameter @{ '@odata.id' = "https://graph.microsoft.com/v1.0/directoryObjects/$($u.Id)" }
 
-        Write-Host "  [OK    ] Created $upn with permanent Global Administrator" -ForegroundColor Green
+        # ⭐ POST-CONDITION: never trust the call, read the state back.
+        #    A control is not deployed because an API returned 2xx; it is deployed because you
+        #    can see it. This is the same discipline as requiring RequestDisallowedByPolicy
+        #    rather than "policy assigned" in 20-azure-platform/deployment-strategies sec.4.
+        Start-Sleep -Seconds 2
+        $isGa = @(Get-MgDirectoryRoleMember -DirectoryRoleId $gaRole.Id -All -ErrorAction SilentlyContinue |
+                  Where-Object Id -eq $u.Id).Count -gt 0
+
+        if (-not $isGa) {
+            throw "User created, but Global Administrator assignment could NOT be verified. The account exists WITHOUT the role."
+        }
+
+        Write-Host "  [OK    ] Created $upn - Global Administrator VERIFIED" -ForegroundColor Green
         $created += [pscustomobject]@{ Upn = $upn; Id = $u.Id; Password = $pw }
     }
     catch {
         Write-Host "  [FAIL  ] $upn -> $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "           ⚠ If the user was created, it exists WITHOUT the role. Fix or delete it." -ForegroundColor Red
+        if ($u -and $u.Id) {
+            $created += [pscustomobject]@{ Upn = $upn; Id = $u.Id; Password = $pw; RoleAssigned = $false }
+        }
+    }
+}
+
+# --- Final verification pass, whatever happened above --------------------------
+# ⭐ Report the STATE, not the intent. This runs even on a re-run over existing accounts.
+if ($Apply -and $gaRole) {
+    Write-Host ""
+    Write-Host "=== Verification: who actually holds Global Administrator? ===" -ForegroundColor Cyan
+    $gaMembers = @(Get-MgDirectoryRoleMember -DirectoryRoleId $gaRole.Id -All -ErrorAction SilentlyContinue)
+    $gaUpns = @($gaMembers | ForEach-Object { $_.AdditionalProperties.userPrincipalName })
+    $gaUpns | ForEach-Object { Write-Host "  $_" -ForegroundColor Gray }
+
+    foreach ($c in $created) {
+        if ($c.Upn -notin $gaUpns) {
+            Write-Host "  [FAIL  ] $($c.Upn) is NOT a Global Administrator." -ForegroundColor Red
+        }
     }
 }
 
