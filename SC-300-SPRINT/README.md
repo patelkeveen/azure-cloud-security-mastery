@@ -36,6 +36,31 @@ do instant work while data accumulates in the background.
 
 ---
 
+## 1b. ⭐ Exam weightings — revise in proportion
+
+✅ Verified against the SC-300 study guide **2026-08-12** (skills measured as of 27 April 2026):
+
+| Domain | Weight | Sprint days |
+|---|---|---|
+| Implement and manage user identities | 20–25% | 1, 7 |
+| ⭐ **Implement authentication and access management** | ⚠ **25–30%** | ⭐ **2, 3** |
+| Plan and implement workload identities | 20–25% | 6 |
+| Plan and automate identity governance | 20–25% | 4, 5 |
+
+⚠ **Microsoft's page contradicts itself** — "Skills at a glance" says 25–30% for authentication
+and access management; that section's heading says 20–25%. ⭐ Either way it is the largest or
+joint-largest domain, and **Days 2–3 are where the marks are.**
+
+⭐ **Objectives added after verification** (they were missing from both plans): **authentication
+context**, **protected actions**, **continuous access evaluation**, and **Global Secure Access** —
+now in [`DAY-3.md`](DAY-3.md) §3.5.
+
+**Commercial layer:** [`../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md`](../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md)
+owns buyer problems, fixed-scope offers, outreach and interview narratives. ⭐ **This directory owns
+the schedule; that file owns what you sell afterwards.** Its day table is superseded by this one.
+
+---
+
 ## 2. Why this is not another daily pack
 
 `DAILY-EXECUTION/` is the **10-day M365 migration-engineering** track — a different subject.

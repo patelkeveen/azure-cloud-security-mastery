@@ -142,7 +142,52 @@ Revoke-MgUserSignInSession -UserId <userId>
 
 ---
 
-## Lab 3.5 — Move to enforce *(1 h)*
+## Lab 3.5 — ⭐ The objectives neither plan covered *(1.5 h)*
+
+✅ **Verified against the SC-300 study guide 2026-08-12.** These are named exam objectives under
+*Implement authentication and access management* — the **largest domain** — and they were missing
+from both seven-day plans. ⭐ **Now that you have Azure, all of them are runnable.**
+
+**① Authentication context + protected actions**
+
+```powershell
+# Authentication context — CA that applies to an ACTION, not just an app
+Get-MgIdentityConditionalAccessAuthenticationContextClassReference |
+  Select-Object Id, DisplayName, IsAvailable
+```
+
+- [ ] Create an authentication context (e.g. `c1` — "High risk operations")
+- [ ] ⭐ Bind it to a **protected action** — deleting a CA policy, or changing authentication methods
+- [ ] Attempt that action and observe the step-up prompt
+
+> ⭐ **Protected actions are how you stop a compromised admin session deleting your CA policies.**
+> Standing privilege is one problem; a *live* privileged session is another, and this is the
+> control for the second.
+
+**② Continuous access evaluation (CAE)**
+
+- [ ] Confirm CAE is active for a test user
+- [ ] Sign in, then **revoke sessions** and watch access drop in near real time
+- [ ] ⭐ Compare against the Lab 3.4 token-lifetime lag — **that contrast is the point of CAE**
+
+**③ Global Secure Access** — ⭐ an exam objective in both plans' blind spot
+
+- [ ] Enable Global Secure Access in the tenant
+- [ ] Deploy the client to this machine
+- [ ] Configure **Microsoft 365 traffic forwarding**
+- [ ] ⭐ Apply a CA policy to the GSA-derived network location — identity-aware network access
+
+```powershell
+.\New-LabEvidence.ps1 -Topic 30-identity-and-nhi/conditional-access `
+  -Facet lab -Name 'auth-context-protected-actions-cae-gsa' `
+  -Note 'Exam objectives missing from both sprint plans: authentication context bound to a protected action, CAE revocation timing vs token lifetime, and Global Secure Access traffic forwarding' `
+  -Command { Get-MgIdentityConditionalAccessAuthenticationContextClassReference |
+             Select-Object Id, DisplayName, IsAvailable }
+```
+
+---
+
+## Lab 3.6 — Move to enforce *(1 h)*
 
 - [ ] Review report-only impact in sign-in logs
 - [ ] Promote policies 1–3 to `enabled`

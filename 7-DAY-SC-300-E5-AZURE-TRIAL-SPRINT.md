@@ -1,5 +1,61 @@
 # Seven-Day SC-300 E5 + Azure Trial Sprint to Paid Remote Work
 
+> ## ⭐ Read this first — how this file relates to `SC-300-SPRINT/`
+>
+> The repo now has **two** seven-day SC-300 plans, and their day numbers **conflict** (this file
+> puts external identities on Day 4 and PIM on Day 6; [`SC-300-SPRINT/`](SC-300-SPRINT/) puts PIM
+> on Day 4 and governance on Day 5). ⚠ **Two sources of truth is the exact anti-pattern this repo
+> already fixed once** — see the supersession banner on `COMPLETENESS-REGISTER.md`.
+>
+> **The split, decided 2026-08-12:**
+>
+> | | This file | [`SC-300-SPRINT/`](SC-300-SPRINT/) |
+> |---|---|---|
+> | Owns | ⭐ **the commercial layer** — buyer problems, offers, pricing, outreach, interview narratives | ⭐ **execution** — runnable scripts, day-by-day labs, evidence capture |
+> | Day numbering | ⚠ **superseded** — ignore the day table below for sequencing | ⭐ **authoritative** |
+> | Use it for | deciding what to sell and how to reach buyers | deciding what to do tomorrow morning |
+>
+> ⭐ **Follow `SC-300-SPRINT/` for the schedule. Use this file for everything after the lab.** The
+> commercial content here is the genuinely valuable half and does not exist anywhere else in the
+> repo — [`feedback-redirect-to-income-not-tooling`] applies: the labs are only worth doing if
+> they convert into income.
+>
+> ### ✅ Verified against Microsoft Learn 2026-08-12 — and what was missing
+>
+> The exam claims in this document check out: **skills measured as of 27 April 2026**, page
+> **updated 27 March 2026**, prerequisites Azure / M365 / AD DS / PowerShell / KQL — all confirmed
+> verbatim from the audience profile.
+>
+> ⭐ **Domain weightings, which this document omits and you should know:**
+>
+> | Domain | Weight |
+> |---|---|
+> | Implement and manage user identities | 20–25% |
+> | Implement authentication and access management | ⚠ **25–30%** (see note) |
+> | Plan and implement workload identities | 20–25% |
+> | Plan and automate identity governance | 20–25% |
+>
+> ⚠ **Microsoft's own page is internally inconsistent**: "Skills at a glance" says **25–30%** for
+> authentication and access management, while that section's own heading says **20–25%**. Either
+> way it is the **largest or joint-largest** domain — weight your revision accordingly.
+>
+> ⭐ **Gap in BOTH plans: Global Secure Access is an exam objective** — deploy GSA clients, Private
+> Access, Internet Access, and Internet Access for Microsoft 365. Neither this file nor
+> `SC-300-SPRINT/` covers it. Added to [`SC-300-SPRINT/DAY-3.md`](SC-300-SPRINT/DAY-3.md).
+>
+> ⚠ **Market figures below ($60–90/hr, the Indeed/Dice/LinkedIn observations) are NOT verified.**
+> They are plausible and they are unsourced. Treat them as a hypothesis to test with your own
+> outreach, not as a rate card — [`feedback-verify-dates-and-current-data`].
+>
+> ⚠ The directory layout proposed below (`portfolio/`, `labs/sc-300/`, `incidents/`,
+> `customer-delivery/`) is a **third** structure. The repo already files evidence into the
+> **six facets** per topic (`lab`, `break-fix`, `security`, `operations`,
+> `architecture-decisions`, `customer-use-cases`) via
+> [`SC-300-SPRINT/New-LabEvidence.ps1`](SC-300-SPRINT/New-LabEvidence.ps1). **Use the facets.**
+> The customer-facing deliverables in this file map cleanly onto `customer-use-cases/`.
+
+---
+
 > **Mission:** use the Microsoft 365 E5 trial and Azure trial credits to become **SC-300-ready,
 > job-interview-ready, and contract-offer-ready in seven days**. The sprint is designed for a Senior
 > IAM / Identity Engineer positioning: Microsoft Entra ID, Conditional Access, Identity Governance,
