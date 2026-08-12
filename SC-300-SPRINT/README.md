@@ -11,6 +11,32 @@
 
 ---
 
+## 0. ⭐ Run this sprint without asking anyone
+
+**Everything you need is in this directory. There is no step that requires an AI, a forum, or me.**
+
+```powershell
+cd C:\IT\azure-cloud-security-mastery\SC-300-SPRINT
+.\Invoke-SprintCheck.ps1          # ⭐ start and end EVERY day with this
+```
+
+It reports PASS/FAIL on connection, break-glass, licensing, telemetry, seeded org, Azure and
+evidence — and **every FAIL prints its own fix**. No interpretation needed.
+
+| You need | Read |
+|---|---|
+| What do I do today? | [`DAY-1`](DAY-1.md) … [`DAY-7`](DAY-7.md) |
+| Which official Microsoft labs? | [`OFFICIAL-LABS-MAP.md`](OFFICIAL-LABS-MAP.md) |
+| ⭐ **Something broke** | ⭐ [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) |
+| Why does this control exist? | the topic README linked from each lab |
+| What do I sell afterwards? | [`../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md`](../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md) |
+
+⭐ **When something fails, the answer is almost always one of five things:** a missing **scope**, an
+un-**activated** role, an un-**assigned** licence, a **token** older than your change, or a control
+sitting in **report-only**. `TROUBLESHOOTING.md` §11 has the general method for everything else.
+
+---
+
 ## 1. ⭐ The principle that orders everything
 
 > **The constraint on a trial is DATA LATENCY, not difficulty.**
