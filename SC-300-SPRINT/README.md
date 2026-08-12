@@ -61,6 +61,25 @@ the schedule; that file owns what you sell afterwards.** Its day table is supers
 
 ---
 
+## 1c. ⭐ Official Microsoft labs — 28 of them, mapped
+
+[`OFFICIAL-LABS-MAP.md`](OFFICIAL-LABS-MAP.md) maps every lab in
+`MicrosoftLearning/SC-300-Identity-and-Access-Administrator` onto these seven days.
+
+⭐ **They are Microsoft's own, not generated — trust them above any walkthrough.** ✅ Currency
+checked 2026-08-12: 255 "Microsoft Entra" vs 71 "Azure AD", and 60 of those 71 are in Lab_07.
+
+⚠ **But they lag the April 2026 skills-measured update by seven objectives** — Global Secure
+Access, authentication context, protected actions, CAE, cross-tenant sync, custom security
+attributes and Temporary Access Pass are **all uncovered**. ⭐ **Doing all 28 and stopping leaves
+you having never touched an entire exam subsection.** [`DAY-2`](DAY-2.md) and [`DAY-3`](DAY-3.md)
+close the gap.
+
+⭐ **Use the official labs for coverage; use this sprint for depth, deliberate failure and
+evidence.**
+
+---
+
 ## 2. Why this is not another daily pack
 
 `DAILY-EXECUTION/` is the **10-day M365 migration-engineering** track — a different subject.

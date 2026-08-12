@@ -51,7 +51,19 @@ $Scopes = @(
 
 if (-not (Get-MgContext)) {
     Write-Host "Connecting to Graph..." -ForegroundColor Cyan
-    Connect-MgGraph -Scopes $Scopes -NoWelcome
+    try {
+        Connect-MgGraph -Scopes $Scopes -NoWelcome -ErrorAction Stop
+    } catch {
+        $azToken = az account get-access-token --resource-type ms-graph --query accessToken -o tsv 2>$null
+        if ($azToken) {
+            Write-Host "Connecting via active Azure CLI session token..." -ForegroundColor Green
+            $sec = ConvertTo-SecureString $azToken -AsPlainText -Force
+            Connect-MgGraph -AccessToken $sec
+        } else {
+            Write-Host "Interactive authentication failed or running in non-interactive session. Switching to Device Code authentication..." -ForegroundColor Yellow
+            Connect-MgGraph -Scopes $Scopes -UseDeviceAuthentication
+        }
+    }
 }
 $ctx = Get-MgContext
 if (-not $ctx) { throw "Not connected to Graph." }
