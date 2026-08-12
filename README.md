@@ -18,6 +18,7 @@ What genuinely exists today is the SC-300 → SC-500 identity track:
 | Read in this order | What it is |
 |---|---|
 | [SC-300-MASTERY-SYLLABUS.md](SC-300-MASTERY-SYLLABUS.md) | The map. Every topic tagged `CORE` / `PREREQ` / `SHALLOW` / `BEYOND` / `DEAD` |
+| [7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md](7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md) | Emergency 7-day E5/Azure trial sprint for exam readiness plus resume-proof evidence |
 | [Layer 1 — Identity protocols](30-identity-and-nhi/oauth-oidc-saml-and-api-auth/LAYER-1-IDENTITY-PROTOCOLS.md) | OAuth flows, JWT claim-by-claim, SAML, SCIM, consent. **Start here — nothing else makes sense first** |
 | [Layer 2 — User identities](30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) | Tenant, identities, external, **hybrid identity** |
 | [Layer 3 — Authentication & Conditional Access](30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md) | Largest exam domain; where the daily job lives |
