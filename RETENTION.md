@@ -7,10 +7,11 @@
 > ⚠ **Honest scope.** §§1–9 were built from the first **22** DEEP topics
 > ([`35-active-directory-and-hybrid-identity/`](35-active-directory-and-hybrid-identity/) and
 > [`10-networking/`](10-networking/)); §10 covers
-> [`45-m365-migration-engineering/`](45-m365-migration-engineering/). The repo now has **112** DEEP
+> [`45-m365-migration-engineering/`](45-m365-migration-engineering/) and §11 covers
+> [`75-architecture-and-consulting/`](75-architecture-and-consulting/). The repo now has **122** DEEP
 > topics — see [`COVERAGE.md`](COVERAGE.md) — so ⭐ **this deck trails the content and does not yet
-> cover Azure platform, identity, M365 or AI security.** Each of those topics carries its own
-> **§ Remember it** and **§ Self-test**; use those until they are folded in here.
+> cover Azure platform, identity, M365, security operations or AI security.** Each of those topics
+> carries its own **§ Remember it** and **§ Self-test**; use those until they are folded in here.
 >
 > Last revised **2026-08-18**.
 
@@ -444,7 +445,101 @@ Read this the morning of an interview or exam.
 
 ---
 
-## 11. Where to go deeper
+## 11. ⭐ Architecture and consulting — hooks
+
+> Added **2026-08-18** with [`75-architecture-and-consulting/`](75-architecture-and-consulting/).
+> ⭐ **This is the layer that converts "I did labs" into "I've delivered engagements"** — and it is
+> what the interview panel is actually probing when they ask a scenario question.
+
+### The ten hooks
+
+| Topic | Hook | The line that regenerates it |
+|---|---|---|
+| Requirements | `T O N T` — Testable, Owned, Numbered, Traceable | ⭐ **Write the acceptance test at the same moment as the requirement**, or you haven't written one |
+| Discovery | `D S C S` — Driver, Stakeholders, Constraints, Success | ⭐ Find the driver, the **one** Accountable name, the blockers you don't control, and **who runs it after you leave** |
+| HLD | `D O R I` — Decision, Options, Rationale, Implications | ⭐ HLD records the decision **and why the alternatives lost**; LLD records values |
+| LLD | `U C V T` — Unambiguous, Complete, Verifiable, Traceable | ⭐ If a competent stranger can't build it **without phoning you**, it isn't an LLD |
+| Checklists | `P V S` — Pause point, Verification, Short | ⭐ ≤9 items, at a named pause point, **every item states how it was verified** |
+| Cutover playbooks | `L E V C S` — Lead, Executor, Verifier, Comms, Scribe | ⭐ **Lead never types; Verifier is never the Executor**; abort criteria written in daylight |
+| SOPs / runbooks | `S R C` — SOP teaches, Runbook removes thinking, Checklist prevents omission | ⭐ Write for **03:00, second week**; header says `Last tested`, not `Last updated` |
+| Change (adoption) | `ADKAR` **as a diagnosis, not a plan** | ⭐ Name the friction and **what users will do instead** — before you deploy |
+| Customer training | `U D A S` — Users, Desk, Admins, Sponsor | ⭐ **Sit on your hands and watch them do it.** Verified capability, not a delivered session |
+| Handover | `A D C C S` — Acceptance, Documentation, Capability, Credentials, Support | ⭐ **Never hold a credential you haven't watched them change**; the customer verifies your access is gone |
+
+### ⭐ The three name collisions — know which is which
+
+| Name | In `75-` (consulting) | Elsewhere |
+|---|---|---|
+| **Discovery** | ⭐ people, drivers, decision rights | `45-`: ⭐ the **estate inventory** |
+| **Change management** | ⭐ **adoption** — ADKAR, comms, champions | `70-`: ⭐ **change control** — RFC, CAB, windows |
+| **Runbooks / cutover** | ⭐ the **artifact and command structure** | `70-`/`45-`: ⭐ the **mechanism** |
+
+⭐ **Being asked "do you do change management?" and answering the wrong one is a real interview
+failure.** Ask which they mean — that question alone signals seniority.
+
+### Analogies that carry the mechanism
+
+| Analogy | What it predicts |
+|---|---|
+| ⭐ **Planning permission vs builder's drawings** (HLD/LLD) | the committee can't approve joist specs; the builder can't build from a planning statement |
+| ⭐ **A recipe vs a menu description** (LLD) | ⭐ a recipe written *after* cooking preserves your mistakes |
+| ⭐ **The surgical checklist, not the shopping list** | it confirms what everyone already knows, ⭐ because catastrophic failures are the obvious ones under pressure |
+| ⭐ **A theatre production** (cutover) | ⭐ the director doesn't act; someone watches from the auditorium to see what the audience sees |
+| ⭐ **Satnav vs driving lesson** (runbook vs SOP) | ⭐ a satnav explaining urban planning at a junction is useless |
+| ⭐ **A new one-way system** (adoption) | ⭐ the lorries physically can't make the turn — **you widen the corner, you don't re-issue the map** |
+| ⭐ **A driving test, not a lesson** (training) | the examiner sits **silently**; you test the emergency stop even though it's inconvenient |
+| ⭐ **End of a tenancy** (handover) | ⭐ every key counted, and the landlord changes the locks anyway |
+| ⭐ **A builder's quote vs a conversation** (requirements) | *"a nice kitchen"* can't be inspected; ⭐ *"3.2 m quartz, installed by 14 March"* can |
+| ⭐ **A doctor's consultation, not a lab test** (discovery) | ⭐ a clinically perfect prescription the patient can't follow is a failed treatment |
+
+### Rules that transfer to any employer
+
+| Rule | Why it holds |
+|---|---|
+| ⭐ **One Accountable per decision** | two `A`s is an unresolved argument written down |
+| ⭐ **One human name, never a department** | *"IT Security will approve"* has never approved anything |
+| ⭐ **Executor ≠ Verifier** | the builder tests the path they built and sees it work |
+| ⭐ **Abort criteria written in daylight** | at 02:40, sunk cost beats judgement every time |
+| ⭐ **Two people trained per task** | the single trained person is on leave during the first incident |
+| ⭐ **A temporary exclusion with no review date is permanent** | applies to CA exclusions, service principals, MFA exemptions |
+| ⭐ **`Last tested`, not `Last updated`** | an untested runbook is a hypothesis |
+| ⭐ **Never announce a removal without the replacement** | the gap between those two messages is where shadow IT is born |
+| ⭐ **A user workaround is free, high-quality feedback** | it names the friction you failed to design for |
+| ⭐ **As-built ≠ as-designed. Always. Name the delta** | an LLD that quietly disagrees with reality is worse than none |
+
+### ⭐ Interview-grade answers
+
+> **"Walk me through how you'd run a project."**
+> ⭐ *"Discovery first — but two kinds: the estate inventory, and the engagement one. Who's the
+> single Accountable person, what's driving the deadline, and **who operates this after I leave** —
+> that last one changes the design more than anything technical. Requirements next, each with its
+> acceptance test written at the same moment, because a requirement I can't test isn't one. Then HLD
+> for the decisions and rejected options, LLD for the values, and the LLD doubles as a drift script
+> the customer can re-run monthly."*
+
+> **"How do you avoid causing an outage?"**
+> ⭐ *"Report-only first and actually read the impact — I've seen three report-only failures in a
+> week, which is three real users I'd have blocked. Then a short pre-flight checklist at a named
+> pause point, where item one is that break-glass was **tested today**, not that it exists. And the
+> person who made the change isn't the person who verifies it."*
+
+> **"A control you deployed isn't being followed. What do you do?"**
+> ⭐ *"Find out what people are doing instead, first — the workaround tells me exactly which friction
+> I didn't design for. Then diagnose the stage: if they don't know it's coming that's comms, if they
+> can't comply on the device they have that's an **ability** gap and more training won't touch it —
+> that's a hardware conversation. Most teams answer every adoption problem with training, and it's
+> the right answer at only one stage."*
+
+> **"What does 'done' mean to you?"**
+> ⭐ *"Five gates: acceptance evidence per requirement, as-built documentation with the deltas named,
+> the customer's admins performing each procedure unaided while I sit on my hands, credentials
+> transferred so I hold nothing I haven't watched them change, and a hypercare window with a written
+> end date. The capability gate is the one that blocks — if they can't run it, it isn't handed over,
+> it's abandoned in place with a document."*
+
+---
+
+## 12. Where to go deeper
 
 - Standard every topic is written to: [`CONTENT-STANDARD.md`](CONTENT-STANDARD.md)
 - Measured state, generated not asserted: [`COVERAGE.md`](COVERAGE.md)
