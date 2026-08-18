@@ -13,9 +13,9 @@ them is how 123 placeholder topics went unnoticed.
 
 | Depth | Meaning | Count | Share |
 |---|---|---:|---:|
-| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 101 | 70.1% |
+| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 112 | 77.8% |
 | THIN | >=3 KB prose, few or no worked examples | 0 | 0% |
-| NONE | Placeholder or near-empty - **not study material** | 43 | 29.9% |
+| NONE | Placeholder or near-empty - **not study material** | 32 | 22.2% |
 
 ## Honest state
 
@@ -25,8 +25,8 @@ Each topic ships six facet folders that **are** the content contract:
 | State | Meaning | Count | Share |
 |---|---|---:|---:|
 | **WRITTEN** | Concept prose **and** >=3 of 6 facets carry evidence | 0 | 0% |
-| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 101 | 70.1% |
-| STUB | Scaffold README only - nothing written | 43 | 29.9% |
+| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 112 | 77.8% |
+| STUB | Scaffold README only - nothing written | 32 | 22.2% |
 | EMPTY | Not even a README | 0 | 0% |
 | | **Total topics** | **144** | |
 
@@ -58,7 +58,7 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | `30-identity-and-nhi` | 20 | 0 | 20 | 0 | 0 |
 | `35-active-directory-and-hybrid-identity` | 8 | 0 | 8 | 0 | 0 |
 | `40-microsoft-365-platform` | 13 | 0 | 13 | 0 | 0 |
-| `45-m365-migration-engineering` | 11 | 0 | 0 | 11 | 0 |
+| `45-m365-migration-engineering` | 11 | 0 | 11 | 0 | 0 |
 | `50-security-operations` | 14 | 0 | 14 | 0 | 0 |
 | `60-ai-and-secure-ai` | 14 | 0 | 14 | 0 | 0 |
 | `70-operations-and-reliability` | 13 | 0 | 0 | 13 | 0 |
@@ -144,6 +144,17 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | PARTIAL | `40-microsoft-365-platform/sharepoint-online` | 14.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `40-microsoft-365-platform/tenant-architecture` | 13.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `40-microsoft-365-platform/viva` | 12.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/coexistence` | 10.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/cutover-and-rollback` | 10.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/discovery-and-assessment` | 9.5 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/exchange-migrations` | 11.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/google-workspace-to-m365` | 11.7 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/migration-reconciliation` | 10.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/migration-tools` | 12.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/public-folders` | 10.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/sharepoint-and-onedrive-migrations` | 10.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/teams-migrations` | 9.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `45-m365-migration-engineering/tenant-to-tenant` | 11.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `50-security-operations/attack-path-analysis` | 12.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `50-security-operations/defender-for-cloud` | 13.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `50-security-operations/defender-for-cloud-apps` | 13.7 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
@@ -172,17 +183,6 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | PARTIAL | `60-ai-and-secure-ai/prompt-and-data-security` | 19.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/prompt-injection` | 11.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/sensitive-data-leakage` | 10.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/coexistence` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/cutover-and-rollback` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/discovery-and-assessment` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/exchange-migrations` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/google-workspace-to-m365` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/migration-reconciliation` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/migration-tools` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/public-folders` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/sharepoint-and-onedrive-migrations` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/teams-migrations` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `45-m365-migration-engineering/tenant-to-tenant` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `70-operations-and-reliability/alerts-and-action-groups` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `70-operations-and-reliability/application-insights` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `70-operations-and-reliability/azure-monitor` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |

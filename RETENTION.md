@@ -1,12 +1,18 @@
 # Retention — Tips, Tricks and Hooks
 
-> **The memory layer for everything written so far** (22 DEEP topics across
-> [`35-active-directory-and-hybrid-identity/`](35-active-directory-and-hybrid-identity/) and
-> [`10-networking/`](10-networking/)).
+> **The memory layer.** Deliberately **one interleaved document, not one appendix per topic.**
+> Mixing topics during recall is what makes memory durable; reviewing one topic at a time feels
+> productive and isn't.
 >
-> Deliberately **one interleaved document, not 22 appendices.** Mixing topics during recall is
-> what makes memory durable; reviewing one topic at a time feels productive and isn't.
-> Last revised **2026-08-10**.
+> ⚠ **Honest scope.** §§1–9 were built from the first **22** DEEP topics
+> ([`35-active-directory-and-hybrid-identity/`](35-active-directory-and-hybrid-identity/) and
+> [`10-networking/`](10-networking/)); §10 covers
+> [`45-m365-migration-engineering/`](45-m365-migration-engineering/). The repo now has **112** DEEP
+> topics — see [`COVERAGE.md`](COVERAGE.md) — so ⭐ **this deck trails the content and does not yet
+> cover Azure platform, identity, M365 or AI security.** Each of those topics carries its own
+> **§ Remember it** and **§ Self-test**; use those until they are folded in here.
+>
+> Last revised **2026-08-18**.
 
 ---
 
@@ -345,7 +351,100 @@ Read this the morning of an interview or exam.
 
 ---
 
-## 10. Where to go deeper
+## 10. ⭐ Migration engineering — hooks
+
+> Added **2026-08-18** with [`45-m365-migration-engineering/`](45-m365-migration-engineering/).
+> Interleave these with the identity material above — ⭐ **migration questions are identity
+> questions wearing a different hat**, and answering them that way is what reads as senior.
+
+### The eleven hooks
+
+| Topic | Hook | The line that regenerates it |
+|---|---|---|
+| Discovery | `I M C` — Identity, Mailbox, Content | ⭐ Discovery converts a user count into a **date and a list of blockers** |
+| Exchange migrations | `C S H I` — Cutover, Staged, Hybrid, IMAP | ⭐ Hybrid **separates copying data from cutting users over**; every other type fuses them |
+| SharePoint / OneDrive | `S P U I` — Scan, Package, Upload, Import | ⭐ The migration is easy; **remediating names, paths and permissions is the project** |
+| Teams | `G S C E` — Group, SharePoint, Chat, Exchange | ⭐ Files migrate; **messages are re-created with an old date stamp** |
+| Tenant-to-tenant | `D I C T` — Domain, Identity, Content, Teams | ⭐ **One domain, one tenant, one moment**; everything else is pre-staging |
+| Coexistence | `M D F A` — Mail, Directory, Free/busy, Autodiscover | ⭐ Three synced mechanisms and **one live one — free/busy — and it's the one that breaks** |
+| Cutover / rollback | `T G V R` — TTL, Go/no-go, Verify, Rollback | ⭐ TTL down **3 days early**, **two** go/no-go gates, old endpoint alive **a week** |
+| Public folders | `H C M` — Hierarchy, Content, Mail-enabled | ⭐ **One writable hierarchy**; mail-enabled folders are **live mail flow** |
+| Google Workspace | `L D O S` — Labels, Docs, Orphans, Scopes | ⭐ Nothing is like-for-like; **domain-wide delegation is a master key — revoke it on the last day** |
+| Migration tools | `A S B` — Agent, Service-side, SaaS Broker | ⭐ Native for like-for-like; **pay only for cross-tenant, Teams history and the endpoint problem** |
+| Reconciliation | `C S S F` — Count, Size, Structure, Function | ⭐ A tool reports it **finished**; reconciliation proves what **arrived** |
+
+### The analogies that carry the mechanism
+
+| Analogy | What it predicts |
+|---|---|
+| ⭐ **Moving house vs forwarding post** (Exchange) | the address label is **Autodiscover**, changed last — which is why the Outlook profile survives |
+| ⭐ **Airport baggage** (SharePoint) | prohibited items rejected at check-in (invalid chars, 400-char path); ⭐ **the conveyor throttles everyone equally (429) and shouting changes nothing** |
+| ⭐ **Two branch offices** (coexistence) | cut the phone line and the printed directory still looks fine — ⭐ **a certificate expiry kills calendars while mail keeps flowing** |
+| ⭐ **A library** (public folders) | one master catalogue, many shelves; ⭐ **the returns slot in the front door is a live address the public still uses** |
+| ⭐ **`V1` on a runway** (cutover) | the abort point is **computed on the ground**, never judged in the moment |
+| ⭐ **Translating a book** (Google) | most sentences survive; ⭐ **the puns do not** — labels, Docs revision history, Apps Script |
+| ⭐ **A warehouse stocktake** (reconciliation) | no manifest written **before** loading → no stocktake possible |
+| ⭐ **Company registered address** (tenant-to-tenant) | only one registration at a time, so the move is an **instant**, not a phase |
+
+### Numbers to know cold
+
+| Value | What it is |
+|---|---|
+| **400** | SharePoint full **decoded URL path** limit, characters |
+| **250 GB** | single-file upload ceiling (SharePoint/OneDrive) |
+| **25 TB** | site collection storage |
+| **5,000** | list view threshold — ⭐ bites long before the 30 M item ceiling |
+| **100 GB** | per public folder mailbox · **1,000** PF mailboxes per tenant |
+| **2,000** | cutover migration ceiling — ⭐ **but ~150 is the practical number** |
+| **30 min** | Entra Connect delta sync (⭐ **2 min** for password hash sync) |
+| **300 s** | the TTL you set 72 hours before cutover |
+| **50** | `BadItemLimit` above which `-AcceptLargeDataLoss` is required |
+| **95 %** | ⭐ where a healthy hybrid batch **rests and waits** — not a failure |
+
+### Symptom → cause reflex
+
+| Symptom | Cause |
+|---|---|
+| `IMCEAEX-...RESOLVER.ADR.ExRecipNotFound` | ⭐ **missing X.500 proxy address** — always |
+| Batch "stuck" at 95 % | ⭐ it is the wait state. `Complete-MigrationBatch` |
+| `StalledDueToTarget_MdbAvailability` | ⭐ EXO throttling. Not a fault. **Do not restart** |
+| Free/busy hatched, mail fine | ⭐ on-prem EWS endpoint or its **certificate** |
+| Your own domain fails DMARC | ⭐ internal mail routed via the internet — connectors wrong |
+| `HTTP 429` + `Retry-After` | SharePoint throttling — sleep exactly that long |
+| Migrated Google Doc is 300 bytes | ⭐ `.gdoc` **stub** — conversion was not enabled |
+| Counts match, users report loss | ⭐ **per-folder** mismatch hidden by the mailbox total |
+| `unauthorized_client` (Google) | delegation scope string mismatch |
+| Everything modified today by admin | ⭐ **drag-and-drop was used** — metadata unrecoverable |
+
+### ⭐ Interview-grade answers
+
+> **"How would you migrate 1,400 mailboxes?"**
+> ⭐ *"I'd start with the arithmetic, not the tool. Total size over usable bandwidth, times two for
+> throttling — if that exceeds the outage the business will accept, hybrid is the only option and
+> the decision is made. Then I'd build waves from the **delegation map**, not the org chart, so a
+> manager and their assistant never sit on opposite sides of the boundary."*
+
+> **"What's the riskiest part?"**
+> ⭐ *"The irreversible ones: the DNS cutover and, in tenant-to-tenant, the domain move — a domain
+> exists in exactly one tenant, so there's no hybrid state for it. I lower TTL three days early,
+> set two go/no-go gates, and keep the old endpoint accepting mail for a week, because DNS
+> propagation has no completion event."*
+
+> **"How do you know it worked?"**
+> ⭐ *"'Completed' is the tool's opinion. I reconcile on four axes — count, size, structure and
+> function — against a baseline captured before wave one, name every skipped item rather than
+> counting them, and hand over a signed report. Sizes legitimately differ by a few per cent;
+> **item counts must not.**"*
+
+> **"What's the security concern people miss?"**
+> ⭐ *"The migration service account. It reads every mailbox in scope and it's usually excluded from
+> MFA to make the tool work. That's a standing exception — time-box it, scope conditional access to
+> the tool's IPs, and remove it on the last day. Same discipline as break-glass. For Google
+> sources it's worse: domain-wide delegation is one key that impersonates the entire domain."*
+
+---
+
+## 11. Where to go deeper
 
 - Standard every topic is written to: [`CONTENT-STANDARD.md`](CONTENT-STANDARD.md)
 - Measured state, generated not asserted: [`COVERAGE.md`](COVERAGE.md)
