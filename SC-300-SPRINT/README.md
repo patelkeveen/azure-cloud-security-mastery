@@ -127,6 +127,7 @@ lab, file the artifact.**
 | [`Day1-Enable-Telemetry.ps1`](Day1-Enable-Telemetry.ps1) | Day 1, then leave it running | dry-run default, ⭐ refuses without break-glass |
 | [`../30-identity-and-nhi/entra-users-and-groups/Seed-LabTenant.ps1`](../30-identity-and-nhi/entra-users-and-groups/Seed-LabTenant.ps1) | Day 1, after telemetry | dry-run default |
 | [`New-LabEvidence.ps1`](New-LabEvidence.ps1) | ⭐ **after every lab** | write to repo only |
+| [`New-SprintTodo.ps1`](New-SprintTodo.ps1) | ⭐ **at the start of a sprint day** — pushes the day's tasks into **Microsoft To Do** and reviews the rest of your list | ⭐ **review-only until `-Apply`**; ⭐ never deletes |
 
 ```powershell
 # The exact Day 1 order. Do not reorder — the gate exists for a reason.
