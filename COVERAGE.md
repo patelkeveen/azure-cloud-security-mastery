@@ -13,9 +13,9 @@ them is how 123 placeholder topics went unnoticed.
 
 | Depth | Meaning | Count | Share |
 |---|---|---:|---:|
-| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 122 | 84.7% |
+| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 135 | 93.8% |
 | THIN | >=3 KB prose, few or no worked examples | 0 | 0% |
-| NONE | Placeholder or near-empty - **not study material** | 22 | 15.3% |
+| NONE | Placeholder or near-empty - **not study material** | 9 | 6.2% |
 
 ## Honest state
 
@@ -25,8 +25,8 @@ Each topic ships six facet folders that **are** the content contract:
 | State | Meaning | Count | Share |
 |---|---|---:|---:|
 | **WRITTEN** | Concept prose **and** >=3 of 6 facets carry evidence | 0 | 0% |
-| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 122 | 84.7% |
-| STUB | Scaffold README only - nothing written | 22 | 15.3% |
+| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 135 | 93.8% |
+| STUB | Scaffold README only - nothing written | 9 | 6.2% |
 | EMPTY | Not even a README | 0 | 0% |
 | | **Total topics** | **144** | |
 
@@ -61,7 +61,7 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | `45-m365-migration-engineering` | 11 | 0 | 11 | 0 | 0 |
 | `50-security-operations` | 14 | 0 | 14 | 0 | 0 |
 | `60-ai-and-secure-ai` | 14 | 0 | 14 | 0 | 0 |
-| `70-operations-and-reliability` | 13 | 0 | 0 | 13 | 0 |
+| `70-operations-and-reliability` | 13 | 0 | 13 | 0 | 0 |
 | `75-architecture-and-consulting` | 10 | 0 | 10 | 0 | 0 |
 | `80-customer-scenarios` | 9 | 0 | 0 | 9 | 0 |
 
@@ -183,6 +183,19 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | PARTIAL | `60-ai-and-secure-ai/prompt-and-data-security` | 19.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/prompt-injection` | 11.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `60-ai-and-secure-ai/sensitive-data-leakage` | 10.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/alerts-and-action-groups` | 12.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/application-insights` | 12.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/azure-monitor` | 12 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/backup-restore-testing` | 13.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/capacity-planning` | 11.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/change-management` | 12.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/chaos-and-failure-injection` | 13.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/incident-command` | 12.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/log-analytics` | 11.8 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/performance-engineering` | 12.9 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/root-cause-analysis` | 12 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/runbooks` | 12.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `70-operations-and-reliability/slis-slos-and-slas` | 11.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `75-architecture-and-consulting/change-management` | 12.5 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `75-architecture-and-consulting/configuration-checklists` | 11.6 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `75-architecture-and-consulting/customer-training` | 11.9 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
@@ -193,19 +206,6 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | PARTIAL | `75-architecture-and-consulting/lld` | 12.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `75-architecture-and-consulting/requirements` | 10.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `75-architecture-and-consulting/sop-and-runbooks` | 11.9 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/alerts-and-action-groups` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/application-insights` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/azure-monitor` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/backup-restore-testing` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/capacity-planning` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/change-management` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/chaos-and-failure-injection` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/incident-command` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/log-analytics` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/performance-engineering` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/root-cause-analysis` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/runbooks` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `70-operations-and-reliability/slis-slos-and-slas` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `80-customer-scenarios/education` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `80-customer-scenarios/fintech-and-banking` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | stub | `80-customer-scenarios/government` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |

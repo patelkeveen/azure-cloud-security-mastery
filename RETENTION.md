@@ -7,11 +7,12 @@
 > ⚠ **Honest scope.** §§1–9 were built from the first **22** DEEP topics
 > ([`35-active-directory-and-hybrid-identity/`](35-active-directory-and-hybrid-identity/) and
 > [`10-networking/`](10-networking/)); §10 covers
-> [`45-m365-migration-engineering/`](45-m365-migration-engineering/) and §11 covers
-> [`75-architecture-and-consulting/`](75-architecture-and-consulting/). The repo now has **122** DEEP
+> [`45-m365-migration-engineering/`](45-m365-migration-engineering/), §11
+> [`75-architecture-and-consulting/`](75-architecture-and-consulting/) and §12
+> [`70-operations-and-reliability/`](70-operations-and-reliability/). The repo has **135** DEEP
 > topics — see [`COVERAGE.md`](COVERAGE.md) — so ⭐ **this deck trails the content and does not yet
-> cover Azure platform, identity, M365, security operations or AI security.** Each of those topics
-> carries its own **§ Remember it** and **§ Self-test**; use those until they are folded in here.
+> cover Azure platform, identity, M365 or AI security.** Each of those topics carries its own
+> **§ Remember it** and **§ Self-test**; use those until they are folded in here.
 >
 > Last revised **2026-08-18**.
 
@@ -539,7 +540,125 @@ failure.** Ask which they mean — that question alone signals seniority.
 
 ---
 
-## 12. Where to go deeper
+## 12. ⭐ Operations and reliability — hooks
+
+> Added **2026-08-18** with [`70-operations-and-reliability/`](70-operations-and-reliability/).
+> ⭐ **This is the layer that decides whether the security controls you built are still working in
+> six months** — and most of it transfers to any employer, cloud or on-premises.
+
+### The thirteen hooks
+
+| Topic | Hook | The line that regenerates it |
+|---|---|---|
+| Azure Monitor | `M L` — Metrics free/fast/forgetful, Logs paid/slow/permanent | ⭐ **Logs capture forward only** — the diagnostic setting must exist **before** the incident |
+| Log Analytics | `T P R` per table — Table, Plan, Retention | ⭐ Filter on time **first**; never change a table's plan without checking the alerts on it |
+| Alerts | `A A A` — Actionable, Attributable, Acted-on | ⭐ If nobody must act at 03:00 it's a dashboard; ⭐ **frequency ≤ window** |
+| App Insights | `R D E T` + `itemCount` | ⭐ **`sum(itemCount)`, never `count()`**; `operation_Id` rebuilds the journey |
+| SLI/SLO/SLA | `I O A` — Indicator measures, Objective targets, Agreement costs | ⭐ Error budget turns "reliable enough?" into arithmetic; ⭐ **serial dependencies multiply** |
+| Incident command | `I O C S` — IC, Ops, Comms, Scribe | ⭐ **Declare early, IC doesn't type, communicate before you understand** |
+| RCA | `T T A` — Timeline, TTD/TTM, Actions | ⭐ Contributing **factors**, not a root cause; ⭐ an action with no owner isn't an action |
+| Runbooks | ladder `T W S A H` | ⭐ **Automate execution, never judgement**; count every self-healing action |
+| Change control | `S N E` — Standard, Normal, Emergency | ⭐ **Make the safe path the fast path**; an untested backout is a hypothesis |
+| Backup/restore | `R R V` — RPO, RTO, **Verify content** | ⭐ **A green job proves data was written, not that it comes back** |
+| Capacity | `U G L` — Usage, Growth, Lead time → **a date** | ⭐ Order date = exhaustion − lead time − margin; ⭐ **ceiling is 80 %** |
+| Performance | `p50 p95 p99` · **USE** resources · **RED** services | ⭐ Averages lie; latency degrades **hyperbolically** past ~80 % |
+| Chaos | `S H B O` — Steady state, Hypothesis, Blast radius, Observe | ⭐ **No hypothesis, no experiment**; inject **latency**, not just failure |
+
+### ⭐ Numbers to know cold
+
+| Value | What it is |
+|---|---|
+| ⭐ **43.2 min** | monthly error budget at **99.9 %** |
+| ⭐ **4.32 min** | monthly budget at **99.99 %** — ⭐ less than a reboot |
+| 7.2 hours | monthly budget at 99 % |
+| **93 days** | ⭐ platform **metric** retention · also SharePoint recycle bin total |
+| ⭐ **80 %** | the utilisation **knee** — wait ≈ 4× service time |
+| ⭐ **95 %** | the utilisation **cliff** — wait ≈ 19× service time |
+| **14 → 30 days** | Exchange deleted-items retention, default → max |
+| **30 days** | Entra deleted-user recovery window |
+| ⭐ **2024-08-31** | Log Analytics agent (MMA) **retired** — AMA only |
+| Sev 0–4 | ⭐ 0 critical … ⭐ **4 isn't an alert, delete it** |
+
+### Analogies that carry the mechanism
+
+| Analogy | What it predicts |
+|---|---|
+| ⭐ **Dashboard vs flight recorder** (metrics/logs) | ⭐ you cannot retrofit a black box **after** the crash |
+| ⭐ **Warehouse with three storage rates** (table plans) | ⭐ moving boxes to the depot to save money, then finding the alarm needed to see them |
+| ⭐ **A car with 40 warning lights** (alerts) | ⭐ the always-on light's real cost is the one nobody noticed underneath it |
+| ⭐ **Hospital wristband** (`operation_Id`) | one department not recording it breaks the chart from there on |
+| ⭐ **Household budget** (error budget) | ⭐ "we have 29 minutes left" ends an argument the way "£40 left" does |
+| ⭐ **A fire ground, not a fire** (incident command) | the commander stands **outside** with a radio; the best firefighter is inside |
+| ⭐ **Air accident investigation, not a court** (RCA) | ⭐ "pilot error" starts the enquiry; the output is a directive with a deadline |
+| ⭐ **Hospital backup generator** (runbooks) | ⭐ starts itself, but nobody counts the mains failures |
+| ⭐ **Airport security lanes** (change control) | ⭐ a 3-hour normal lane makes everyone an emergency |
+| ⭐ **Fire drill, not an extinguisher on the wall** (restore testing) | the point is the fire door that's been propped shut |
+| ⭐ **Hospital oxygen supply** (capacity) | ⭐ delivery time is what kills you, not the tank level |
+| ⭐ **Motorway at rush hour** (performance) | ⭐ headroom isn't waste; the driver who arrived at the wrong moment is your p99 |
+| ⭐ **A drill where everything went perfectly** (chaos) | ⭐ was probably too easy |
+
+### ⭐ Symptom → cause reflex
+
+| Symptom | Cause |
+|---|---|
+| "There are no logs for that day" | ⭐ diagnostic setting never existed — ⭐ **unrecoverable** |
+| Alert never fired | ⭐ `Average` where you needed `Maximum` |
+| KQL disagrees with the portal chart | ⭐ `count()` instead of `sum(itemCount)` |
+| Query times out | ⭐ time filter not first |
+| Alert stopped after a cost review | ⭐ table moved to a cheap plan |
+| Green dashboard, angry users | ⭐ server-side SLI |
+| Latency exploded, CPU "only" 95 % | ⭐ the utilisation curve, behaving normally |
+| Load test passed, prod fell over | ⭐ **coordinated omission** |
+| Runbook succeeded, nothing changed | ⭐ no post-condition read-back |
+| Restart runbook ran 3× in 4 hours | ⭐ self-healing hiding a degrading system |
+| Autoscale failed under load | ⭐ **quota**, not capacity |
+| Backup dashboard green, data 5 days old | ⭐ reading successes, not **latest** |
+| Most changes are "emergency" | ⭐ the normal path is too slow |
+
+### ⭐ The cross-domain rules
+
+| Rule | Where it also appears |
+|---|---|
+| ⭐ **Deployed is not enforced** | report-only CA · audit-mode Policy · DMARC `p=none` · ⭐ **an alert nobody actions** |
+| ⭐ **Telemetry captures forward only** | unified audit log · diagnostic settings · Identity Protection |
+| ⭐ **Read the state back; never trust the call** | break-glass role assignment · runbook post-conditions · restore verification |
+| ⭐ **Untested recovery is not recovery** | break-glass · backout plans · restores · failover |
+| ⭐ **Executor ≠ verifier** | cutover · restore testing · chaos game days |
+| ⭐ **Decide the abort criteria in daylight** | cutover playbooks · error budget policy · chaos stop conditions |
+| ⭐ **A temporary exception with no review date is permanent** | CA exclusions · MFA exemptions · automation roles |
+
+### ⭐ Interview-grade answers
+
+> **"How do you know a system is healthy?"**
+> ⭐ *"Not from a dashboard being green. I'd want an SLI measured from the user's path — good events
+> over valid events — an SLO with an error budget, and burn-rate alerting rather than error-count
+> alerting, so a handful of 500s at 3 a.m. wakes nobody but a budget-exhausting rate does. Then
+> percentiles rather than averages, because an average of 199 ms can hide a p99 of ten seconds."*
+
+> **"Walk me through an outage."**
+> ⭐ *"Declare early — declaring is cheap, under-declaring is expensive. Name an IC who doesn't type,
+> because the moment they start debugging they lose the overview. Comms goes out before we know the
+> cause, in user terms not component terms, on a fixed cadence. And the first diagnostic is 'what
+> changed?' — activity log and directory audit, writes only, last six hours. Most incidents follow a
+> change."*
+
+> **"Your backups are green. Are you protected?"**
+> ⭐ *"No — that only proves data was written. I'd want a timed, unannounced restore performed by
+> someone who didn't build it, verified by opening named files and checking their dates, with the
+> RTO measured from when the incident started rather than from when someone authorised the restore.
+> And I'd check immutability is **locked** and multi-user authorisation is on, because otherwise a
+> single compromised admin deletes the backups first."*
+
+> **"What would you automate?"**
+> ⭐ *"Execution, never judgement. Anything mechanical done more than weekly, moved into Azure
+> Automation under a managed identity with a scoped role — that removes the standing admin rights
+> the manual procedure was justifying. But every self-healing action increments a counter and
+> something alerts on the rate, because a restart runbook that quietly fires three times a day has
+> converted a visible failure into an invisible one."*
+
+---
+
+## 13. Where to go deeper
 
 - Standard every topic is written to: [`CONTENT-STANDARD.md`](CONTENT-STANDARD.md)
 - Measured state, generated not asserted: [`COVERAGE.md`](COVERAGE.md)
