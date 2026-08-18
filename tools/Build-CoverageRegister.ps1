@@ -222,11 +222,19 @@ $null = $sb.AppendLine("| STUB | Scaffold README only - nothing written | $stub 
 $null = $sb.AppendLine("| EMPTY | Not even a README | $empty | $([math]::Round(100*$empty/[math]::Max($total,1),1))% |")
 $null = $sb.AppendLine("| | **Total topics** | **$total** | |")
 $null = $sb.AppendLine()
-$null = $sb.AppendLine("**$written of $total topics are written. The rest is scaffold.**")
+$null = $sb.AppendLine("**$written of $total topics carry evidence.**")
 $null = $sb.AppendLine()
-$null = $sb.AppendLine('Scaffold is a plan, not knowledge. A folder existing proves nothing was studied.')
-$null = $sb.AppendLine('Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means')
-$null = $sb.AppendLine('*documented* - it does not mean the labs were run in a live tenant.')
+if ($stub -gt 0 -or $empty -gt 0) {
+    $null = $sb.AppendLine("$($stub + $empty) are still scaffold. Scaffold is a plan, not knowledge -")
+    $null = $sb.AppendLine('a folder existing proves nothing was studied.')
+} else {
+    $null = $sb.AppendLine('No scaffold remains: every topic is written to CONTENT-STANDARD.md. What is')
+    $null = $sb.AppendLine('missing now is **evidence** - the six facet folders are the gap, not the prose.')
+}
+$null = $sb.AppendLine()
+$null = $sb.AppendLine('Treat every non-WRITTEN topic as **read but not performed**. WRITTEN itself means')
+$null = $sb.AppendLine('*evidenced* - artifacts exist in >=3 facet folders - and even that does not prove')
+$null = $sb.AppendLine('the labs were run against a live production-like tenant.')
 $null = $sb.AppendLine()
 
 # Deep documents

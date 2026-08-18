@@ -8,11 +8,12 @@
 > ([`35-active-directory-and-hybrid-identity/`](35-active-directory-and-hybrid-identity/) and
 > [`10-networking/`](10-networking/)); §10 covers
 > [`45-m365-migration-engineering/`](45-m365-migration-engineering/), §11
-> [`75-architecture-and-consulting/`](75-architecture-and-consulting/) and §12
-> [`70-operations-and-reliability/`](70-operations-and-reliability/). The repo has **135** DEEP
-> topics — see [`COVERAGE.md`](COVERAGE.md) — so ⭐ **this deck trails the content and does not yet
-> cover Azure platform, identity, M365 or AI security.** Each of those topics carries its own
-> **§ Remember it** and **§ Self-test**; use those until they are folded in here.
+> [`75-architecture-and-consulting/`](75-architecture-and-consulting/), §12
+> [`70-operations-and-reliability/`](70-operations-and-reliability/) and §13
+> [`80-customer-scenarios/`](80-customer-scenarios/). All **144** topics are now DEEP — see
+> [`COVERAGE.md`](COVERAGE.md) — so ⭐ **this deck still trails the content: Azure platform,
+> identity, M365, security operations and AI security are not folded in yet.** Each of those topics
+> carries its own **§ Remember it** and **§ Self-test**; use those until they are.
 >
 > Last revised **2026-08-18**.
 
@@ -658,11 +659,113 @@ failure.** Ask which they mean — that question alone signals seniority.
 
 ---
 
-## 13. Where to go deeper
+## 13. ⭐ Customer scenarios — hooks
+
+> Added **2026-08-18** with [`80-customer-scenarios/`](80-customer-scenarios/).
+> ⭐ **The same product, nine different constraints.** Depth per vertical lives in each topic;
+> [`80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md`](80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md)
+> is the two-page brief across all nine.
+
+### ⭐ The universal chain — memorise this one
+
+```
+⭐ Regulation → Control objective → Technical requirement → Entra feature → EVIDENCE ARTIFACT
+   └── customer owns these two ──┘   └──────────── you own these three ────────────┘
+```
+
+⭐ **The evidence artifact is the deliverable, not the config.** Most vendors jump from regulation
+straight to a product demo; writing links ② and ③ down, and making the customer own ②, is the
+senior move.
+
+### The nine hooks
+
+| Vertical | Hook | The line that regenerates it |
+|---|---|---|
+| Financial services | `R C T F E` — the chain above | ⭐ **Retention gaps cannot be fixed retroactively**; SoD is an *entitlement* problem, not a role problem |
+| Healthcare | `S P E` — Shared devices, Phoneless factors, Emergency access **required** | ⭐ **Make the fast path the secure path** — a badge is quicker than a password |
+| Government | ⭐ **`CLOUD FIRST`** | ⭐ Establish the **cloud instance** and **who may legally touch it** before designing |
+| Manufacturing / OT | ⭐ `S A I C` — the triad **upside down** | ⭐ You can't authenticate the PLC — ⭐ **authenticate the path**; never remove vendor access without replacing it |
+| Retail | `J M L` at scale | ⭐ **Mover is the one everyone gets wrong**; disable **and revoke sessions** |
+| SaaS | `W C` — Workforce vs Customer planes | ⭐ **Delete the secret** — federation is only a control once the bearer credential is gone |
+| Education | `S S A` — Staff, Students, **Alumni** | ⭐ Automate from the roster; ⭐ **write the July leaver policy before the first September** |
+| Nonprofit | ⭐ **the two-year test** | ⭐ Will this be correct in two years if nobody touches it? ⭐ **Expiry over review, prevention over alerting** |
+| M&A | ⭐ `D1 / D100` | ⭐ **Day 1 is collaboration and needs no migration**; plan backwards from the immovable date |
+
+### ⭐ Terminology and boundary traps
+
+| Trap | The distinction |
+|---|---|
+| ⭐ **"Break the glass"** | ⭐ Clinical = emergency **patient record** access, in the EHR, **required by HIPAA**. Identity = two Entra emergency admin accounts. ⭐ **Ask which, in the first meeting** |
+| ⭐ **"Change management"** | adoption (`75-`) vs change control (`70-`) — ⭐ ask which they mean |
+| ⭐ **"Discovery"** | engagement/people (`75-`) vs estate inventory (`45-`) |
+| ⭐ **"We're FedRAMP so we're compliant"** | ⭐ the **platform** is authorised; your identity config is inherited by nobody |
+| ⭐ **"It's in M365 so it's backed up"** | ⭐ retention prevents deletion; ⭐ it cannot restore to a point in time |
+
+### Analogies that carry the mechanism
+
+| Analogy | What it predicts |
+|---|---|
+| ⭐ **Kitchen inspection** (financial services) | ⭐ a spotless kitchen with no log **fails**; the signer must not be the cook |
+| ⭐ **Hospital fire door** (healthcare) | ⭐ emergency access is granted and **audited**, not prevented; ⭐ a hard door gets propped |
+| ⭐ **Driving licences between countries** (government) | ⭐ the manual describes the other country's model; the restriction is on the **driver** |
+| ⭐ **Operating theatre vs records office** (OT) | ⭐ secure the corridor, leave the theatre door openable |
+| ⭐ **Keys to 400 shops** (retail) | ⭐ the transferred colleague kept both keys |
+| ⭐ **House key vs intercom** (SaaS) | ⭐ take the old key back, or the intercom changed nothing |
+| ⭐ **School at start of term** (education) | ⭐ the work happens in August, not September |
+| ⭐ **Village hall, one key-holder** (nonprofit) | ⭐ nobody is watching the CCTV — fit a door that locks itself |
+| ⭐ **Two households becoming one** (M&A) | ⭐ the deadline applies to the announcement, not the removals van |
+
+### ⭐ The questions that reorder a project
+
+| Question | Vertical |
+|---|---|
+| ⭐ "When your auditor asks who approved an elevation last March, what do you show them?" | financial services |
+| ⭐ "Walk me through a nurse starting a shift — every tap." | healthcare |
+| ⭐ "Which Microsoft cloud instance? And may I legally touch it?" | government |
+| ⭐ "How does your vendor connect when a line is down at 2 a.m.?" | OT |
+| ⭐ "How long from termination to access revoked — **measured**, not intended?" | retail (⭐ works anywhere) |
+| ⭐ "Does your pipeline authenticate with a secret, or federation?" | SaaS |
+| ⭐ "What happens to a student's account when they leave?" | education |
+| ⭐ "Who looks after this after we finish — a person, by name?" | nonprofit |
+| ⭐ "What must be true on Day 1 for the announcement to be credible?" | M&A |
+
+### ⭐ Interview-grade answers
+
+> **"How do you approach a regulated customer?"**
+> ⭐ *"I don't interpret their regulation — that's their compliance team's job, and saying so early
+> builds trust. I take the control objective they give me and own the three links after it: the
+> technical requirement, the Entra feature, and the evidence artifact. The artifact is the actual
+> deliverable, because an assessor doesn't audit policy JSON — they ask what happened in March and
+> who checked. And I check log retention in week one, because that gap is the only one that can't be
+> fixed retroactively."*
+
+> **"A customer refuses a security control. What do you do?"**
+> ⭐ *"Find out what it costs them, because the refusal is usually correct. On a plant floor,
+> anything that risks stopping the line loses to safety and availability — that's the right
+> priority order there, not a compromise. In a hospital, a login that takes twenty seconds at a
+> bedside gets defeated by credential sharing, so I've made the audit trail worse, not better. The
+> move is to solve the underlying need differently — a badge instead of a password, a jump host
+> instead of removing the vendor's access — and if I genuinely can't, I say detection replaces
+> prevention here and document it as an accepted risk with a review date."*
+
+> **"Which vertical is hardest?"**
+> ⭐ *"Nonprofit, and not for the reason people expect. There's no operations team and there never
+> will be, so every control has to pass a two-year test: will this still be correct if nobody
+> touches it? That rules out access reviews and alerting and pushes you to expiry and prevention.
+> Handing a charity a sophisticated design they can't maintain leaves them worse off than a simple
+> one, because they now believe they're protected."*
+
+---
+
+## 14. Where to go deeper
 
 - Standard every topic is written to: [`CONTENT-STANDARD.md`](CONTENT-STANDARD.md)
 - Measured state, generated not asserted: [`COVERAGE.md`](COVERAGE.md)
-- Full topics: [`35-active-directory-and-hybrid-identity/`](35-active-directory-and-hybrid-identity/) ·
-  [`10-networking/`](10-networking/)
-- Every topic carries its own **§ Self-test** with answers — use those for spaced repetition
-  rather than re-reading the prose.
+- ⭐ Every topic carries its own **§ Remember it** and **§ Self-test** with answers — ⭐ use those
+  for spaced repetition rather than re-reading the prose. That is **144 self-tests**, and they are
+  the highest-value study surface in the repo.
+- ⭐ **The gap that remains is evidence, not prose.** Six facet folders per topic
+  (`lab` · `security` · `operations` · `break-fix` · `customer-use-cases` ·
+  `architecture-decisions`) — a topic reaches WRITTEN at three of six. ⭐ **Today: zero.**
+  Capture artifacts as you run labs, starting with
+  [`SC-300-SPRINT/New-LabEvidence.ps1`](SC-300-SPRINT/New-LabEvidence.ps1).

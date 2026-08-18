@@ -13,9 +13,9 @@ them is how 123 placeholder topics went unnoticed.
 
 | Depth | Meaning | Count | Share |
 |---|---|---:|---:|
-| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 135 | 93.8% |
+| **DEEP** | >=8 KB **and** >=4 worked examples - meets the standard | 144 | 100% |
 | THIN | >=3 KB prose, few or no worked examples | 0 | 0% |
-| NONE | Placeholder or near-empty - **not study material** | 9 | 6.2% |
+| NONE | Placeholder or near-empty - **not study material** | 0 | 0% |
 
 ## Honest state
 
@@ -25,16 +25,19 @@ Each topic ships six facet folders that **are** the content contract:
 | State | Meaning | Count | Share |
 |---|---|---:|---:|
 | **WRITTEN** | Concept prose **and** >=3 of 6 facets carry evidence | 0 | 0% |
-| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 135 | 93.8% |
-| STUB | Scaffold README only - nothing written | 9 | 6.2% |
+| PARTIAL | Concept prose exists, evidence thin (<3 facets) | 144 | 100% |
+| STUB | Scaffold README only - nothing written | 0 | 0% |
 | EMPTY | Not even a README | 0 | 0% |
 | | **Total topics** | **144** | |
 
-**0 of 144 topics are written. The rest is scaffold.**
+**0 of 144 topics carry evidence.**
 
-Scaffold is a plan, not knowledge. A folder existing proves nothing was studied.
-Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
-*documented* - it does not mean the labs were run in a live tenant.
+No scaffold remains: every topic is written to CONTENT-STANDARD.md. What is
+missing now is **evidence** - the six facet folders are the gap, not the prose.
+
+Treat every non-WRITTEN topic as **read but not performed**. WRITTEN itself means
+*evidenced* - artifacts exist in >=3 facet folders - and even that does not prove
+the labs were run against a live production-like tenant.
 
 ## Deep documents
 
@@ -63,7 +66,7 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | `60-ai-and-secure-ai` | 14 | 0 | 14 | 0 | 0 |
 | `70-operations-and-reliability` | 13 | 0 | 13 | 0 | 0 |
 | `75-architecture-and-consulting` | 10 | 0 | 10 | 0 | 0 |
-| `80-customer-scenarios` | 9 | 0 | 0 | 9 | 0 |
+| `80-customer-scenarios` | 9 | 0 | 9 | 0 | 0 |
 
 ## Every topic
 
@@ -206,12 +209,12 @@ Treat every non-WRITTEN topic as unstudied, and note that even WRITTEN means
 | PARTIAL | `75-architecture-and-consulting/lld` | 12.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `75-architecture-and-consulting/requirements` | 10.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `75-architecture-and-consulting/sop-and-runbooks` | 11.9 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `80-customer-scenarios/education` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `80-customer-scenarios/fintech-and-banking` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `80-customer-scenarios/government` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `80-customer-scenarios/healthcare` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `80-customer-scenarios/manufacturing-and-ot` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `80-customer-scenarios/mergers-and-acquisitions` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `80-customer-scenarios/nonprofit` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `80-customer-scenarios/retail` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| stub | `80-customer-scenarios/saas` | 0 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `80-customer-scenarios/education` | 11.8 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `80-customer-scenarios/fintech-and-banking` | 12.7 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `80-customer-scenarios/government` | 12.7 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `80-customer-scenarios/healthcare` | 13.9 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `80-customer-scenarios/manufacturing-and-ot` | 12.9 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `80-customer-scenarios/mergers-and-acquisitions` | 13.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `80-customer-scenarios/nonprofit` | 12.9 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `80-customer-scenarios/retail` | 12.2 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `80-customer-scenarios/saas` | 13.5 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
