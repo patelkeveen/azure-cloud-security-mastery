@@ -11,9 +11,18 @@ This is not an exam-notes repository. AZ-104, AZ-500, SC-300, SC-500/Cloud & AI 
 **[`COVERAGE.md`](COVERAGE.md) is the only honest answer to "what is actually done here."**
 It is **generated from the filesystem** by [`tools/Build-CoverageRegister.ps1`](tools/Build-CoverageRegister.ps1), not maintained by hand, because a hand-maintained status field always drifts.
 
-As of the last regeneration: **0 of 144 topics meet the content contract.** 6 have concept prose with no evidence; 138 are scaffold READMEs. The directory tree describes an *intended* curriculum — **a folder existing proves nothing was studied.**
+As of the last regeneration: ⭐ **all 144 topics are written to [`CONTENT-STANDARD.md`](CONTENT-STANDARD.md)** — no scaffold remains. ⭐ **But 0 of 144 carry evidence**, and that distinction is the whole point of the register:
 
-What genuinely exists today is the SC-300 → SC-500 identity track:
+| Measure | State | Means |
+|---|---|---|
+| ⭐ **Depth** | ⭐ **144/144 DEEP** | the README teaches the concept, with worked examples |
+| ⭐ **Evidence** | ⭐ **0/144 WRITTEN** | ⭐ **no lab artifacts exist in the six facet folders** |
+
+⭐ **Read that as: everything here has been written and nothing here has been performed.** Documented is not practised, and this repo should never imply otherwise.
+
+⭐ **Where to start: [`START-HERE.md`](START-HERE.md)** — it is the single map of what to read, in what order, and why.
+
+The spine of the curriculum is the seven Layer documents:
 
 | Read in this order | What it is |
 |---|---|
@@ -31,7 +40,7 @@ What genuinely exists today is the SC-300 → SC-500 identity track:
 
 Layers 1–6 are verified against live Microsoft documentation. Layer 7 is labelled inside the document as consulting judgement, not verified product behaviour.
 
-**~40 labs are defined across those layers and none have been run.** Documented is not the same as practised, and this repo should never imply otherwise.
+⭐ **Every domain has its own README** with a reading order, the one thing each topic gives you, and a generated table of measured state. ⭐ **Those twelve files are the navigation layer** — start at [`START-HERE.md`](START-HERE.md) and follow them.
 
 ---
 
@@ -59,22 +68,45 @@ Every command must explain its purpose, parameters, permissions, location, contr
 
 ## Repository map
 
-- `00-foundations/` — computing, OS, CLI, Git, APIs, troubleshooting.
-- `10-networking/` — TCP/IP, subnetting, DNS, TLS, routing, VPN, private access, Azure VNets.
-- `20-azure-platform/` — governance, RBAC, Policy, ARM, Bicep, Terraform, landing zones, FinOps.
-- `30-identity-and-nhi/` — workforce identity and non-human identity.
-- `35-active-directory-and-hybrid-identity/` — AD, Connect, Cloud Sync, ADFS, federation, coexistence.
-- `40-microsoft-365-platform/` — Exchange, SharePoint, OneDrive, Teams, Groups, Viva, Power Platform.
-- `45-m365-migration-engineering/` — migration factories and migration-tool comparisons.
-- `50-security-operations/` — Defender, Sentinel, KQL, Purview, detection, response.
-- `60-ai-and-secure-ai/` — AI workload identity, data security, RAG, agents, evaluation.
-- `70-operations-and-reliability/` — monitoring, SLOs, incidents, DR, runbooks, RCA.
-- `75-architecture-and-consulting/` — discovery, HLD, LLD, design decisions, customer delivery.
-- `80-customer-scenarios/` — finance, healthcare, SaaS, retail, manufacturing, government, nonprofit.
-- `labs/`, `incidents/`, `migration-factories/`, `portfolio/`, `customer-delivery/` — evidence.
+⭐ **Each domain README carries its own reading order and a generated state table. Click through.**
+
+| Domain | What it is | ⭐ When to read it |
+|---|---|---|
+| [`00-foundations/`](00-foundations/) | OS, CLI, Git, APIs, troubleshooting method | ⭐ **first, once** |
+| [`10-networking/`](10-networking/) | TCP/IP, DNS, TLS, routing, VNets, private endpoints | before Azure work |
+| [`20-azure-platform/`](20-azure-platform/) | RBAC, Policy, ARM, IaC, landing zones, cost | before Azure labs |
+| ⭐ [`30-identity-and-nhi/`](30-identity-and-nhi/) | ⭐ **the core domain — Layers 1–5 live here** | ⭐ **the main event** |
+| [`35-active-directory-and-hybrid-identity/`](35-active-directory-and-hybrid-identity/) | AD, Connect, Cloud Sync, ADFS, Okta | after Layer 2 |
+| [`40-microsoft-365-platform/`](40-microsoft-365-platform/) | Exchange, SharePoint, Teams, Purview, Intune | after Layers 1–3 |
+| [`45-m365-migration-engineering/`](45-m365-migration-engineering/) | ⭐ **the most employable domain** | after M365 |
+| [`50-security-operations/`](50-security-operations/) | Defender, Sentinel, KQL, hunting, IR | ⭐ **SC-200 phase** |
+| [`60-ai-and-secure-ai/`](60-ai-and-secure-ai/) | agent identity, prompt injection, RAG, governance | ⭐ **SC-500 bridge** |
+| [`70-operations-and-reliability/`](70-operations-and-reliability/) | monitoring, SLOs, incidents, backup, chaos | ⭐ **alongside everything** |
+| [`75-architecture-and-consulting/`](75-architecture-and-consulting/) | discovery, HLD/LLD, cutover, handover | ⭐ **before your next interview** |
+| [`80-customer-scenarios/`](80-customer-scenarios/) | nine verticals, engagement depth | before a sector meeting |
+
+**Practice and evidence:** [`SC-300-SPRINT/`](SC-300-SPRINT/) — the runnable 7-day lab track ·
+`labs/`, `incidents/`, `portfolio/`, `customer-delivery/` — where artifacts land.
 
 ## Evidence rule
 
 A topic is not complete because it was watched, read, or tested in a quiz. Completion requires a concept explanation, a reproducible lab, deliberate failure exercises, security and operations notes, customer use cases, and verified evidence. Unverified knowledge stays marked as research or developing.
 
-Start with `START-HERE.md`, then `MASTERY-STANDARD.md`, `CURRICULUM-MAP.md`, `CERTIFICATION-MAP.md`, `RESOURCE-MAP.md`, and `10-DAY-SPRINT.md`.
+## The four files that matter
+
+⭐ **There are 27 markdown files at the root of this repo. Four of them are load-bearing:**
+
+| File | Why |
+|---|---|
+| ⭐ [`START-HERE.md`](START-HERE.md) | ⭐ **the map** — what to read, in what order, and why |
+| ⭐ [`COVERAGE.md`](COVERAGE.md) | ⭐ **measured state, generated** — the only honest answer to "what's done" |
+| ⭐ [`RETENTION.md`](RETENTION.md) | ⭐ **the memory layer** — hooks, numbers, interview answers |
+| [`CONTENT-STANDARD.md`](CONTENT-STANDARD.md) | what "written" means, and the exemplar to match |
+
+Reference, when you need them: [`CERT-MAP.md`](CERT-MAP.md) (six certifications) ·
+[`ARCHITECTURE.md`](ARCHITECTURE.md) (how the repo is built) ·
+[`SC-300-MASTERY-SYLLABUS.md`](SC-300-MASTERY-SYLLABUS.md) ·
+[`SC-300-RESOURCE-LIBRARY.md`](SC-300-RESOURCE-LIBRARY.md).
+
+⚠ Several root files carry a **SUPERSEDED** banner naming the file that replaced them. ⭐ **Trust the
+banner** — they are kept for history, not for reading.
