@@ -103,6 +103,11 @@ A topic is not complete because it was watched, read, or tested in a quiz. Compl
 | ⭐ [`RETENTION.md`](RETENTION.md) | ⭐ **the memory layer** — hooks, numbers, interview answers |
 | [`CONTENT-STANDARD.md`](CONTENT-STANDARD.md) | what "written" means, and the exemplar to match |
 
+⚠ **Until 2026-08-28 there is a fifth, and it outranks the others:**
+⭐ [`SC-300-SPRINT/EXAM-COUNTDOWN.md`](SC-300-SPRINT/EXAM-COUNTDOWN.md) — the exam-date plan, with
+[`GAP-DRILL.md`](SC-300-SPRINT/GAP-DRILL.md) (⭐ the examinable material the labs skip) and
+[`EXAM-DAY.md`](SC-300-SPRINT/EXAM-DAY.md) alongside it.
+
 Reference, when you need them: [`CERT-MAP.md`](CERT-MAP.md) (six certifications) ·
 [`ARCHITECTURE.md`](ARCHITECTURE.md) (how the repo is built) ·
 [`SC-300-MASTERY-SYLLABUS.md`](SC-300-MASTERY-SYLLABUS.md) ·

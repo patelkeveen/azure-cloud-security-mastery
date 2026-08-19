@@ -70,7 +70,7 @@ any individual role assignment.
 - ⭐ [`incident-response`](incident-response/) → the **command structure**:
   [`../70-operations-and-reliability/incident-command/`](../70-operations-and-reliability/incident-command/)
 - [`kql`](kql/) → [`../70-operations-and-reliability/log-analytics/`](../70-operations-and-reliability/log-analytics/)
-- ⭐ [`sentinel`](sentinel/) ⚠ **blocked without an Azure subscription** — see
+- ⭐ [`sentinel`](sentinel/) ✅ **unblocked 2026-08-19** (subscription `912ac3b8-…`); ⚠ **SC-200 scope, not SC-300 — do not start before the 2026-08-28 exam** — see
   [`../SC-300-SPRINT/Invoke-SprintCheck.ps1`](../SC-300-SPRINT/Invoke-SprintCheck.ps1) §6
 - ⭐ Telemetry must be running **before** the incident:
   [`../70-operations-and-reliability/azure-monitor/`](../70-operations-and-reliability/azure-monitor/) §3

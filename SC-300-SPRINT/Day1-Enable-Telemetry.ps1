@@ -147,14 +147,47 @@ if (-not $exoAvailable) {
     Write-Host "  [SKIP] ExchangeOnlineManagement not connected." -ForegroundColor Yellow
     Write-Host "         Run: Connect-ExchangeOnline   then re-run this script." -ForegroundColor DarkGray
 } else {
+    # WHY THIS IS NOT A ONE-LINER ON A TRIAL TENANT
+    # Microsoft Learn (purview/audit-log-enable-disable, rev 2026-06-19):
+    #   "unmanaged tenants that use free trials of enterprise licenses do NOT have
+    #    auditing enabled by default ... you must manually enable auditing."
+    # So on an E5 TRIAL a False reading is REAL, not the stale-property artifact.
+    # That artifact is a different trap: in Security & Compliance PowerShell the property
+    # is ALWAYS False. Read it in Exchange Online PowerShell or the answer is meaningless.
     $cfg = Get-AdminAuditLogConfig
     if ($cfg.UnifiedAuditLogIngestionEnabled) {
         Write-Host "  [OK  ] Unified audit log already enabled." -ForegroundColor Green
     } else {
-        Step "Enable unified audit log ingestion" {
-            Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true
+        Write-Host "  [WARN] Unified audit log is OFF. Trial tenants ship with it off." -ForegroundColor Yellow
+        if ($Apply) {
+            try {
+                Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true -ErrorAction Stop
+                Write-Host "  [DONE] Enabled. Allow up to 60 minutes before events are searchable." -ForegroundColor Green
+            } catch {
+                # Observed 2026-08-19: the PSWS proxy throws
+                # InvalidOperationInDehydratedContextException telling you to run
+                # Enable-OrganizationCustomization -- while Get-OrganizationConfig reports
+                # IsDehydrated:False and Enable-OrganizationCustomization reports
+                # "already enabled". The cmdlet path is a dead end. The portal is not.
+                Write-Host "  [FAIL] PowerShell path rejected the change:" -ForegroundColor Red
+                Write-Host "         $($_.Exception.Message.Split([char]10)[0])" -ForegroundColor DarkGray
+                Write-Host "  [FIX ] USE THE PORTAL - it is the documented, supported path:" -ForegroundColor Cyan
+                Write-Host "         1. https://purview.microsoft.com" -ForegroundColor White
+                Write-Host "         2. Audit card (View all solutions > Core > Audit)" -ForegroundColor White
+                Write-Host "         3. Click the banner: 'Start recording user and admin activity'" -ForegroundColor White
+                Write-Host "         Requires the Audit Logs role in Exchange Online" -ForegroundColor DarkGray
+                Write-Host "         (Organization Management / Compliance Management role group)." -ForegroundColor DarkGray
+            }
+        } else {
+            Write-Host "  [DRYRUN ] Enable unified audit log ingestion" -ForegroundColor DarkGray
         }
     }
+
+    # VERIFY EMPIRICALLY. The config property says what was requested; only a search
+    # says what was captured. Ingestion lags enablement by up to 60 minutes.
+    Write-Host "  [NOTE] Prove capture rather than trusting the flag:" -ForegroundColor DarkGray
+    Write-Host "         Search-UnifiedAuditLog -StartDate (Get-Date).AddDays(-1) -EndDate (Get-Date) -ResultSize 5" -ForegroundColor DarkGray
+    Write-Host "         Zero rows after 60 min = still off, regardless of what the flag says." -ForegroundColor DarkGray
 
     # MailItemsAccessed - the action that answers "what did the attacker READ?"
     # 40-microsoft-365-platform/exchange-online/README.md sec.5

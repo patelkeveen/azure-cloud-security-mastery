@@ -1,5 +1,12 @@
 # SC-300 Sprint — 7 days of labs on a 30-day clock
 
+> ⚠ **EXAM BOOKED: Friday 28 August 2026. This README's pacing is superseded.**
+> ⭐ **Go to [`EXAM-COUNTDOWN.md`](EXAM-COUNTDOWN.md)** — it re-triages these seven days against a
+> real exam date, cuts ~6 hours of portfolio work that scores zero marks, and adds the revision
+> days this sprint never had.
+> **Supporting:** [`GAP-DRILL.md`](GAP-DRILL.md) — ⭐ the exam-tested material these labs never
+> touch · [`EXAM-DAY.md`](EXAM-DAY.md) — technique and the morning of.
+
 > **Trial:** Microsoft 365 E5 (Trial) on `KWin.onmicrosoft.com`, purchased **2026-08-11**,
 > ⚠ **expires 2026-09-10**.
 > **This sprint:** SC-300 labs, **2026-08-12 → 2026-08-19** — ⭐ **29 days left on the trial as of
@@ -161,6 +168,11 @@ first; the lab assumes it.
 ⭐ **Day 7's risk detections only exist because Day 1 enabled Identity Protection.** That is the
 data-latency principle paying off, and it is why the order is not negotiable.
 
+⚠ **These seven days are a *capability* track, not an *exam* track.** Measured against the
+sprint's own text: `administrative unit`, `password hash sync`, `connected organization` and
+`B2B direct connect` appear **zero times** — and all four are examinable. ⭐ **The labs teach what
+a trial tenant can build; [`GAP-DRILL.md`](GAP-DRILL.md) covers the rest.**
+
 ---
 
 ## 5. The daily contract
@@ -204,18 +216,26 @@ this and it is a real customer scenario:
 
 ## 7. What this sprint cannot cover
 
-⭐ **There is no Azure subscription**, so these stay blocked regardless of E5:
+⭐ **UNBLOCKED 2026-08-19** — subscription `912ac3b8-d003-48d1-8266-e4d029ba1fd7`
+("Azure subscription 1", tenant `K-Win`) now exists, so Sentinel, Defender for Cloud, Azure
+Policy, Key Vault, private endpoints, Bicep/Terraform and all of `60-ai-and-secure-ai` are
+**technically runnable**.
 
-```
-Microsoft Sentinel · Defender for Cloud · attack path analysis
-Azure Policy · resource locks · landing zones · budgets
-Key Vault · private endpoints · Bicep / Terraform
-⭐ all of 60-ai-and-secure-ai (Foundry, AI Search, Content Safety)
-```
+> ⚠ **Do not touch any of it before 2026-08-28.**
+>
+> ⭐ **None of it is on SC-300.** SC-300 is four identity domains; Sentinel is SC-200 and
+> Foundry is SC-500. A newly-unblocked subscription 8 days before an identity exam is the most
+> expensive distraction available to you — it *feels* like progress and scores zero marks.
+>
+> ⭐ **The correct move: bank it, then use it.** The subscription is the SC-200 runway, and it
+> is the one window in which Sentinel + Defender XDR **integration** labs are possible while the
+> E5 trial is still live. Sequential trials give you two separate products and zero days of the
+> integration. **Diarise it for 2026-08-29, not today.**
 
-⭐ **An Azure free account ($200 / 30 days) run in parallel is the only window in which
-Sentinel + Defender XDR integration labs are possible** — which is SC-200's core. Sequential
-gives 60 days of separate learning and **zero days of the integration**.
+⭐ **What SC-300 still cannot cover, subscription or not:** on-prem AD DS, Entra Connect sync
+and ADFS federation need a domain controller. Those are exam-relevant as *concepts* — read
+[`35-active-directory-and-hybrid-identity`](../35-active-directory-and-hybrid-identity/); you
+will answer them from theory, not from your tenant.
 
 ---
 

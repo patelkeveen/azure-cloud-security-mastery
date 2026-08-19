@@ -131,6 +131,21 @@ map, a self-check and a troubleshooting guide. ⭐ **Start with [`DAY-1.md`](SC-
 
 ---
 
+## 6b. ⚠ There is an exam on 2026-08-28. That changes the order
+
+⭐ **Evidence capture is deferred until 29 August.** Between now and the exam, three files govern:
+
+| File | What it does |
+|---|---|
+| ⭐ [`SC-300-SPRINT/EXAM-COUNTDOWN.md`](SC-300-SPRINT/EXAM-COUNTDOWN.md) | ⭐ **the date-anchored plan** — lab triage, the daily drill, two revision days |
+| ⭐ [`SC-300-SPRINT/GAP-DRILL.md`](SC-300-SPRINT/GAP-DRILL.md) | ⭐ **what the labs never cover and the exam tests** — AUs, hybrid identity, connected orgs, cross-tenant access |
+| [`SC-300-SPRINT/EXAM-DAY.md`](SC-300-SPRINT/EXAM-DAY.md) | question formats, time budget, the morning of |
+
+⚠ **The Azure subscription that appeared on 2026-08-19 is not SC-300 material.** Sentinel is
+SC-200, Foundry is SC-500. ⭐ **Neither scores a mark on 28 August.**
+
+---
+
 ## 7. ⭐ How to actually remember it
 
 [`RETENTION.md`](RETENTION.md) is the interleaved memory layer — numbers, mnemonics, load-bearing

@@ -195,7 +195,7 @@ certification being sat first, and 14 of its 20 topics remain THIN.
 | Defender for Endpoint P2 | M365 E5 / E5 Security — ⚠ **EMS E5 does not cover this** |
 | Managed identities, Key Vault, Log Analytics, attack paths | **An Azure subscription** |
 
-Current tenant `Kev@KWin.onmicrosoft.com` holds **Office 365 E5 only** and **no Azure subscription**.
+Current tenant `Kev@KWin.onmicrosoft.com` holds **Microsoft 365 E5 (trial, expires 2026-09-10)** and, since **2026-08-19**, **Azure subscription `912ac3b8-d003-48d1-8266-e4d029ba1fd7`** in tenant `K-Win` (`b6464ac2-0b24-4e5f-be10-b4270b90d4ce`). Lab resource group: `sc-300-lab-cin-rg-01` (centralindia, tagged `expires=2026-09-07`).
 **One EMS E5 trial unblocks four of those rows.**
 
 ---
