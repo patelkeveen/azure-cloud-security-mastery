@@ -61,7 +61,7 @@ administrator from an identity engineer.
 
 | Topic | Depth | KB | Evidence |
 |---|---|---:|---:|
-| [`ad-ds`](ad-ds/) | DEEP | 16.1 | 0/6 |
+| [`ad-ds`](ad-ds/) | DEEP | 61.6 | 1/6 |
 | [`adfs-and-federation`](adfs-and-federation/) | DEEP | 12.5 | 0/6 |
 | [`dns-kerberos-ldap-gpo`](dns-kerberos-ldap-gpo/) | DEEP | 14.3 | 0/6 |
 | [`entra-cloud-sync`](entra-cloud-sync/) | DEEP | 14.8 | 0/6 |

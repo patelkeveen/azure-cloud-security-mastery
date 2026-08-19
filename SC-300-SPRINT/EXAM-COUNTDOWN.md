@@ -211,11 +211,20 @@ lands as judgement; imply otherwise and it collapses on the first follow-up.**
 ⭐ **It does not produce the portfolio.** WRITTEN stays **0/144** through 28 August by design.
 The evidence sweep resumes 29 August with the trial still live until 10 September.
 
-⭐ **It does not touch Azure.** You have a subscription now
-(`912ac3b8-d003-48d1-8266-e4d029ba1fd7`, resource group `sc-300-lab-cin-rg-01`). ⚠ **Sentinel,
-Defender for Cloud and Foundry are SC-200 and SC-500 — not one mark on SC-300.** Newly unblocked
-capability 8 days before an identity exam is the most expensive distraction available to you.
-**29 August.**
+⭐ **It does not touch Azure — with one optional exception.** You have a subscription
+(`912ac3b8-d003-48d1-8266-e4d029ba1fd7`, RG `sc-300-lab-cin-rg-01`) and **₹19,130 of credit that
+expires 2026-09-10 — the same day as the E5 trial.** ⚠ **Sentinel, Defender for Cloud and Foundry
+are SC-200 and SC-500 — not one mark on SC-300.** **29 August.**
+
+⭐ **The exception is a real domain controller**, because it is the only thing that converts §8's
+"hybrid identity is theory only" into something you have actually seen:
+[`35-active-directory-and-hybrid-identity/ad-ds/lab/`](../35-active-directory-and-hybrid-identity/ad-ds/lab/).
+Deploy + promote is **~90 minutes, mostly waiting**, and costs about **₹120**.
+
+> ⭐ **Optional, Day 6 evening only, and only if Day 6 finishes on time.** Hybrid is ~5–8% of the
+> exam and it tests the *decision model*, not `Install-ADDSForest`. ⭐ **The full hybrid track
+> belongs to 29 Aug – 10 Sep, when both clocks are still live.** If Day 6 runs long, skip it
+> without guilt — Conditional Access is worth five times as much.
 
 > ⭐ **Related:** [`GAP-DRILL.md`](GAP-DRILL.md) — what the sprint never covered ·
 > [`EXAM-DAY.md`](EXAM-DAY.md) — technique and the morning of ·

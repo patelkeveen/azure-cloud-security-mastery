@@ -104,9 +104,15 @@ administrators" is the tell for the privileged variant.**
 
 ## 3. Hybrid identity — theory only, and that is fine
 
-⭐ **You have no domain controller, so none of this is labbable, and the exam does not require you
-to have labbed it.** ⚠ **Say "I know the decision model, I have not run Connect in production" in
-an interview** — that reads as judgement. Implying otherwise collapses on the first follow-up.
+⭐ **You have no domain controller yet, so none of this is labbable *today*, and the exam does not
+require you to have labbed it.** ⚠ **Say "I know the decision model, I have not run Connect in
+production" in an interview** — that reads as judgement. Implying otherwise collapses on the first
+follow-up.
+
+⭐ **This stops being theory on 29 August.**
+[`ad-ds/lab/`](../35-active-directory-and-hybrid-identity/ad-ds/lab/) deploys a real forest + sync
+server in Azure for about **₹5,091 of your ₹19,130** if you leave it running 24/7 for three weeks.
+⚠ **Not before the exam** — see [`EXAM-COUNTDOWN.md`](EXAM-COUNTDOWN.md) §8.
 
 ### The three authentication choices
 

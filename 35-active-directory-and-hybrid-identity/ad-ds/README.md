@@ -332,3 +332,18 @@ get it wrong.
 - **`operations/`** — `repadmin /replsummary` baseline; tombstone lifetime recorded; DC recovery runbook.
 - **`architecture-decisions/`** — ADR: forest count and the isolation requirement that drives it.
 - **`customer-use-cases/`** — §8 answered against a real estate.
+
+---
+
+## ⭐ Runnable lab — a real domain controller in Azure
+
+[`lab/`](lab/) deploys a real AD DS forest plus a separate Entra Connect sync server via **Bicep**
+— the first IaC in this repo. Production-shaped: **the DC has no public IP**, RDP is limited to one
+`/32`, the static IP is set at the Azure layer (never in the guest), auto-shutdown is on, and every
+resource carries an `expires` tag.
+
+⭐ **Live cost, not an estimate:** 2× B2s Windows in `centralindia` = **₹5.05/hr each**; 24/7 for 21
+days ≈ **₹5,091**. ⚠ **The binding constraint is vCPU quota, not money** — Free Trial subscriptions
+cannot request an increase.
+
+⚠ **Do not build it before the 2026-08-28 exam.** See [`lab/README.md`](lab/README.md) §1.

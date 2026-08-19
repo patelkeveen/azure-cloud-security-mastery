@@ -126,7 +126,7 @@ the labs were run against a live production-like tenant.
 | PARTIAL | `30-identity-and-nhi/service-principals` | 33 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `30-identity-and-nhi/workload-identity-federation` | 12.4 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `30-identity-and-nhi/workload-identity-for-aks` | 13.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
-| PARTIAL | `35-active-directory-and-hybrid-identity/ad-ds` | 16.1 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
+| PARTIAL | `35-active-directory-and-hybrid-identity/ad-ds` | 61.6 | 1/6 | security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `35-active-directory-and-hybrid-identity/adfs-and-federation` | 12.5 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `35-active-directory-and-hybrid-identity/dns-kerberos-ldap-gpo` | 14.3 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
 | PARTIAL | `35-active-directory-and-hybrid-identity/entra-cloud-sync` | 14.8 | 0/6 | lab, security, operations, break-fix, customer-use-cases, architecture-decisions |
