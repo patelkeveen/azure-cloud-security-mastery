@@ -206,6 +206,27 @@ can't work.
 policy, before you write the first one.** A CA policy that locks out every administrator is
 recoverable **only** through an excluded account.
 
+### ⭐ The recall sentence — say this and the policy blade writes itself
+
+> ⭐ **When WHO, using WHAT, from WHERE, accesses WHICH APP, under WHAT RISK,
+> then enforce WHICH CONTROLS, for HOW LONG.**
+
+⭐ **That is not a mnemonic — it is the blade, in order.** Each clause is a real field:
+
+```
+WHO            Assignments > Users, groups, directory roles, workload identities
+WHAT           Conditions  > Device platforms, client apps, filter for devices
+WHERE          Conditions  > Locations (named locations, trusted IPs, countries)
+WHICH APP      Target resources (cloud apps, user actions, auth context)
+WHAT RISK      Conditions  > Sign-in risk, user risk, insider risk
+WHICH CONTROLS Grant  (MFA, compliant device, auth strength, terms of use)
+HOW LONG       Session (sign-in frequency, persistent browser, app-enforced)
+```
+
+⭐ **If you can recite the sentence you can reconstruct any CA question from first principles**,
+including the ones that describe a policy in prose and ask what it does.
+*(Adopted from a ChatGPT-authored plan — it is the best single idea in it.)*
+
 ⭐ **Hook** — **Exclusions win. Block wins. Grants are AND unless you say otherwise.**
 
 ---

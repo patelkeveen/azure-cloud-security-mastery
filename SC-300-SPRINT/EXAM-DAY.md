@@ -7,6 +7,10 @@
 
 ## 1. What is actually being scored
 
+> ⭐ **Baseline, dated so it can go stale visibly:** Microsoft Learn lists SC-300 **skills
+> measured as of 2026-04-27**, study-guide page **last updated 2026-03-27**. ⭐ **Re-check before
+> you sit it** — [official study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-300).
+
 ⭐ **Pass mark is 700 out of 1000, and it is scaled — not "70% of questions".** Questions carry
 different weights and there is no published mapping, so ⭐ **there is no such thing as a question
 you can safely write off.**

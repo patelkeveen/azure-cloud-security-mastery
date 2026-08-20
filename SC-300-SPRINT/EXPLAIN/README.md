@@ -127,6 +127,23 @@ mechanism, not a bug.**
 
 ---
 
+## 6. ⭐ One mnemonic for the whole exam — U-A-W-G
+
+⭐ **The four domains are four verbs, in the order things actually happen:**
+
+```
+U  Users        create identities      tenants, users, groups, external, hybrid
+A  Access       control access         MFA, passwordless, SSPR, CA, risk
+W  Workloads    authorise non-humans   apps, SPs, managed identities, consent
+G  Governance   govern and prove       PIM, access reviews, packages, logs
+```
+
+⭐ **Every question on this exam is one of those four verbs.** When you are lost, ask which — it
+narrows the answer space before you have read a single option.
+*(Adopted from a ChatGPT-authored plan.)*
+
+---
+
 ## 6. The three highest-value hooks, if you only keep three
 
 | | |
