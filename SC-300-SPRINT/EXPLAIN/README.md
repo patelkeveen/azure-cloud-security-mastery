@@ -30,13 +30,13 @@ time pressure, *"eligible means allowed but not holding the key"* will still be 
 
 ---
 
-## 2. The four files — 40 concepts, mapped to exam weight
+## 2. The four files — 41 concepts, mapped to exam weight
 
 | File | Domain | Weight | Concepts |
 |---|---|---|---|
 | [`D1-USER-IDENTITIES.md`](D1-USER-IDENTITIES.md) | Implement and manage user identities | 20–25% | 10 |
 | ⭐ [`D2-AUTH-AND-ACCESS.md`](D2-AUTH-AND-ACCESS.md) | ⭐ **Authentication and access management** | ⚠ **25–30%** | 13 |
-| [`D3-WORKLOAD-IDENTITIES.md`](D3-WORKLOAD-IDENTITIES.md) | Plan and implement workload identities | 20–25% | 7 |
+| [`D3-WORKLOAD-IDENTITIES.md`](D3-WORKLOAD-IDENTITIES.md) | Plan and implement workload identities | 20–25% | 8 |
 | [`D4-GOVERNANCE.md`](D4-GOVERNANCE.md) | Plan and automate identity governance | 20–25% | 7 |
 
 ⭐ **D2 is the biggest block of marks. If you revise one file on 27 August, revise D2.**
@@ -53,7 +53,8 @@ passwordless and phishing-resistance · SSPR and writeback · password protectio
 ⭐ **CAE** · Identity Protection risk · report-only
 
 **D3** — app registration vs enterprise app · ⭐ **`scp` vs `roles`** · the consent framework ·
-managed identities · workload identity federation · secrets vs certificates · reading a token
+managed identities · workload identity federation · secrets vs certificates · reading a token ·
+⭐ **SaaS app integration — SSO, SCIM provisioning, App Proxy**
 
 **D4** — ⭐ **PIM eligible vs active** · activation controls · access reviews ·
 entitlement management · connected organizations · lifecycle workflows ·

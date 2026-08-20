@@ -38,7 +38,7 @@ evidence — and **every FAIL prints its own fix**. No interpretation needed.
 | Which official Microsoft labs? | [`OFFICIAL-LABS-MAP.md`](OFFICIAL-LABS-MAP.md) |
 | ⭐ **Something broke** | ⭐ [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) |
 | Why does this control exist? | the topic README linked from each lab |
-| What do I sell afterwards? | [`../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md`](../docs/superseded/7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md) |
+| What do I sell afterwards? | ⭐ [`../docs/COMMERCIAL-TRACK.md`](../docs/COMMERCIAL-TRACK.md) |
 
 ⭐ **When something fails, the answer is almost always one of five things:** a missing **scope**, an
 un-**activated** role, an un-**assigned** licence, a **token** older than your change, or a control
@@ -90,7 +90,7 @@ joint-largest domain, and **Days 2–3 are where the marks are.**
 context**, **protected actions**, **continuous access evaluation**, and **Global Secure Access** —
 now in [`DAY-3.md`](DAY-3.md) §3.5.
 
-**Commercial layer:** [`../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md`](../docs/superseded/7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md)
+**Commercial layer:** ⭐ [`../docs/COMMERCIAL-TRACK.md`](../docs/COMMERCIAL-TRACK.md)
 owns buyer problems, fixed-scope offers, outreach and interview narratives. ⭐ **This directory owns
 the schedule; that file owns what you sell afterwards.** Its day table is superseded by this one.
 
@@ -189,6 +189,30 @@ Non-negotiable, per day:
 [] Re-run tools/Build-CoverageRegister.ps1
 [] Commit — the repo is the deliverable, not the tenant
 ```
+
+### ⭐ Production rules — apply all ten to every lab
+
+⭐ **A lab you could not have run in a customer tenant taught you the click-path, not the job.**
+Each rule below names the failure it prevents, because a checklist without consequences gets skipped.
+
+| # | Rule | ⚠ What it prevents |
+|---|---|---|
+| 1 | ⭐ **Scope before you build** | Name the pilot group. A policy targeting *All users* on the first attempt is how you take out the company |
+| 2 | ⭐ **Least privilege for yourself** | Do the lab as the *smallest* role that can. If you always work as Global Admin you never learn where the boundaries are — and the exam tests exactly those |
+| 3 | ⭐ **Observe before enforce** | Report-only CA · audit-mode password protection · report-only risk policies. ⭐ **"Deployed is not enforced" is the repo's most repeated lesson** |
+| 4 | ⭐ **Break-glass verified first** | Not "exists" — ⭐ **signed into, today, in a private window**, and excluded from every policy |
+| 5 | **Know the rollback before you apply** | Write the undo command *first*. If you cannot state it, you are not ready to apply |
+| 6 | **Monitoring proves it works** | A control with no signal is a belief. Which log, which column, what does success look like |
+| 7 | **Export the config** | JSON of the policy, not a screenshot. ⭐ Screenshots cannot be diffed or redeployed |
+| 8 | ⭐ **Cost and licence are design inputs** | Which SKU gates this? What happens at expiry? ⭐ P2 lapse deletes eligible assignments and makes active ones permanent |
+| 9 | ⭐ **Say it in customer language** | One sentence a non-technical sponsor would approve. If you cannot, you do not have the business case — and that is the [`EXPLAIN/`](EXPLAIN/) adult level |
+| 10 | ⭐ **Break it on purpose, capture verbatim** | The happy path is worthless at 2am. ⭐ **The exact error string is the only artifact you cannot reconstruct later** |
+
+⚠ **During exam week, rules 7 and 10 shrink to one line in a scratch file** — see
+[`EXAM-COUNTDOWN.md`](EXAM-COUNTDOWN.md) §3. ⭐ **Rules 1–6 never shrink. They are the ones that
+stop you breaking your own tenant.**
+
+---
 
 ⭐ **The deliberate failure is the part that transfers.** Anyone can follow a happy path; the
 value is knowing what the error *looks like* and which layer produced it —

@@ -232,6 +232,70 @@ the UPN**: UPNs change with marriage, transfer and domain migration. `oid` does 
 
 ---
 
+## 8. SaaS app integration — SSO, SCIM provisioning, App Proxy
+
+> ⚠ **This section was missing until 2026-08-20.** SCIM appeared **zero times** across the whole
+> EXPLAIN layer while [`../../SC-300-MASTERY-SYLLABUS.md`](../../SC-300-MASTERY-SYLLABUS.md) tags
+> it **`[CORE]`**. ⭐ **Credit where due — ChatGPT caught this gap and I had missed it.**
+
+**Age 8** — The school gets a new reading app. Two separate jobs, and people mix them up.
+**(SSO)** the app learns to trust the school's door person, so you don't need a new password.
+**(Provisioning)** ⭐ **someone still has to write your name in the app's own register** — and,
+more importantly, **rub it out when you leave.**
+
+**Any adult** — ⭐ **Single sign-on and provisioning are different problems and they fail
+differently.** SSO means users don't get a second password. Provisioning means the account
+**exists** in the app at all, and — the part everyone forgets — ⭐ **gets removed when they leave.**
+An app with SSO but no provisioning still has a stale account for every leaver you ever had.
+
+**Technical — the four SSO methods:**
+
+| Method | When |
+|---|---|
+| ⭐ **SAML-based** | The app speaks SAML. Most enterprise SaaS |
+| **OIDC / OAuth** | Modern apps, usually already in the gallery |
+| ⭐ **Password-based** | ⭐ **The app supports neither** — Entra vaults the credential and replays it into the form |
+| **Linked** | Just a tile pointing elsewhere. ⚠ **No authentication at all** |
+
+**Gallery vs non-gallery:** gallery apps ship with pre-built SSO and provisioning config. A
+non-gallery app is the same machinery, configured by hand.
+
+**SCIM provisioning** — Entra acts as a **client** against the app's SCIM 2.0 endpoint:
+
+```
+/Users  /Groups           the endpoints Entra calls
+create / update / disable the lifecycle it drives
+attribute mappings        which Entra attribute lands in which app attribute
+scoping filters           WHICH users are in scope (assignment, or an attribute rule)
+```
+
+⭐ **Incremental cycle runs roughly every 40 minutes; the initial cycle can take hours.**
+⚠ **Repeated failures put the job in quarantine** — it backs off and stops making progress until
+you fix the cause and restart it.
+
+**Application Proxy** — publishes an **on-premises web app** through Entra without a VPN, via a
+lightweight connector making **outbound** connections. ⭐ **Pre-authentication in Entra means
+Conditional Access applies to a legacy on-prem app** — which is the whole point.
+
+⭐ **Exam**
+
+| Scenario | Answer |
+|---|---|
+| App supports neither SAML nor OIDC; team shares one login | ⭐ **Password-based SSO** |
+| Leavers still active in the SaaS app | ⭐ **Provisioning not configured — SSO alone never deprovisions** |
+| New user has SSO but "account not found" in the app | Provisioning not run, or ⭐ **out of scoping filter** |
+| Provisioning silently stopped | ⭐ **Job quarantined after repeated failures** |
+| Legacy on-prem web app, no VPN, must honour CA | ⭐ **Application Proxy** |
+| Who configures Application Proxy? | ⭐ **Application Administrator — Cloud App Administrator cannot** |
+
+⭐ **The distinction the exam leans on: SSO is authentication, provisioning is lifecycle.**
+⭐ **Disabling a user in Entra kills their SSO immediately, but the app-side account persists
+until provisioning removes it** — and that stale account is what an auditor finds.
+
+⭐ **Hook** — **SSO gets you in. SCIM gets you created and, more importantly, deleted.**
+
+---
+
 ## Say it back — cover the right column
 
 | Prompt | Answer |
@@ -247,6 +311,9 @@ the UPN**: UPNs change with marriage, transfer and domain migration. `oid` does 
 | Federated subject `pull_request` | ⚠ Any fork's PR can assume production identity |
 | App broke overnight, nothing changed | Client secret expired |
 | Stable identifier for a user | `oid`, never the UPN |
+| App supports no SAML/OIDC | Password-based SSO |
+| Leavers still active in the SaaS app | No SCIM provisioning — SSO never deprovisions |
+| On-prem web app must honour CA | Application Proxy (Application Administrator) |
 
 > **Next:** [`D4-GOVERNANCE.md`](D4-GOVERNANCE.md) · **Index:** [`README.md`](README.md) ·
 > **Lab:** [`../DAY-6.md`](../DAY-6.md)

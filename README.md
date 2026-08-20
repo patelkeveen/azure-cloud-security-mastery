@@ -27,7 +27,7 @@ The spine of the curriculum is the seven Layer documents:
 | Read in this order | What it is |
 |---|---|
 | [SC-300-MASTERY-SYLLABUS.md](SC-300-MASTERY-SYLLABUS.md) | The map. Every topic tagged `CORE` / `PREREQ` / `SHALLOW` / `BEYOND` / `DEAD` |
-| [7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md](docs/superseded/7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md) | Emergency 7-day E5/Azure trial sprint for exam readiness plus resume-proof evidence |
+| ⭐ [docs/COMMERCIAL-TRACK.md](docs/COMMERCIAL-TRACK.md) | ⭐ **What you sell after the exam** — money thesis, offer angles, pricing, outreach engine, interview and contract narratives |
 | [Layer 1 — Identity protocols](30-identity-and-nhi/oauth-oidc-saml-and-api-auth/LAYER-1-IDENTITY-PROTOCOLS.md) | OAuth flows, JWT claim-by-claim, SAML, SCIM, consent. **Start here — nothing else makes sense first** |
 | [Layer 2 — User identities](30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) | Tenant, identities, external, **hybrid identity** |
 | [Layer 3 — Authentication & Conditional Access](30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md) | Largest exam domain; where the daily job lives |
@@ -118,7 +118,8 @@ Nothing was deleted — the rest moved into `docs/`, and every link was rewritte
 |---|---|
 | [`docs/method/`](docs/method/) | how the repo is *run* — curriculum map, operating model, roadmap, stage gates, lab catalog, evidence schema. Real, rarely opened |
 | [`docs/reference/`](docs/reference/) | lookup tables — migration tool matrix, customer delivery catalog |
-| ⚠ [`docs/superseded/`](docs/superseded/) | ⭐ **dead. Do not read.** Each file names its replacement. Includes the old 10-day sprint, `DAILY-EXECUTION/`, and a second 7-day SC-300 plan whose day numbers **conflicted** with the live one |
+| ⭐ [`docs/COMMERCIAL-TRACK.md`](docs/COMMERCIAL-TRACK.md) | ⭐ **live, not superseded** — the commercial layer. ⚠ Its *day numbering* is dead; its offers, pricing and outreach content exists nowhere else |
+| ⚠ [`docs/superseded/`](docs/superseded/) | ⭐ **dead. Do not read.** Each file names its replacement. The old 10-day sprint, `DAILY-EXECUTION/`, two cert maps, two completeness registers |
 | [`docs/archive/`](docs/archive/) | prior session transcripts |
 
 ⚠ **The duplication you were feeling was real:** two competing seven-day SC-300 plans, two
