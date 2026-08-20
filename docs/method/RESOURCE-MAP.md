@@ -4,7 +4,7 @@
 > security and AI. It is deliberately shallow: most entries are documentation *roots*, which
 > means "go read this set", not "this has been read".
 >
-> For the identity track, **[SC-300-RESOURCE-LIBRARY.md](SC-300-RESOURCE-LIBRARY.md) supersedes
+> For the identity track, **[SC-300-RESOURCE-LIBRARY.md](../../SC-300-RESOURCE-LIBRARY.md) supersedes
 > this file.** That one is depth-first and tiered by authority — RFCs and NIST, Microsoft,
 > hands-on, rival vendors (Okta/Auth0), offensive research, tooling, practitioners, adjacent
 > market — with a stated reason to read each item.

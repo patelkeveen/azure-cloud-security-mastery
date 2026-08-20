@@ -99,7 +99,7 @@ of the **delegated scopes** you requested and your **directory role** — two in
 a refresh token. `-Scopes` are delegated permissions. When a cmdlet returns
 `Insufficient privileges to complete the operation`, the cause is exactly one of two things — a
 missing scope or a missing role — and telling them apart is the skill. See
-**[Layer 1 §2 and §8](../30-identity-and-nhi/oauth-oidc-saml-and-api-auth/LAYER-1-IDENTITY-PROTOCOLS.md)**.
+**[Layer 1 §2 and §8](../../../30-identity-and-nhi/oauth-oidc-saml-and-api-auth/LAYER-1-IDENTITY-PROTOCOLS.md)**.
 
 **Failure to cause on purpose:** connect with only `User.Read`, then try
 `Get-MgUser -All`. Read the error. Reconnect with `User.Read.All`. That is the scope-vs-role
@@ -202,7 +202,7 @@ Tenant Root Group
 **Why the hierarchy exists at all:** Azure Policy and RBAC **inherit downward**. Assigning at
 management-group scope covers every subscription beneath it, including ones created next year.
 This is also the hierarchy **PIM for Azure resources** scopes against — see
-**[Layer 5 §4](../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md)**.
+**[Layer 5 §4](../../../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md)**.
 
 ---
 
@@ -211,7 +211,7 @@ This is also the hierarchy **PIM for Azure resources** scopes against — see
 Day 1 is when they get created, before any Conditional Access exists to lock you out.
 
 **Do not re-derive the design.** It is specified, with the reason for every property, in
-**[Layer 5 §4](../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md)** —
+**[Layer 5 §4](../../../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md)** —
 two accounts, cloud-only on `*.onmicrosoft.com`, **permanent active Global Admin and *not*
 PIM-eligible**, excluded from every CA policy, credentials split, sign-in alerting.
 
@@ -286,7 +286,7 @@ Evidence goes in the topic's facet folders, which is what `COVERAGE.md` measures
 | `security/` | Break-glass design and the CA exclusion it will need |
 | `operations/` | Naming/tagging standard; cleanup procedure; budget config |
 | `architecture-decisions/` | ADR: chosen MG hierarchy and why; region choice and why |
-| `customer-use-cases/` | How this baseline differs for a regulated customer — see [Layer 7](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
+| `customer-use-cases/` | How this baseline differs for a regulated customer — see [Layer 7](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
 
 ---
 
@@ -301,7 +301,7 @@ Evidence goes in the topic's facet folders, which is what `COVERAGE.md` measures
 
 > **Scope note.** Days 1–10 are an **M365 / Azure / migration engineering** track. They are *not*
 > an SC-300 study plan — that is Layers 1–7, indexed in
-> [SC-300-MASTERY-SYLLABUS.md](../SC-300-MASTERY-SYLLABUS.md). Day 1 is shared ground because both
+> [SC-300-MASTERY-SYLLABUS.md](../../../SC-300-MASTERY-SYLLABUS.md). Day 1 is shared ground because both
 > tracks need a governed tenant. Do not mistake finishing this sprint for exam readiness.
 >
 > `10-DAY-SPRINT.md` currently describes a different Day 2–3 ordering than these files. The

@@ -146,13 +146,13 @@ stronger than a vague claim, because it is checkable and the rest of your answer
 
 | Question | Source |
 |---|---|
-| Why does this token lack the `groups` claim? | [Layer 1 §4](../30-identity-and-nhi/oauth-oidc-saml-and-api-auth/LAYER-1-IDENTITY-PROTOCOLS.md) — overage |
+| Why does this token lack the `groups` claim? | [Layer 1 §4](../../../30-identity-and-nhi/oauth-oidc-saml-and-api-auth/LAYER-1-IDENTITY-PROTOCOLS.md) — overage |
 | I disabled the account; why is he still in? | Layer 1 §4 — token lifetime vs CAE |
-| Why `ms-DS-ConsistencyGuid` over `objectGUID`? | [Layer 2 §1.4](../30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) |
-| Two grant controls — AND or OR? | [Layer 3 §2](../30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md) — AND by default |
-| How do you get secrets out of CI/CD? | [Layer 4 §4](../30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md) — federation |
-| Why must break-glass not be PIM-eligible? | [Layer 5 §4](../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md) |
-| How is an AI agent's identity governed? | [Layer 6](../60-ai-and-secure-ai/ai-agent-identity/LAYER-6-SC500-BRIDGE-AI-SECURITY.md) — Agent ID |
+| Why `ms-DS-ConsistencyGuid` over `objectGUID`? | [Layer 2 §1.4](../../../30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) |
+| Two grant controls — AND or OR? | [Layer 3 §2](../../../30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md) — AND by default |
+| How do you get secrets out of CI/CD? | [Layer 4 §4](../../../30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md) — federation |
+| Why must break-glass not be PIM-eligible? | [Layer 5 §4](../../../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md) |
+| How is an AI agent's identity governed? | [Layer 6](../../../60-ai-and-secure-ai/ai-agent-identity/LAYER-6-SC500-BRIDGE-AI-SECURITY.md) — Agent ID |
 
 **And the one that decides the interview: "what went wrong, and what did you do?"** The `break-fix/`
 folders exist for this. An engineer with no failure stories has either not done the work or is not
@@ -165,7 +165,7 @@ being straight — and both readings are bad.
 Running a discovery workshop is a distinct, learnable skill. Structure: current state (they talk,
 you listen and write), constraints, options with trade-offs, decision, next steps and owners.
 
-**Ask the eight discovery questions from [Layer 7 §1](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md).**
+**Ask the eight discovery questions from [Layer 7 §1](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md).**
 The first — *"which Microsoft cloud instance?"* — constrains everything downstream, which is why it
 goes first.
 
@@ -204,7 +204,7 @@ trusted with a customer — because they will tell you when they are out of dept
 | `security/` | Risk register with residual risk; NHI register; posture summary |
 | `operations/` | Runbook set, SOPs, handover pack, support boundary |
 | `architecture-decisions/` | HLD, LLD, and the ADR set |
-| `customer-use-cases/` | One case pack per vertical — [Layer 7](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
+| `customer-use-cases/` | One case pack per vertical — [Layer 7](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
 
 ---
 
@@ -217,6 +217,6 @@ trusted with a customer — because they will tell you when they are out of dept
 - What is the next gap, and what is the smallest experiment that closes it?
 
 > **Reminder.** Finishing this sprint is not SC-300 readiness — that is Layers 1–7, indexed in
-> [SC-300-MASTERY-SYLLABUS.md](../SC-300-MASTERY-SYLLABUS.md). This track is M365/Azure/migration
+> [SC-300-MASTERY-SYLLABUS.md](../../../SC-300-MASTERY-SYLLABUS.md). This track is M365/Azure/migration
 > engineering. They share Day 1 and they share the identity layers. They are not the same
 > qualification, and conflating them in a CV is the overclaiming this repo exists to prevent.

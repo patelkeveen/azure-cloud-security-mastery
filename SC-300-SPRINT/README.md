@@ -4,8 +4,10 @@
 > ⭐ **Go to [`EXAM-COUNTDOWN.md`](EXAM-COUNTDOWN.md)** — it re-triages these seven days against a
 > real exam date, cuts ~6 hours of portfolio work that scores zero marks, and adds the revision
 > days this sprint never had.
-> **Supporting:** [`GAP-DRILL.md`](GAP-DRILL.md) — ⭐ the exam-tested material these labs never
-> touch · [`EXAM-DAY.md`](EXAM-DAY.md) — technique and the morning of.
+> **Supporting:** ⭐ [`EXPLAIN/`](EXPLAIN/) — ⭐ **40 concepts at four levels (age 8 → adult →
+> technical → exam)**, the understand-and-remember layer ·
+> [`GAP-DRILL.md`](GAP-DRILL.md) — ⭐ the exam-tested material these labs never touch ·
+> [`EXAM-DAY.md`](EXAM-DAY.md) — technique and the morning of.
 
 > **Trial:** Microsoft 365 E5 (Trial) on `KWin.onmicrosoft.com`, purchased **2026-08-11**,
 > ⚠ **expires 2026-09-10**.
@@ -36,7 +38,7 @@ evidence — and **every FAIL prints its own fix**. No interpretation needed.
 | Which official Microsoft labs? | [`OFFICIAL-LABS-MAP.md`](OFFICIAL-LABS-MAP.md) |
 | ⭐ **Something broke** | ⭐ [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) |
 | Why does this control exist? | the topic README linked from each lab |
-| What do I sell afterwards? | [`../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md`](../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md) |
+| What do I sell afterwards? | [`../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md`](../docs/superseded/7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md) |
 
 ⭐ **When something fails, the answer is almost always one of five things:** a missing **scope**, an
 un-**activated** role, an un-**assigned** licence, a **token** older than your change, or a control
@@ -88,7 +90,7 @@ joint-largest domain, and **Days 2–3 are where the marks are.**
 context**, **protected actions**, **continuous access evaluation**, and **Global Secure Access** —
 now in [`DAY-3.md`](DAY-3.md) §3.5.
 
-**Commercial layer:** [`../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md`](../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md)
+**Commercial layer:** [`../7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md`](../docs/superseded/7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md)
 owns buyer problems, fixed-scope offers, outreach and interview narratives. ⭐ **This directory owns
 the schedule; that file owns what you sell afterwards.** Its day table is superseded by this one.
 

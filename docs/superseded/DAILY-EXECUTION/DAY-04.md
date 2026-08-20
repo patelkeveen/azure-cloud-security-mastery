@@ -3,7 +3,7 @@
 > Standard set by [DAY-01](DAY-01.md). `✅ verified` / `⚠ check` convention applies.
 >
 > **This day has a companion document with far more depth:**
-> **[Layer 2 §1.4 — Hybrid identity](../30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md)**.
+> **[Layer 2 §1.4 — Hybrid identity](../../../30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md)**.
 > Read it first. This file is the *execution* plan; that file is the *mechanism*. Do not duplicate.
 
 **Outcome:** you can draw the Connect Sync data flow from memory, choose an authentication method
@@ -208,7 +208,7 @@ that is a mass-deprovisioning incident. This is precisely why staging mode exist
 | `security/` | PHS defence write-up; Seamless SSO key rotation schedule |
 | `operations/` | Sync troubleshooting runbook; staging-mode failover procedure |
 | `architecture-decisions/` | ADR: source anchor and auth method, with alternatives rejected |
-| `customer-use-cases/` | **M&A** — cross-tenant sync, UPN collisions, matching strategy — [Layer 7 §9](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
+| `customer-use-cases/` | **M&A** — cross-tenant sync, UPN collisions, matching strategy — [Layer 7 §9](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
 
 **Cleanup:** disable the scheduler, uninstall Connect, delete synced objects from Entra (30-day
 soft-delete), **then** delete the VM resource group. Order matters — deleting the VM first leaves

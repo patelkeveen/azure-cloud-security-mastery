@@ -73,7 +73,7 @@ Get-MgDirectoryRole -All | ForEach-Object {
 
 **Global Administrator count is the number every CISO reacts to.** Microsoft's guidance is a small
 number — typically fewer than five. Finding twenty-three is a headline finding, and PIM (Day 9,
-[Layer 5 §4](../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md))
+[Layer 5 §4](../../../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md))
 is the remedy.
 
 ---
@@ -126,7 +126,7 @@ SigninLogs
 > **If diagnostic settings were never configured, this returns nothing — and the history is
 > unrecoverable.** Entra keeps sign-in logs 7 days on Free and 30 days on P1/P2, and **retention
 > changes are not retroactive.** Configuring log export is therefore a discovery *finding*, not a
-> later task. See [Layer 5 §5](../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md).
+> later task. See [Layer 5 §5](../../../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md).
 
 ---
 
@@ -143,7 +143,7 @@ The three that reliably bite during migration:
 1. **Hardcoded SMTP endpoints** in scanners, ERP and line-of-business apps
 2. **Service accounts with no owner** — nobody knows what breaks if you disable them
 3. **App registrations with expiring secrets** — see the expiry report in
-   [Layer 4 §5](../30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md)
+   [Layer 4 §5](../../../30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md)
 
 ---
 
@@ -199,7 +199,7 @@ that gets used for pricing. Always paginate explicitly.
 | `security/` | Privileged-account report; legacy auth; sharing posture; risk register |
 | `operations/` | Discovery runbook and questionnaire; least-privilege access request template |
 | `architecture-decisions/` | ADR: what was excluded from scope and why |
-| `customer-use-cases/` | Discovery differences by vertical — [Layer 7 §1](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
+| `customer-use-cases/` | Discovery differences by vertical — [Layer 7 §1](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
 
 **Cleanup:** nothing to remove — this day is read-only by design. **Do delete the exported
 inventory data**, which is customer PII, or store it under the handling rules the engagement

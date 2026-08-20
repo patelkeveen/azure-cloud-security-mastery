@@ -141,20 +141,26 @@ capability; the exam tests *recall under time pressure* and *discrimination betw
 look alike*. Those are trained separately.
 
 ```
-20 min   Yesterday's material, cold. Cover the answer, say it out loud.
-40 min   Today's drill from GAP-DRILL.md
-20 min   RETENTION.md sec.4 confusion pairs + sec.6 symptom-to-cause
+20 min   ⭐ Yesterday's material, cold. Cover the answer, SAY IT OUT LOUD.
+40 min   Today's concepts from EXPLAIN/ - all four levels, out loud
+20 min   Today's section of GAP-DRILL.md
 10 min   Write down every "and then it sort of..." you said. That list is tomorrow's 20 min.
 ```
 
-| Evening of | Drill |
-|---|---|
-| Thu 20 | [`GAP-DRILL.md`](GAP-DRILL.md) §1 administrative units · §2 least-privilege roles |
-| Fri 21 | §3 hybrid identity — PHS vs PTA vs federation ⭐ *(pure theory; you have no DC and do not need one)* |
-| Sat 22 | §4 groups, licensing, dynamic rules |
-| Sun 23 | §5 entitlement management — connected organizations |
-| Mon 24 | §6 consent, permissions, and the `scp`/`roles` split |
-| Tue 25 | §7 external identities — cross-tenant access and B2B direct connect |
+⭐ **The out-loud part is not optional and it is not embarrassing — it is the entire mechanism.**
+Reading is recognition. The exam tests recall, and ⭐ **so does every interview you will sit.**
+
+| Evening of | [`EXPLAIN/`](EXPLAIN/) — four levels each | [`GAP-DRILL.md`](GAP-DRILL.md) |
+|---|---|---|
+| Thu 20 | [D1](EXPLAIN/D1-USER-IDENTITIES.md) §1–5 — Entra, tenant, identities, groups, ⭐ AUs | §1–2 |
+| Fri 21 | ⭐ [D2](EXPLAIN/D2-AUTH-AND-ACCESS.md) §8–11 — ⭐ **CA, strengths, CAE** | §3 |
+| Sat 22 | [D4](EXPLAIN/D4-GOVERNANCE.md) §1–2 PIM + [D1](EXPLAIN/D1-USER-IDENTITIES.md) §6 roles | §4 |
+| Sun 23 | [D4](EXPLAIN/D4-GOVERNANCE.md) §3–7 — reviews, packages, lifecycle | §5 |
+| Mon 24 | [D3](EXPLAIN/D3-WORKLOAD-IDENTITIES.md) all — ⭐ `scp` vs `roles` | §6 |
+| Tue 25 | [D2](EXPLAIN/D2-AUTH-AND-ACCESS.md) §12–13 + [D1](EXPLAIN/D1-USER-IDENTITIES.md) §10 | §7 |
+
+⭐ **You read each concept the same evening you labbed it.** The lab builds the memory; explaining
+it that night is what fixes it. ⭐ **Leave it a week and you learn it twice.**
 
 ---
 

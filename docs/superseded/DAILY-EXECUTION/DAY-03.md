@@ -128,7 +128,7 @@ user *can* delete it. The distinction customers always get wrong:
 
 A single policy can do both, and **retention wins over deletion** when policies conflict. In a
 regulated vertical, that conflict resolution is an audit question — see
-[Layer 7](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md).
+[Layer 7](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md).
 
 ---
 

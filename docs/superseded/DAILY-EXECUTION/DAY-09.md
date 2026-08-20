@@ -2,9 +2,9 @@
 
 > Standard set by [DAY-01](DAY-01.md). `✅ verified` / `⚠ check` convention applies.
 >
-> **Companion depth:** [Layer 3 (CA)](../30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md) ·
-> [Layer 4 (workload identity)](../30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md) ·
-> [Layer 5 (governance, KQL)](../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md)
+> **Companion depth:** [Layer 3 (CA)](../../../30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md) ·
+> [Layer 4 (workload identity)](../../../30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md) ·
+> [Layer 5 (governance, KQL)](../../../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md)
 
 **Outcome:** a defensible baseline — Conditional Access, PIM, an NHI register, detections, and
 enough automation that the state is reproducible rather than clicked.
@@ -20,7 +20,7 @@ Connect-MgGraph -Scopes 'Policy.Read.All','Policy.ReadWrite.ConditionalAccess',
     'RoleManagement.ReadWrite.Directory','User.ReadWrite.All'
 ```
 
-1. Break-glass pair — [Layer 5 §4](../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md).
+1. Break-glass pair — [Layer 5 §4](../../../30-identity-and-nhi/pim-and-access-reviews/LAYER-5-DOMAIN-4-IDENTITY-GOVERNANCE.md).
    Two accounts, cloud-only, permanent Global Admin, **not PIM-eligible**, excluded from every
    policy, alerted on.
 2. **Measure legacy auth** (Day 5 KQL) before blocking it.
@@ -112,7 +112,7 @@ Register columns: **identity, type, owner, purpose, permissions held, credential
 last used, rotation method, revocation procedure.**
 
 **Sort by application permissions first.** Per
-[Layer 4 §5](../30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md),
+[Layer 4 §5](../../../30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md),
 application permissions have **no intersection** with any user's rights — `Mail.Read` as an
 application permission reads every mailbox in the organisation.
 
@@ -234,7 +234,7 @@ in a lab — so you never do it accidentally in production.
 | `security/` | NHI register; over-privileged application permissions; secret-expiry report |
 | `operations/` | CA change runbook; break-glass test procedure; detection/alert rules |
 | `architecture-decisions/` | ADR: CA persona model; credential strategy and what it replaces |
-| `customer-use-cases/` | Finance (PIM + evidence) vs SaaS (secretless CI/CD) — [Layer 7](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
+| `customer-use-cases/` | Finance (PIM + evidence) vs SaaS (secretless CI/CD) — [Layer 7](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
 
 **Cleanup:** disable test CA policies (do **not** delete — keep them as evidence), remove test PIM
 assignments, revoke test app credentials.

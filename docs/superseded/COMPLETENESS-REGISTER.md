@@ -1,10 +1,10 @@
 # Completeness Register
 
 > ⚠ **SUPERSEDED as the authoritative inventory (2026-08-10).**
-> **[`COVERAGE.md`](COVERAGE.md) is authoritative** — it is *generated* from the filesystem by
+> **[`COVERAGE.md`](../../COVERAGE.md) is authoritative** — it is *generated* from the filesystem by
 > `tools/Build-CoverageRegister.ps1`, so it cannot overstate the repository. This file is
 > hand-maintained and will drift, always optimistically. Retained for the status vocabulary and
-> historical intent; **do not cite it for coverage claims.** See [`ARCHITECTURE.md`](ARCHITECTURE.md) §7.
+> historical intent; **do not cite it for coverage claims.** See [`ARCHITECTURE.md`](../../ARCHITECTURE.md) §7.
 
 
 This is the authoritative inventory for the repository. A row is complete only when concept, implementation, break/fix, security, operations, customer use case, and evidence exist.

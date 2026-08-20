@@ -138,8 +138,13 @@ map, a self-check and a troubleshooting guide. ⭐ **Start with [`DAY-1.md`](SC-
 | File | What it does |
 |---|---|
 | ⭐ [`SC-300-SPRINT/EXAM-COUNTDOWN.md`](SC-300-SPRINT/EXAM-COUNTDOWN.md) | ⭐ **the date-anchored plan** — lab triage, the daily drill, two revision days |
+| ⭐ [`SC-300-SPRINT/EXPLAIN/`](SC-300-SPRINT/EXPLAIN/) | ⭐ **40 concepts at four levels** — age 8 → non-technical adult → technical → exam. ⭐ **The understand-and-remember layer** |
 | ⭐ [`SC-300-SPRINT/GAP-DRILL.md`](SC-300-SPRINT/GAP-DRILL.md) | ⭐ **what the labs never cover and the exam tests** — AUs, hybrid identity, connected orgs, cross-tenant access |
 | [`SC-300-SPRINT/EXAM-DAY.md`](SC-300-SPRINT/EXAM-DAY.md) | question formats, time budget, the morning of |
+
+⭐ **The repo root went from 27 files to 10 on 2026-08-20.** Everything else moved into
+[`docs/`](docs/) — `method/`, `reference/`, and ⚠ [`docs/superseded/`](docs/superseded/) which you
+should not read. **All 1,700+ internal links were rewritten and verified.**
 
 ⚠ **The Azure subscription that appeared on 2026-08-19 is not SC-300 material.** Sentinel is
 SC-200, Foundry is SC-500. ⭐ **Neither scores a mark on 28 August.**

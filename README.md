@@ -27,7 +27,7 @@ The spine of the curriculum is the seven Layer documents:
 | Read in this order | What it is |
 |---|---|
 | [SC-300-MASTERY-SYLLABUS.md](SC-300-MASTERY-SYLLABUS.md) | The map. Every topic tagged `CORE` / `PREREQ` / `SHALLOW` / `BEYOND` / `DEAD` |
-| [7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md](7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md) | Emergency 7-day E5/Azure trial sprint for exam readiness plus resume-proof evidence |
+| [7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md](docs/superseded/7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md) | Emergency 7-day E5/Azure trial sprint for exam readiness plus resume-proof evidence |
 | [Layer 1 — Identity protocols](30-identity-and-nhi/oauth-oidc-saml-and-api-auth/LAYER-1-IDENTITY-PROTOCOLS.md) | OAuth flows, JWT claim-by-claim, SAML, SCIM, consent. **Start here — nothing else makes sense first** |
 | [Layer 2 — User identities](30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) | Tenant, identities, external, **hybrid identity** |
 | [Layer 3 — Authentication & Conditional Access](30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md) | Largest exam domain; where the daily job lives |
@@ -92,9 +92,12 @@ Every command must explain its purpose, parameters, permissions, location, contr
 
 A topic is not complete because it was watched, read, or tested in a quiz. Completion requires a concept explanation, a reproducible lab, deliberate failure exercises, security and operations notes, customer use cases, and verified evidence. Unverified knowledge stays marked as research or developing.
 
-## The four files that matter
+## Where everything lives
 
-⭐ **There are 27 markdown files at the root of this repo. Four of them are load-bearing:**
+⭐ **The root was 27 markdown files. It is now 10, and every one of them is load-bearing.**
+Nothing was deleted — the rest moved into `docs/`, and every link was rewritten and verified.
+
+### The root — 10 files
 
 | File | Why |
 |---|---|
@@ -102,16 +105,33 @@ A topic is not complete because it was watched, read, or tested in a quiz. Compl
 | ⭐ [`COVERAGE.md`](COVERAGE.md) | ⭐ **measured state, generated** — the only honest answer to "what's done" |
 | ⭐ [`RETENTION.md`](RETENTION.md) | ⭐ **the memory layer** — hooks, numbers, interview answers |
 | [`CONTENT-STANDARD.md`](CONTENT-STANDARD.md) | what "written" means, and the exemplar to match |
+| [`ARCHITECTURE.md`](ARCHITECTURE.md) | how the repo is built, and the current tenant state |
+| [`CERT-MAP.md`](CERT-MAP.md) | six certifications, and what overlaps |
+| [`SC-300-MASTERY-SYLLABUS.md`](SC-300-MASTERY-SYLLABUS.md) | every objective, tagged CORE / PREREQ / SHALLOW / BEYOND / DEAD |
+| [`SC-300-RESOURCE-LIBRARY.md`](SC-300-RESOURCE-LIBRARY.md) | eight tiers — RFCs, Microsoft, offensive research, tooling |
+| [`GLOSSARY.md`](GLOSSARY.md) | terms |
+| `README.md` | this file |
 
-⚠ **Until 2026-08-28 there is a fifth, and it outranks the others:**
-⭐ [`SC-300-SPRINT/EXAM-COUNTDOWN.md`](SC-300-SPRINT/EXAM-COUNTDOWN.md) — the exam-date plan, with
-[`GAP-DRILL.md`](SC-300-SPRINT/GAP-DRILL.md) (⭐ the examinable material the labs skip) and
-[`EXAM-DAY.md`](SC-300-SPRINT/EXAM-DAY.md) alongside it.
+### `docs/` — everything else, sorted by whether you will ever open it
 
-Reference, when you need them: [`CERT-MAP.md`](CERT-MAP.md) (six certifications) ·
-[`ARCHITECTURE.md`](ARCHITECTURE.md) (how the repo is built) ·
-[`SC-300-MASTERY-SYLLABUS.md`](SC-300-MASTERY-SYLLABUS.md) ·
-[`SC-300-RESOURCE-LIBRARY.md`](SC-300-RESOURCE-LIBRARY.md).
+| Folder | Contains |
+|---|---|
+| [`docs/method/`](docs/method/) | how the repo is *run* — curriculum map, operating model, roadmap, stage gates, lab catalog, evidence schema. Real, rarely opened |
+| [`docs/reference/`](docs/reference/) | lookup tables — migration tool matrix, customer delivery catalog |
+| ⚠ [`docs/superseded/`](docs/superseded/) | ⭐ **dead. Do not read.** Each file names its replacement. Includes the old 10-day sprint, `DAILY-EXECUTION/`, and a second 7-day SC-300 plan whose day numbers **conflicted** with the live one |
+| [`docs/archive/`](docs/archive/) | prior session transcripts |
 
-⚠ Several root files carry a **SUPERSEDED** banner naming the file that replaced them. ⭐ **Trust the
-banner** — they are kept for history, not for reading.
+⚠ **The duplication you were feeling was real:** two competing seven-day SC-300 plans, two
+certification maps, two completeness registers, two architecture docs, two content standards.
+⭐ **One of each survives at the root; the loser carries a banner naming the winner.**
+
+---
+
+## ⭐ Until 28 August, this is the only path that matters
+
+| File | What it does |
+|---|---|
+| ⭐ [`SC-300-SPRINT/EXAM-COUNTDOWN.md`](SC-300-SPRINT/EXAM-COUNTDOWN.md) | ⭐ **the day-by-day plan** to 28 Aug — lab triage, evening drills, two revision days |
+| ⭐ [`SC-300-SPRINT/EXPLAIN/`](SC-300-SPRINT/EXPLAIN/) | ⭐ **40 concepts at four levels** — age 8, any adult, technical, exam. The understand-it-and-remember-it layer |
+| [`SC-300-SPRINT/GAP-DRILL.md`](SC-300-SPRINT/GAP-DRILL.md) | the examinable material the labs never touch |
+| [`SC-300-SPRINT/EXAM-DAY.md`](SC-300-SPRINT/EXAM-DAY.md) | question formats, time budget, the morning of |

@@ -1,9 +1,9 @@
 # Expert Repository Architecture
 
-> ⚠ **SUPERSEDED (2026-08-18).** **[`ARCHITECTURE.md`](ARCHITECTURE.md) is authoritative** — it is
+> ⚠ **SUPERSEDED (2026-08-18).** **[`ARCHITECTURE.md`](../../ARCHITECTURE.md) is authoritative** — it is
 > measured rather than asserted, and it postdates this file. Retained for the original framing only;
 > **do not cite it for structure or state.**
-> ⭐ **Navigation starts at [`START-HERE.md`](START-HERE.md).**
+> ⭐ **Navigation starts at [`START-HERE.md`](../../START-HERE.md).**
 
 ## Purpose
 

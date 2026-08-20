@@ -21,7 +21,7 @@ consolidation later, and possibly never.**
 
 | Capability | Mechanism | Depth |
 |---|---|---|
-| Cross-tenant access + **trust the other tenant's MFA** | Cross-tenant access settings | [Layer 2 §1.3](../30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) |
+| Cross-tenant access + **trust the other tenant's MFA** | Cross-tenant access settings | [Layer 2 §1.3](../../../30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) |
 | Users visible in each other's directory | Cross-tenant synchronization | Layer 2 §1.3 |
 | Shared channels | B2B direct connect | Layer 2 §1.3 |
 | Free/busy across tenants | Organization relationships | Exchange |
@@ -43,7 +43,7 @@ regulatory need, or genuine operational simplification — not by tidiness.
 |---|---|---|
 | **Same UPN** in both tenants | Cannot exist twice; someone gets renamed | Renaming policy decided **before** migration |
 | **Same SMTP domain** | A domain lives in exactly one tenant at a time | Domain move is a **hard cutover with downtime** |
-| **Duplicate source anchors** | Soft match misses; duplicate objects | Matching strategy first — [Layer 2 §1.4](../30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) |
+| **Duplicate source anchors** | Soft match misses; duplicate objects | Matching strategy first — [Layer 2 §1.4](../../../30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) |
 | Overlapping Teams/site names | Confusion, not breakage | Naming policy pre-migration |
 | Conflicting CA / compliance policies | Users blocked post-move | Reconcile policy sets before, not after |
 
@@ -149,7 +149,7 @@ Gates before the domain cutover:
 | `security/` | Migration app permissions in both tenants; CA policy reconciliation; revocation evidence |
 | `operations/` | Domain cutover runbook with downtime window; reconciliation report; hypercare |
 | `architecture-decisions/` | ADR: consolidate vs multi-tenant organisation, with the cost of each |
-| `customer-use-cases/` | **M&A** — [Layer 7 §9](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
+| `customer-use-cases/` | **M&A** — [Layer 7 §9](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
 
 **Cleanup:** remove cross-tenant access settings, delete synced guests, revoke migration app
 consent in **both** tenants.

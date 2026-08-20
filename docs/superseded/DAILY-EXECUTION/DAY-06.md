@@ -63,7 +63,7 @@ though vendor scores do:
 
 > **The dimension juniors forget: what permissions does the tool require?** Most migration tools
 > ask for **application permissions** in both tenants — which, per
-> [Layer 4 §5](../30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md),
+> [Layer 4 §5](../../../30-identity-and-nhi/service-principals/LAYER-4-DOMAIN-3-WORKLOAD-IDENTITIES.md),
 > have **no intersection with any user's rights**. Granting `Mail.ReadWrite` as an application
 > permission gives that vendor's service principal access to every mailbox in the organisation.
 >
@@ -152,7 +152,7 @@ tells you the real minimum you could have negotiated.
 | `security/` | Permissions demanded by each tool; consent record; **revocation evidence** |
 | `operations/` | Pilot protocol; wave-planning template; throughput assumptions with sources |
 | `architecture-decisions/` | ADR: tool chosen for a stated scenario, alternatives and why rejected |
-| `customer-use-cases/` | Budget-constrained nonprofit vs regulated finance — [Layer 7](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
+| `customer-use-cases/` | Budget-constrained nonprofit vs regulated finance — [Layer 7](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
 
 **Maintain a `limitations register`** — one row per tool per limitation discovered, dated. It ages
 into the most valuable document you own, because it is the one thing no vendor will write for you.

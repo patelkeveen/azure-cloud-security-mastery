@@ -3,13 +3,13 @@
 > ## ⭐ Read this first — how this file relates to `SC-300-SPRINT/`
 >
 > The repo now has **two** seven-day SC-300 plans, and their day numbers **conflict** (this file
-> puts external identities on Day 4 and PIM on Day 6; [`SC-300-SPRINT/`](SC-300-SPRINT/) puts PIM
+> puts external identities on Day 4 and PIM on Day 6; [`SC-300-SPRINT/`](../../SC-300-SPRINT/) puts PIM
 > on Day 4 and governance on Day 5). ⚠ **Two sources of truth is the exact anti-pattern this repo
 > already fixed once** — see the supersession banner on `COMPLETENESS-REGISTER.md`.
 >
 > **The split, decided 2026-08-12:**
 >
-> | | This file | [`SC-300-SPRINT/`](SC-300-SPRINT/) |
+> | | This file | [`SC-300-SPRINT/`](../../SC-300-SPRINT/) |
 > |---|---|---|
 > | Owns | ⭐ **the commercial layer** — buyer problems, offers, pricing, outreach, interview narratives | ⭐ **execution** — runnable scripts, day-by-day labs, evidence capture |
 > | Day numbering | ⚠ **superseded** — ignore the day table below for sequencing | ⭐ **authoritative** |
@@ -41,7 +41,7 @@
 >
 > ⭐ **Gap in BOTH plans: Global Secure Access is an exam objective** — deploy GSA clients, Private
 > Access, Internet Access, and Internet Access for Microsoft 365. Neither this file nor
-> `SC-300-SPRINT/` covers it. Added to [`SC-300-SPRINT/DAY-3.md`](SC-300-SPRINT/DAY-3.md).
+> `SC-300-SPRINT/` covers it. Added to [`SC-300-SPRINT/DAY-3.md`](../../SC-300-SPRINT/DAY-3.md).
 >
 > ⚠ **Market figures below ($60–90/hr, the Indeed/Dice/LinkedIn observations) are NOT verified.**
 > They are plausible and they are unsourced. Treat them as a hypothesis to test with your own
@@ -51,7 +51,7 @@
 > `customer-delivery/`) is a **third** structure. The repo already files evidence into the
 > **six facets** per topic (`lab`, `break-fix`, `security`, `operations`,
 > `architecture-decisions`, `customer-use-cases`) via
-> [`SC-300-SPRINT/New-LabEvidence.ps1`](SC-300-SPRINT/New-LabEvidence.ps1). **Use the facets.**
+> [`SC-300-SPRINT/New-LabEvidence.ps1`](../../SC-300-SPRINT/New-LabEvidence.ps1). **Use the facets.**
 > The customer-facing deliverables in this file map cleanly onto `customer-use-cases/`.
 
 ---

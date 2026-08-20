@@ -101,7 +101,7 @@ auth, internal recipients only), or **SMTP AUTH client submission** on port 587.
 > ⚠ **SMTP AUTH is legacy authentication and cannot do MFA.** It bypasses every Conditional Access
 > policy you will write on Day 9. If a multifunction printer must relay, use a connector with an IP
 > restriction — not a service account with a password. See
-> [Layer 3 §3.1](../30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md).
+> [Layer 3 §3.1](../../../30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md).
 
 ---
 
@@ -159,7 +159,7 @@ Get-MessageTrace -MessageTraceId <guid> -RecipientAddress user@domain.com |
 | `security/` | SPF/DKIM/DMARC posture; relay decision and why; legacy-auth exposure list |
 | `operations/` | Message-trace runbook; quarantine release SOP; DMARC rollout plan with gates |
 | `architecture-decisions/` | ADR: relay method chosen and rejected alternatives |
-| `customer-use-cases/` | Retail (high-volume transactional) vs finance (strict DMARC) — [Layer 7](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
+| `customer-use-cases/` | Retail (high-volume transactional) vs finance (strict DMARC) — [Layer 7](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
 
 **Cleanup:** disable test transport rules, remove test connectors, set DMARC back to `p=none` if
 you raised it. Leaving a stray rule at priority 0 will confuse you for weeks.

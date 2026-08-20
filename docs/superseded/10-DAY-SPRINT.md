@@ -14,7 +14,7 @@ This is an implementation sprint, not a claim of complete mastery. Work 8–10 f
 > networking gap is real and remains open.
 >
 > **This sprint is not an SC-300 study plan.** That is Layers 1–7, indexed in
-> [SC-300-MASTERY-SYLLABUS.md](SC-300-MASTERY-SYLLABUS.md). The two tracks share Day 1 and the
+> [SC-300-MASTERY-SYLLABUS.md](../../SC-300-MASTERY-SYLLABUS.md). The two tracks share Day 1 and the
 > identity layers; they are not the same qualification.
 
 ## Day 1 — Baseline and architecture foundations

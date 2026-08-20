@@ -1,10 +1,10 @@
 # Mastery Standard
 
 > ⚠ **Not the enforced contract for topic READMEs (2026-08-10).**
-> **[`CONTENT-STANDARD.md`](CONTENT-STANDARD.md) is authoritative** — 11 required sections, measured
+> **[`CONTENT-STANDARD.md`](../../CONTENT-STANDARD.md) is authoritative** — 11 required sections, measured
 > by the coverage register and enforced in CI. This file remains the broader *aspiration* (diagrams,
 > HLD/LLD, customer artefacts): a superset that is not yet enforced anywhere.
-> See [`ARCHITECTURE.md`](ARCHITECTURE.md) §7.
+> See [`ARCHITECTURE.md`](../../ARCHITECTURE.md) §7.
 
 
 A topic is complete only when it is understandable, deployable, supportable, secure, and defensible in a customer conversation.

@@ -52,7 +52,7 @@ Get-MgUser -All -Property UserPrincipalName,Mail,ProxyAddresses,UserType |
 **Set MFA up front, not after.** Migrating users into a tenant with no Conditional Access and
 "tightening later" means the tightening never happens, or happens as an outage. Day 9 covers the
 policy set; the decision belongs here. See
-[Layer 3](../30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md).
+[Layer 3](../../../30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md).
 
 ---
 
@@ -186,7 +186,7 @@ defined exit criterion. "Hypercare ends when X" — otherwise it never ends.
 | `security/` | Permissions granted to the migration tool; MFA/CA posture at go-live; revocation plan |
 | `operations/` | Cutover runbook, comms plan, hypercare plan, reconciliation report |
 | `architecture-decisions/` | HLD + LLD; ADRs for password strategy, coexistence duration, tooling |
-| `customer-use-cases/` | Education (Workspace-heavy) vs SaaS (fast, technical users) — [Layer 7](../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
+| `customer-use-cases/` | Education (Workspace-heavy) vs SaaS (fast, technical users) — [Layer 7](../../../80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md) |
 
 **Cleanup:** revoke migration tool consent in both tenants, remove migration service accounts,
 restore DNS TTLs, delete pilot data.
