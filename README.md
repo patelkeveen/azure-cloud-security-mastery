@@ -17,7 +17,10 @@ What genuinely exists today is the SC-300 → SC-500 identity track:
 
 | Read in this order | What it is |
 |---|---|
+| [SC-300-EXAM-READINESS.md](SC-300-EXAM-READINESS.md) | **Control tower for the Aug 28 exam push**: what to use, what to skip, memory hooks, explain-back models, and production-readiness rules |
 | [SC-300-MASTERY-SYLLABUS.md](SC-300-MASTERY-SYLLABUS.md) | The map. Every topic tagged `CORE` / `PREREQ` / `SHALLOW` / `BEYOND` / `DEAD` |
+| [7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md](7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md) | Strategy overlay for the E5/Azure trial sprint: exam readiness, resume-proof evidence, and fixed-scope offers |
+| [SC-300-SPRINT/README.md](SC-300-SPRINT/README.md) | Execution source of truth for the 7-day SC-300 lab sprint; use these day files for commands |
 | [Layer 1 — Identity protocols](30-identity-and-nhi/oauth-oidc-saml-and-api-auth/LAYER-1-IDENTITY-PROTOCOLS.md) | OAuth flows, JWT claim-by-claim, SAML, SCIM, consent. **Start here — nothing else makes sense first** |
 | [Layer 2 — User identities](30-identity-and-nhi/entra-users-and-groups/LAYER-2-DOMAIN-1-USER-IDENTITIES.md) | Tenant, identities, external, **hybrid identity** |
 | [Layer 3 — Authentication & Conditional Access](30-identity-and-nhi/conditional-access/LAYER-3-DOMAIN-2-AUTH-AND-ACCESS.md) | Largest exam domain; where the daily job lives |

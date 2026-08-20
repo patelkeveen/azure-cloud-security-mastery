@@ -1,4 +1,4 @@
-# SC-300 Sprint — 7 days of labs on a 30-day clock
+# SC-300 Sprint — execution source of truth
 
 > **Trial:** Microsoft 365 E5 (Trial) on `KWin.onmicrosoft.com`, purchased **2026-08-11**,
 > ⚠ **expires 2026-09-10**.
@@ -8,6 +8,11 @@
 >
 > ⚠ Dates in this pack are absolute on purpose. `Day0-Verify-Tenant.ps1` recomputes days-remaining
 > live — trust the script over any number written here.
+>
+> **For the 2026-08-28 exam push:** start with
+> [`../SC-300-EXAM-READINESS.md`](../SC-300-EXAM-READINESS.md). That hub decides what to study,
+> what to skip, and how to remember/explain each domain. This directory remains the command/runbook
+> source of truth.
 
 ---
 

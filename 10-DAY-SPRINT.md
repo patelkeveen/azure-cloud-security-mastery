@@ -13,9 +13,11 @@ This is an implementation sprint, not a claim of complete mastery. Work 8–10 f
 > `COVERAGE.md` reports as unwritten. This overview has been corrected to match the day files; the
 > networking gap is real and remains open.
 >
-> **This sprint is not an SC-300 study plan.** That is Layers 1–7, indexed in
-> [SC-300-MASTERY-SYLLABUS.md](SC-300-MASTERY-SYLLABUS.md). The two tracks share Day 1 and the
-> identity layers; they are not the same qualification.
+> **This sprint is not an SC-300 study plan.** If the goal is the **2026-08-28 SC-300 exam**, use
+> [SC-300-EXAM-READINESS.md](SC-300-EXAM-READINESS.md) as the control tower and
+> [SC-300-SPRINT/README.md](SC-300-SPRINT/README.md) as the command source of truth. This 10-day
+> pack is the post-SC-300 M365, migration, security, and customer-delivery breadth track. The two
+> tracks share concepts, but they are not the same qualification.
 
 ## Day 1 — Baseline and architecture foundations
 

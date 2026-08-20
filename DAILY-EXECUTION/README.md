@@ -2,6 +2,11 @@
 
 This directory converts the roadmap into an execution specification. Every day requires: business context, prerequisites, command journal, hands-on implementation, deliberate failure, evidence, cleanup, teach-back, and gap log.
 
+> **Do not use this directory for the August 28 SC-300 exam sprint.** This is the 10-day M365,
+> migration, security, and customer-delivery breadth pack. For SC-300, start at
+> [`../SC-300-EXAM-READINESS.md`](../SC-300-EXAM-READINESS.md), then run
+> [`../SC-300-SPRINT/README.md`](../SC-300-SPRINT/README.md).
+
 ## Daily contract
 
 - 8–10 focused hours, with safety breaks and cost controls.

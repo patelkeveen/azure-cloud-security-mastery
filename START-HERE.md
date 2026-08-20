@@ -19,6 +19,9 @@ the folder names.
 
 Read in this order. Each layer assumes the previous one.
 
+0. **[SC-300 Exam Readiness Hub](SC-300-EXAM-READINESS.md)** — use this first if your SC-300 exam
+   is scheduled for **2026-08-28**. It tells you what is source-of-truth, what to skip, how to
+   remember the domains, and how to explain each concept to technical and nontechnical audiences.
 1. **[Layer 1 — Identity protocols](30-identity-and-nhi/oauth-oidc-saml-and-api-auth/LAYER-1-IDENTITY-PROTOCOLS.md)**
    OAuth flow selection, JWT claim-by-claim, SAML, SCIM, the consent framework.
    *Nothing downstream makes sense without this, and it appears in no Microsoft study guide.*
@@ -30,6 +33,8 @@ Read in this order. Each layer assumes the previous one.
 7. **[Layer 7 — Industry verticals](80-customer-scenarios/LAYER-7-INDUSTRY-VERTICALS.md)**
 
 Map: [SC-300-MASTERY-SYLLABUS.md](SC-300-MASTERY-SYLLABUS.md) ·
+Execution: [SC-300-SPRINT/README.md](SC-300-SPRINT/README.md) ·
+Strategy: [7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md](7-DAY-SC-300-E5-AZURE-TRIAL-SPRINT.md) ·
 Sources: [SC-300-RESOURCE-LIBRARY.md](SC-300-RESOURCE-LIBRARY.md)
 
 ## Prerequisite: a tenant of your own
