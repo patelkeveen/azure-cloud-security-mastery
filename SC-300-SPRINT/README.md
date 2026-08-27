@@ -4,7 +4,9 @@
 > ⭐ **Go to [`EXAM-COUNTDOWN.md`](EXAM-COUNTDOWN.md)** — it re-triages these seven days against a
 > real exam date, cuts ~6 hours of portfolio work that scores zero marks, and adds the revision
 > days this sprint never had.
-> **Supporting:** ⭐ [`EXPLAIN/`](EXPLAIN/) — ⭐ **40 concepts at four levels (age 8 → adult →
+> **Supporting:** ⭐ [`sc-300-lexicon.html`](sc-300-lexicon.html) — ⭐ **274 terms, searchable,
+> 83 traps flagged, progress saved** (open in a browser; also published as an Artifact) ·
+> ⭐ [`EXPLAIN/`](EXPLAIN/) — ⭐ **41 concepts at four levels (age 8 → adult →
 > technical → exam)**, the understand-and-remember layer ·
 > [`GAP-DRILL.md`](GAP-DRILL.md) — ⭐ the exam-tested material these labs never touch ·
 > [`EXAM-DAY.md`](EXAM-DAY.md) — technique and the morning of.

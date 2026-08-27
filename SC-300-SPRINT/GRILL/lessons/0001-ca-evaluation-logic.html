@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lesson 0001 — Conditional Access Evaluation Logic</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;max-width:760px;margin:40px auto;padding:0 24px;line-height:1.65;color:#1a1a2e;background:#fdfdfb}
+  h1{font-size:1.7rem;border-bottom:3px solid #0f62fe;padding-bottom:8px}
+  h2{font-size:1.25rem;margin-top:2em;color:#0f62fe}
+  .rule{background:#eef4ff;border-left:4px solid #0f62fe;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+  .trap{background:#fff3f0;border-left:4px solid #d13438;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+  .why{color:#555;font-style:italic}
+  code{background:#f0f0ec;padding:2px 6px;border-radius:4px;font-size:.9em}
+  table{border-collapse:collapse;width:100%;margin:16px 0;font-size:.95em}
+  th,td{border:1px solid #ccc;padding:8px 12px;text-align:left}
+  th{background:#eef4ff}
+  .quiz{background:#f7f9f4;border:1px solid #c5d1a5;border-radius:8px;padding:18px 22px;margin-top:2em}
+  .quiz h2{margin-top:0;color:#4a6b1a}
+  details{margin:10px 0}
+  summary{cursor:pointer;font-weight:bold;color:#4a6b1a}
+  footer{margin-top:3em;font-size:.85em;color:#888;border-top:1px solid #ddd;padding-top:12px}
+</style>
+</head>
+<body>
+
+<h1>Lesson 0001 — Conditional Access Evaluation Logic</h1>
+<p><strong>Mission link:</strong> CA is the single largest mark block on SC-300 (D2, 25–30%). This lesson teaches the evaluation engine — the thing every CA question is secretly testing.</p>
+
+<h2>The three laws of policy evaluation</h2>
+
+<div class="rule"><strong>Law 1 — All matching policies evaluate.</strong>
+There is no "first match wins." Every policy whose assignments (users, cloud apps, conditions) match the sign-in applies. Ten policies can apply at once.</div>
+
+<div class="rule"><strong>Law 2 — Grant controls accumulate (AND across policies).</strong>
+If Policy A requires MFA and Policy B requires a compliant device, the user needs <em>both</em>. Across policies, requirements always stack to the most restrictive combination.</div>
+
+<div class="rule"><strong>Law 3 — Block always wins.</strong>
+Any applicable policy with a <code>Block</code> control denies access unconditionally. No other policy can rescue the sign-in. There is no voting.</div>
+
+<h2>Applying the laws to legacy authentication</h2>
+
+<p><strong>What "legacy auth" means:</strong> protocols that predate modern auth (OAuth 2.0 / OIDC token exchange) — IMAP, POP3, SMTP AUTH, and old Office clients. They only know <em>username + password</em>.</p>
+
+<p><strong>The mechanism that matters:</strong> legacy clients have no UI and no token flow for a second factor. They <em>cannot satisfy MFA even in principle</em>. So:</p>
+
+<table>
+<tr><th>Policies applying to an IMAP sign-in</th><th>Outcome</th></tr>
+<tr><td>Block legacy auth</td><td>Denied — Law 3</td></tr>
+<tr><td>Require MFA only</td><td>Denied anyway — IMAP cannot perform MFA</td></tr>
+<tr><td>Both</td><td>Denied — Block wins; MFA was moot</td></tr>
+</table>
+
+<p class="why">This is why Microsoft's #1 baseline recommendation is "Block legacy authentication": it's simultaneously a security control (credential-stuffing favorite, phishable, invisible to Conditional Access richness) and an enabler (forces modern auth, which supports MFA, CAE, device compliance).</p>
+
+<h2>The universal decision tree (use on EVERY CA question)</h2>
+<ol>
+<li><strong>Which policies match?</strong> Check assignments: users/groups/roles, cloud apps, network locations, device state, client app type.</li>
+<li><strong>Any Block?</strong> → Denied. Stop.</li>
+<li><strong>Collect grant controls from ALL matching policies</strong> → they AND together.</li>
+<li>Within a single policy: multiple selected controls default to AND — OR requires explicitly choosing <em>"Require one of the selected controls."</em></li>
+<li><strong>Session controls</strong> (sign-in frequency, app-enforced restrictions) apply after access is granted.</li>
+</ol>
+
+<h2>The traps (this is what the exam actually tests)</h2>
+<div class="trap"><strong>Trap 1 — The AND/OR inversion.</strong> Distractors claim multiple controls within one policy mean OR by default. False. Default is AND ("Require all").</div>
+<div class="trap"><strong>Trap 2 — Exclusion scope.</strong> An exclusion removes the user from THAT policy only — other policies still apply to them. Break-glass accounts must be excluded from <em>every</em> policy.</div>
+<div class="trap"><strong>Trap 3 — Report-only ≠ enforce.</strong> Report-only evaluates and logs in sign-in logs' CA tab but never blocks. What-If simulates without any sign-in at all.</div>
+<div class="trap"><strong>Trap 4 — "Which policy decides?"</strong> Wrong frame — there is no deciding policy. ALL evaluate; the COMBINATION decides.</div>
+
+<div class="quiz">
+<h2>Retrieval practice — answer cold, then check</h2>
+
+<p><strong>R1.</strong> Policy A requires MFA for Exchange. Policy B blocks legacy auth. IMAP sign-in with username+password. What happens?</p>
+<details><summary>Show answer</summary>Blocked by B (Law 3). A is irrelevant — legacy auth couldn't satisfy MFA regardless.</details>
+
+<p><strong>R2.</strong> Same two policies, but the user uses modern Outlook on an unmanaged laptop. Policy C separately requires compliant device for Exchange. Outcome?</p>
+<details><summary>Show answer</summary>MFA prompted (A). After satisfying it, still denied — C's compliant-device requirement stacks via Law 2. Unmanaged device fails it.</details>
+
+<p><strong>R3.</strong> One policy selects "Require MFA" + "Require approved app" and leaves the default multi-control setting. What must a user satisfy?</p>
+<details><summary>Show answer</summary>Both — default within one policy is "Require ALL selected controls" (AND). OR needed explicit selection.</details>
+
+<p><strong>R4.</strong> A Global Admin is excluded from the block-legacy-auth policy. She signs in via IMAP. Any other policies apply? What happens?</p>
+<details><summary>Show answer</summary>Exclusion removed her from B only. If any other policy matches her + IMAP (e.g., an MFA requirement), it still applies — and legacy auth can't do MFA, so denial. If nothing else matches, the sign-in succeeds — which is exactly why break-glass exclusions are dangerous without compensating monitoring.</details>
+</div>
+
+<footer>
+Primary source: <a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policies">Microsoft Learn — Conditional Access policies and how they're applied</a><br>
+Ask your teacher (the agent) follow-ups anytime. Next lesson: authentication strengths &amp; phishing-resistant methods.
+</footer>
+
+</body>
+</html>

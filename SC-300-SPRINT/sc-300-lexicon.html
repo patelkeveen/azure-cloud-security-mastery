@@ -1,0 +1,641 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SC-300 Lexicon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=JetBrains+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --ground:#f7f8fa; --surface:#ffffff; --surface-2:#eff1f5;
+  --ink:#151a21; --ink-2:#3d4753; --muted:#5c6673; --line:#dde1e8; --line-2:#c9cfd9;
+  --accent:#0f6fd4; --accent-soft:#e7f0fb;
+  --trap:#8a4f00; --trap-soft:#fdf2df; --trap-line:#e8c98a;
+  --d1:#0f6fd4; --d2:#6b46c1; --d3:#0f766e; --d4:#b03060; --d0:#4a5568;
+  --shadow:0 1px 2px rgba(16,24,40,.05), 0 1px 3px rgba(16,24,40,.06);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0e1116; --surface:#161b22; --surface-2:#1d232c;
+    --ink:#e6e9ef; --ink-2:#c2c9d4; --muted:#8b94a3; --line:#272e38; --line-2:#39424f;
+    --accent:#5ba3f5; --accent-soft:#15243a;
+    --trap:#e6ab48; --trap-soft:#2a2113; --trap-line:#5c4a25;
+    --d1:#5ba3f5; --d2:#a78bfa; --d3:#4db6ac; --d4:#f08fb0; --d0:#9aa5b4;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0e1116; --surface:#161b22; --surface-2:#1d232c;
+  --ink:#e6e9ef; --ink-2:#c2c9d4; --muted:#8b94a3; --line:#272e38; --line-2:#39424f;
+  --accent:#5ba3f5; --accent-soft:#15243a;
+  --trap:#e6ab48; --trap-soft:#2a2113; --trap-line:#5c4a25;
+  --d1:#5ba3f5; --d2:#a78bfa; --d3:#4db6ac; --d4:#f08fb0; --d0:#9aa5b4;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+
+/* ---------- masthead ---------- */
+header.mast{padding:38px 0 22px; border-bottom:1px solid var(--line)}
+.eyebrow{
+  font-size:11px; font-weight:600; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--muted); margin:0 0 10px;
+}
+h1{
+  font-family:"Newsreader",Georgia,serif; font-weight:400; font-size:clamp(32px,5vw,46px);
+  line-height:1.08; letter-spacing:-.015em; margin:0 0 10px; text-wrap:balance; color:var(--ink);
+}
+h1 em{font-style:italic; color:var(--accent)}
+.sub{margin:0; max-width:62ch; color:var(--ink-2); font-size:15px}
+.sub strong{color:var(--ink); font-weight:600}
+
+/* ---------- command bar ---------- */
+.bar{
+  position:sticky; top:0; z-index:30; background:var(--ground);
+  border-bottom:1px solid var(--line); padding:12px 0 11px;
+}
+.bar-inner{display:flex; flex-direction:column; gap:10px}
+.searchrow{display:flex; gap:8px; align-items:center}
+.searchbox{position:relative; flex:1}
+.searchbox svg{
+  position:absolute; left:11px; top:50%; transform:translateY(-50%);
+  width:15px; height:15px; color:var(--muted); pointer-events:none;
+}
+#q{
+  width:100%; padding:9px 12px 9px 33px; font:inherit; font-size:14px;
+  color:var(--ink); background:var(--surface); border:1px solid var(--line-2);
+  border-radius:7px; outline:none;
+}
+#q::placeholder{color:var(--muted)}
+#q:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+.kbd{
+  font-family:"JetBrains Mono",monospace; font-size:10px; color:var(--muted);
+  border:1px solid var(--line-2); border-radius:4px; padding:2px 5px; background:var(--surface);
+}
+.chips{display:flex; flex-wrap:wrap; gap:6px; align-items:center}
+.chip{
+  font:inherit; font-size:12px; font-weight:600; letter-spacing:.01em;
+  padding:5px 11px; border-radius:20px; cursor:pointer;
+  background:var(--surface); color:var(--ink-2);
+  border:1px solid var(--line-2); transition:background .12s,border-color .12s,color .12s;
+}
+.chip:hover{border-color:var(--muted)}
+.chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--ground); border-color:var(--ink)}
+.chip.trap[aria-pressed="true"]{background:var(--trap); border-color:var(--trap); color:var(--ground)}
+.chip .n{opacity:.6; font-variant-numeric:tabular-nums; margin-left:5px; font-weight:400}
+.spacer{flex:1}
+.count{
+  font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.count b{color:var(--ink); font-weight:600}
+
+/* ---------- progress ---------- */
+.prog{height:3px; background:var(--surface-2); border-radius:2px; overflow:hidden; margin-top:2px}
+.prog i{display:block; height:100%; background:var(--accent); width:0; transition:width .25s ease}
+
+/* ---------- sections ---------- */
+main{padding:26px 0 90px}
+section{margin-bottom:34px; scroll-margin-top:130px}
+.sec-head{display:flex; align-items:baseline; gap:10px; margin:0 0 12px; padding-bottom:8px; border-bottom:1px solid var(--line)}
+.sec-head h2{
+  font-family:"Instrument Sans",sans-serif; font-size:15px; font-weight:700;
+  letter-spacing:-.005em; margin:0; color:var(--ink);
+}
+.sec-head .wt{
+  font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--muted); font-variant-numeric:tabular-nums;
+}
+.sec-head .sn{margin-left:auto; font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums}
+
+.grp{
+  font-size:11px; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--muted); margin:20px 0 8px; padding-left:13px;
+}
+.grp:first-of-type{margin-top:4px}
+
+/* ---------- rows ---------- */
+.row{
+  display:grid; grid-template-columns:1fr auto; gap:0 12px;
+  background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--dh);
+  border-radius:7px; padding:11px 13px; margin-bottom:6px; box-shadow:var(--shadow);
+}
+.row.is-known{opacity:.5}
+.term{
+  font-size:14.5px; font-weight:600; letter-spacing:-.005em; color:var(--ink);
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:7px;
+}
+code{
+  font-family:"JetBrains Mono",ui-monospace,monospace; font-size:12px; font-weight:400;
+  background:var(--surface-2); color:var(--ink-2);
+  padding:1.5px 5px; border-radius:4px; border:1px solid var(--line);
+  white-space:nowrap;
+}
+.term code{font-size:11.5px}
+.def{
+  grid-column:1/2; font-family:"Newsreader",Georgia,serif; font-size:15.5px; line-height:1.45;
+  color:var(--ink-2); margin-top:3px; max-width:74ch;
+}
+.def code{font-size:12.5px; font-family:"JetBrains Mono",monospace}
+.trapline{
+  grid-column:1/-1; margin-top:7px; padding:6px 9px; border-radius:5px;
+  background:var(--trap-soft); border:1px solid var(--trap-line);
+  font-size:13px; line-height:1.42; color:var(--ink);
+}
+.trapline b{color:var(--trap); font-weight:700; letter-spacing:.02em; font-size:10.5px; text-transform:uppercase; margin-right:5px}
+.star{
+  grid-row:1/2; grid-column:2/3; align-self:start;
+  width:26px; height:26px; flex:none; padding:0; cursor:pointer;
+  background:none; border:1px solid transparent; border-radius:6px;
+  color:var(--line-2); display:grid; place-items:center; transition:color .12s,background .12s;
+}
+.star:hover{background:var(--surface-2); color:var(--muted)}
+.star:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+.star[aria-pressed="true"]{color:var(--accent)}
+.star svg{width:16px; height:16px}
+
+.empty{padding:50px 20px; text-align:center; color:var(--muted); font-size:14px}
+.empty b{display:block; color:var(--ink); font-size:16px; margin-bottom:5px; font-weight:600}
+
+footer{border-top:1px solid var(--line); padding:22px 0 40px; color:var(--muted); font-size:12.5px}
+footer p{margin:0 0 6px; max-width:70ch}
+mark{background:var(--accent-soft); color:var(--ink); border-radius:2px; padding:0 1px}
+
+@media (max-width:640px){
+  .wrap{padding:0 14px}
+  header.mast{padding:26px 0 18px}
+  .def{font-size:15px}
+  .chip{font-size:12px; padding:8px 12px}   /* 44px-class touch target */
+  .star{width:40px; height:40px; margin:-6px -6px 0 0}
+  .star svg{width:18px; height:18px}
+  .row{padding:12px}
+  .kbd{display:none}                        /* no "/" shortcut on a phone */
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">Microsoft Identity &amp; Access Administrator · Exam 28 Aug 2026</p>
+    <h1>Every term SC-300 <em>can ask you</em></h1>
+    <p class="sub">Search it, filter it, and mark off what you already know. <strong>Amber rows are the traps</strong> — where the plausible answer is the wrong one. Your progress is saved in this browser.</p>
+  </header>
+
+  <div class="bar">
+    <div class="wrap" style="padding:0">
+      <div class="bar-inner">
+        <div class="searchrow">
+          <div class="searchbox">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="6"/><path d="M13.5 13.5 17 17" stroke-linecap="round"/></svg>
+            <input id="q" type="search" placeholder="Search terms and definitions…" autocomplete="off" spellcheck="false" aria-label="Search terms">
+          </div>
+          <span class="kbd" aria-hidden="true">/</span>
+        </div>
+        <div class="chips" id="chips">
+          <button class="chip" data-dom="1" aria-pressed="false">Users <span class="n"></span></button>
+          <button class="chip" data-dom="2" aria-pressed="false">Auth &amp; Access <span class="n"></span></button>
+          <button class="chip" data-dom="3" aria-pressed="false">Workloads <span class="n"></span></button>
+          <button class="chip" data-dom="4" aria-pressed="false">Governance <span class="n"></span></button>
+          <button class="chip" data-dom="0" aria-pressed="false">Foundations <span class="n"></span></button>
+          <button class="chip trap" id="trapOnly" aria-pressed="false">Traps <span class="n"></span></button>
+          <button class="chip" id="hideKnown" aria-pressed="false">Hide known</button>
+          <span class="spacer"></span>
+          <span class="count" id="count"></span>
+        </div>
+        <div class="prog"><i id="progbar"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <main id="out"></main>
+
+  <footer>
+    <p><strong>How to use it:</strong> read the term, say the definition out loud before you read it, then star it. Filter to <em>Hide known</em> and the list shrinks to exactly what is left to learn.</p>
+    <p>Weightings per Microsoft Learn, skills measured as of 2026-04-27. Microsoft's page states 25–30% for Authentication &amp; access management in its summary and 20–25% in the detail section — either way it is the largest block.</p>
+  </footer>
+</div>
+
+<script>
+const DOMAINS = [
+  {id:1, name:"Implement and manage user identities", short:"Users", wt:"20–25%", v:"--d1"},
+  {id:2, name:"Implement authentication and access management", short:"Auth & Access", wt:"25–30%", v:"--d2"},
+  {id:3, name:"Plan and implement workload identities", short:"Workloads", wt:"20–25%", v:"--d3"},
+  {id:4, name:"Plan and automate identity governance", short:"Governance", wt:"20–25%", v:"--d4"},
+  {id:0, name:"Foundations — protocols, tooling, licensing", short:"Foundations", wt:"Underpins all four", v:"--d0"}
+];
+
+// d = domain, g = group, t = term, c = literal/code form, x = definition, p = exam trap
+const T = [
+/* ============ D1 : USERS ============ */
+{d:1,g:"Tenant and directory",t:"Tenant",x:"A dedicated instance of Entra ID for one organisation. The identity boundary — everything else lives inside it."},
+{d:1,g:"Tenant and directory",t:"Tenant ID",c:"GUID",x:"The tenant's unique identifier, used in every authority URL and token <code>iss</code> claim."},
+{d:1,g:"Tenant and directory",t:"Azure subscription",x:"A billing container for Azure resources. Trusts exactly one tenant at a time.",p:"Identity lives in the tenant; resources live in the subscription. Moving a subscription between tenants strips every Azure RBAC assignment."},
+{d:1,g:"Tenant and directory",t:"Initial domain",c:"*.onmicrosoft.com",x:"The domain every tenant is born with. Cannot be deleted or renamed."},
+{d:1,g:"Tenant and directory",t:"Custom domain",x:"A domain you own, added and verified so users can hold routable UPNs."},
+{d:1,g:"Tenant and directory",t:"Domain verification",c:"TXT / MX",x:"Proving ownership by publishing a Microsoft-supplied DNS record."},
+{d:1,g:"Tenant and directory",t:"Primary domain",x:"The default suffix applied to new users when none is chosen."},
+{d:1,g:"Tenant and directory",t:"Federated domain",x:"A verified domain whose authentication is delegated to an external IdP such as AD FS."},
+{d:1,g:"Tenant and directory",t:"Company branding",x:"Sign-in page logo, background, text — per tenant, and can vary by language."},
+{d:1,g:"Tenant and directory",t:"Tenant properties",x:"Technical contact, privacy statement URL, and the access-management-for-Azure toggle."},
+
+{d:1,g:"User objects",t:"User principal name",c:"UPN",x:"The sign-in name, formatted like an email address. Must use a verified domain to be routable."},
+{d:1,g:"User objects",t:"Object ID",c:"oid",x:"The immutable GUID for a directory object.",p:"Key applications off <code>oid</code>, never the UPN — UPNs change with marriage, transfer and domain migration."},
+{d:1,g:"User objects",t:"Member user",c:"userType=Member",x:"An identity belonging to your own organisation. Full default directory permissions."},
+{d:1,g:"User objects",t:"Guest user",c:"userType=Guest",x:"An external identity invited to collaborate. Restricted directory permissions by default."},
+{d:1,g:"User objects",t:"Cloud-only user",x:"Created directly in Entra ID. Editable in the cloud, and survives a sync outage."},
+{d:1,g:"User objects",t:"Synced user",c:"onPremisesSyncEnabled",x:"Mastered on-premises. Most attributes are read-only in the cloud.",p:"“Why can't I edit this user in the portal?” — because it is synced. Fix it in AD, not Entra. Break-glass accounts must be cloud-only."},
+{d:1,g:"User objects",t:"Immutable ID",x:"The cloud anchor tying a synced object to its on-prem source. Base64 of the source anchor."},
+{d:1,g:"User objects",t:"Source anchor",c:"ms-DS-ConsistencyGuid",x:"The on-prem attribute that permanently identifies an object to sync. Preferred over <code>objectGUID</code> because it survives a forest migration."},
+{d:1,g:"User objects",t:"Soft match",x:"Sync joins an on-prem object to an existing cloud object by matching UPN or primary SMTP address. Automatic."},
+{d:1,g:"User objects",t:"Hard match",x:"Joining by explicitly setting the cloud object's immutable ID.",p:"Since 2026-07-01 hard match is blocked against cloud accounts that hold — or are eligible for — a privileged role, or that already carry <code>onPremisesObjectIdentifier</code>."},
+{d:1,g:"User objects",t:"Deleted users container",x:"Soft-delete bin. Users are restorable for 30 days, then purged permanently."},
+{d:1,g:"User objects",t:"Bulk operations",c:"CSV",x:"Bulk create, invite, delete and download users from the portal."},
+{d:1,g:"User objects",t:"Custom security attributes",x:"Business-defined attributes for classification and attribute-based access control. Governed by their own role set."},
+{d:1,g:"User objects",t:"Usage location",x:"A two-letter country code required before any licence can be assigned.",p:"The single most common cause of a licence assignment failing silently."},
+{d:1,g:"User objects",t:"Manager attribute",x:"Drives manager-approval flows, manager-as-reviewer access reviews, and dynamic rules."},
+
+{d:1,g:"Groups",t:"Security group",x:"A permission container. Grants access; carries no mailbox or site."},
+{d:1,g:"Groups",t:"Microsoft 365 group",x:"A collaboration container — brings a shared mailbox, SharePoint site, calendar and optionally a Team."},
+{d:1,g:"Groups",t:"Mail-enabled security group",x:"A security group that can also receive mail. Cannot be created or edited in Entra — it is an Exchange object."},
+{d:1,g:"Groups",t:"Assigned membership",x:"Members added and removed by a human or a script."},
+{d:1,g:"Groups",t:"Dynamic membership",x:"Members determined by a rule evaluated against directory attributes. Requires P1."},
+{d:1,g:"Groups",t:"Membership rule syntax",c:"user.department -eq \"Sales\"",x:"Operators: <code>-eq -ne -startsWith -notStartsWith -contains -notContains -match -notMatch -in -notIn</code>, plus <code>-any</code>/<code>-all</code> for multi-valued attributes.",p:"<code>-match</code> is a regex; <code>-contains</code> is not. And you cannot mix <code>user.</code> and <code>device.</code> in one rule."},
+{d:1,g:"Groups",t:"Dynamic device group",c:"device.deviceOSType",x:"Device-based dynamic membership, used heavily by Intune and CA device filters."},
+{d:1,g:"Groups",t:"Role-assignable group",c:"isAssignableToRole",x:"A protected group whose membership confers directory roles.",p:"Must be set AT CREATION and can never be added later. Membership must be Assigned — dynamic is forbidden, because editing an attribute would otherwise grant privilege."},
+{d:1,g:"Groups",t:"Group owner",x:"Can manage membership without a directory role. An ungoverned delegation path worth auditing."},
+{d:1,g:"Groups",t:"Group expiration policy",x:"Auto-expires M365 groups after a set lifetime unless an owner renews. Reduces sprawl."},
+{d:1,g:"Groups",t:"Group naming policy",x:"Enforced prefix/suffix and blocked words on M365 group names."},
+{d:1,g:"Groups",t:"Self-service group management",x:"Whether users may create groups and request to join them."},
+{d:1,g:"Groups",t:"Nested groups",x:"A group inside a group.",p:"NOT supported for group-based licensing — members of a child group inherit nothing. Also unsupported for dynamic membership."},
+{d:1,g:"Groups",t:"Group writeback",x:"Writing cloud groups back into on-prem AD. A Connect Sync feature, not Cloud Sync."},
+
+{d:1,g:"Licensing",t:"Group-based licensing",x:"Licences assigned to a group; members inherit, leavers lose.",p:"Fails without usage location; does not traverse nested groups; conflicting service plans put the user in an error state visible on the group."},
+{d:1,g:"Licensing",t:"Service plan",x:"An individual capability inside a licence SKU, which can be enabled or disabled per user."},
+{d:1,g:"Licensing",t:"Entra ID Free",x:"Baseline directory, SSO, security defaults. No Conditional Access."},
+{d:1,g:"Licensing",t:"Entra ID P1",x:"Conditional Access, dynamic groups, group-based licensing, SSPR for hybrid, App Proxy, custom banned passwords."},
+{d:1,g:"Licensing",t:"Entra ID P2",x:"Everything in P1 plus Identity Protection, PIM, access reviews and entitlement management."},
+{d:1,g:"Licensing",t:"Entra ID Governance",x:"A separate SKU. Required for lifecycle workflows.",p:"Lifecycle workflows are NOT in P2 — a very common assumption and a wrong answer."},
+
+{d:1,g:"Administrative units",t:"Administrative unit",c:"AU",x:"A container of users, groups and devices used as a SCOPE for a directory role assignment.",p:"Custom role restricts WHAT actions (verbs); AU restricts WHICH objects (nouns). “Helpdesk, but only for Germany” is an AU with a built-in role."},
+{d:1,g:"Administrative units",t:"Restricted management AU",x:"Members can be modified only by admins scoped to that AU.",p:"Locks out even a tenant-wide User Administrator. The right answer to “protect break-glass accounts from a compromised helpdesk admin”."},
+{d:1,g:"Administrative units",t:"Dynamic administrative unit",x:"AU membership driven by a rule. Supports users and devices; groups must be added manually. Requires P1."},
+{d:1,g:"Administrative units",t:"AU nesting",x:"Not supported. An object may belong to several AUs, but an AU cannot contain an AU."},
+
+{d:1,g:"Directory roles",t:"Global Administrator",x:"Full control of the directory.",p:"Almost always the wrong answer to “which is the LEAST privileged role that can…”."},
+{d:1,g:"Directory roles",t:"Privileged Role Administrator",x:"Manages role assignments and PIM configuration. The role that grants roles."},
+{d:1,g:"Directory roles",t:"User Administrator",x:"Creates and manages users and groups; resets passwords for a limited set of roles."},
+{d:1,g:"Directory roles",t:"Helpdesk Administrator",x:"Resets passwords and re-registers methods for non-administrators."},
+{d:1,g:"Directory roles",t:"Password Administrator",x:"Password reset for non-administrators only. Narrower than Helpdesk Administrator."},
+{d:1,g:"Directory roles",t:"Authentication Administrator",x:"Manages authentication methods for NON-ADMIN users.",p:"One of a confusable trio — see Authentication Policy Administrator and Privileged Authentication Administrator."},
+{d:1,g:"Directory roles",t:"Privileged Authentication Administrator",x:"Manages authentication methods for ANY user, including Global Administrators.",p:"The tell in the question is “including administrators”."},
+{d:1,g:"Directory roles",t:"Authentication Policy Administrator",x:"Manages the TENANT-WIDE authentication methods policy — which methods exist at all.",p:"The tell is the word “policy”. It cannot touch an individual user's methods."},
+{d:1,g:"Directory roles",t:"Conditional Access Administrator",x:"Creates and manages CA policies. The least-privileged answer for CA work."},
+{d:1,g:"Directory roles",t:"Security Administrator",x:"Broader security scope — CA, Identity Protection, Defender settings."},
+{d:1,g:"Directory roles",t:"Security Operator",x:"Investigates and remediates alerts and risky users without changing configuration."},
+{d:1,g:"Directory roles",t:"Security Reader",x:"Read-only across security features including Identity Protection reports."},
+{d:1,g:"Directory roles",t:"Reports Reader",x:"Reads sign-in and audit logs and nothing else. The least-privileged log-reading answer."},
+{d:1,g:"Directory roles",t:"Global Reader",x:"Read-only counterpart to Global Administrator."},
+{d:1,g:"Directory roles",t:"Application Administrator",x:"Manages all app registrations and enterprise apps, INCLUDING Application Proxy."},
+{d:1,g:"Directory roles",t:"Cloud Application Administrator",x:"The same, minus Application Proxy.",p:"That single exclusion is the whole distinction, and it is tested."},
+{d:1,g:"Directory roles",t:"Application Developer",x:"May create app registrations even when tenant-wide app creation is restricted."},
+{d:1,g:"Directory roles",t:"License Administrator",x:"Assigns and removes licences. Cannot otherwise manage users."},
+{d:1,g:"Directory roles",t:"Groups Administrator",x:"Creates and manages groups and group settings."},
+{d:1,g:"Directory roles",t:"Identity Governance Administrator",x:"Access packages, access reviews and lifecycle workflows."},
+{d:1,g:"Directory roles",t:"Custom role",x:"A role built from selected permissions. Restricts the verbs, not the objects."},
+{d:1,g:"Directory roles",t:"Entra roles vs Azure RBAC",x:"Entra roles govern the directory; Azure RBAC governs resources in subscriptions.",p:"Global Administrator does NOT grant Azure resource access. You must “elevate access” to gain User Access Administrator at root scope."},
+
+{d:1,g:"Hybrid identity",t:"Password hash synchronisation",c:"PHS",x:"A hash of the password hash is synced to Entra; authentication happens in the cloud. Syncs every 2 minutes.",p:"The only method that survives an on-prem outage, and the only one that enables leaked-credential detection."},
+{d:1,g:"Hybrid identity",t:"Pass-through authentication",c:"PTA",x:"An on-prem agent validates the password. No password material in the cloud.",p:"Does NOT survive an on-prem outage. Install at least three agents for high availability."},
+{d:1,g:"Hybrid identity",t:"Federation",c:"AD FS",x:"Authentication happens entirely on-premises; Entra trusts the assertion.",p:"The answer when smart cards, third-party on-prem MFA, or sign-in hour restrictions are required."},
+{d:1,g:"Hybrid identity",t:"Seamless SSO",c:"AZUREADSSOACC",x:"Kerberos-based silent sign-in on domain-joined devices. Works with PHS and PTA.",p:"Irrelevant to federation — AD FS does its own SSO. Roll the decryption key every 30 days."},
+{d:1,g:"Hybrid identity",t:"Staged rollout",x:"Moves users from federation to cloud authentication in batches without flipping the domain's federation setting. The safe migration answer."},
+{d:1,g:"Hybrid identity",t:"Password writeback",x:"Writes SSPR password changes back into on-prem AD.",p:"Supported with PHS, PTA and federation — all three. Without it a hybrid user ends up with two passwords."},
+{d:1,g:"Hybrid identity",t:"Entra Connect Sync",x:"The full-featured sync engine. One server, one sync engine, every capability including device and group writeback."},
+{d:1,g:"Hybrid identity",t:"Entra Cloud Sync",x:"A lightweight agent supporting MULTIPLE DISCONNECTED FORESTS.",p:"The answer after a merger where forests do not trust each other. No device writeback, no Exchange hybrid writeback."},
+{d:1,g:"Hybrid identity",t:"Connect Health",x:"Monitoring and alerting for sync, AD FS and AD DS. Requires P1."},
+{d:1,g:"Hybrid identity",t:"OU filtering",x:"Scoping sync by organisational unit. The OU design decides what is syncable at all."},
+{d:1,g:"Hybrid identity",t:"Sync cycle",c:"delta / initial",x:"Connect Sync's default delta cycle is 30 minutes; a full initial cycle takes much longer."},
+{d:1,g:"Hybrid identity",t:"Duplicate attribute resiliency",c:"AttributeValueMustBeUnique",x:"Quarantines a conflicting UPN or proxyAddress rather than failing the whole cycle.",p:"The most common Connect error in production, and it surfaces as an EXPORT error — so people look in the wrong place."},
+{d:1,g:"Hybrid identity",t:"Alternate UPN suffix",x:"Adding a verified, routable domain as a UPN suffix in AD Domains and Trusts.",p:"A <code>.local</code> UPN cannot sync usefully — Entra restamps it to <code>*.onmicrosoft.com</code>. The fix is the suffix, not renaming the forest."},
+{d:1,g:"Hybrid identity",t:"Device writeback",x:"Writing device objects back to AD for conditional access on AD FS. Connect Sync only."},
+
+{d:1,g:"External identities",t:"B2B collaboration",x:"Invite an external person; a Guest user object is created in your directory."},
+{d:1,g:"External identities",t:"B2B direct connect",x:"Mutual trust configured in cross-tenant access settings. NO object is created in your directory. Used for Teams shared channels.",p:"“The partner must not appear in our directory” is the tell for direct connect."},
+{d:1,g:"External identities",t:"Cross-tenant access settings",x:"Per-organisation inbound and outbound rules for B2B collaboration, direct connect and trust."},
+{d:1,g:"External identities",t:"Trust settings",x:"Accept MFA, compliant-device or hybrid-joined claims from the guest's home tenant.",p:"Without them a guest must re-register MFA in your tenant — the “guests set up Authenticator twice” complaint."},
+{d:1,g:"External identities",t:"External collaboration settings",x:"Who may invite guests, and how much of the directory guests can see."},
+{d:1,g:"External identities",t:"Guest access restrictions",x:"Same as members · Limited · Restricted. Restricted guests cannot enumerate the directory."},
+{d:1,g:"External identities",t:"Domain allow/deny list",x:"Restrict which external domains may be invited.",p:"One or the other — you can never run both simultaneously."},
+{d:1,g:"External identities",t:"Email one-time passcode",x:"Fallback authentication for guests with no Entra or Microsoft account."},
+{d:1,g:"External identities",t:"Invitation redemption",x:"The guest accepts and their object moves from PendingAcceptance to Accepted."},
+{d:1,g:"External identities",t:"Entra External ID",c:"CIAM",x:"The customer-facing identity product — self-service sign-up, user flows, social identity providers."},
+
+{d:1,g:"Devices",t:"Entra registered",x:"Personal (BYOD) device with a workplace identity. User keeps ownership."},
+{d:1,g:"Devices",t:"Entra joined",x:"Cloud-only organisational device. Signs in with work credentials."},
+{d:1,g:"Devices",t:"Hybrid Entra joined",x:"Domain-joined AND registered in Entra. The bridge state during cloud migration."},
+{d:1,g:"Devices",t:"Primary refresh token",c:"PRT",x:"The device-bound token enabling SSO across apps on a joined device."},
+{d:1,g:"Devices",t:"Device compliance",x:"An Intune verdict consumed by Conditional Access as “require compliant device”."},
+
+/* ============ D2 : AUTH & ACCESS ============ */
+{d:2,g:"Fundamentals",t:"Authentication",c:"AuthN",x:"Proving who you are."},
+{d:2,g:"Fundamentals",t:"Authorisation",c:"AuthZ",x:"Deciding what you may do.",p:"“You don't have permission” AFTER a successful sign-in is authorisation, not authentication. Answering the wrong half is a deliberate trap."},
+{d:2,g:"Fundamentals",t:"Authentication factor",x:"Something you know · something you have · something you are. MFA means two from DIFFERENT categories.",p:"Password plus security question is one category — which is why security questions are not MFA."},
+{d:2,g:"Fundamentals",t:"Security defaults",x:"A free, all-or-nothing baseline of MFA enforcement.",p:"Mutually exclusive with Conditional Access — you must turn them off to use CA."},
+{d:2,g:"Fundamentals",t:"Per-user MFA",x:"The legacy per-account MFA toggle.",p:"Legacy. Wherever Conditional Access is available, per-user MFA is the wrong answer."},
+
+{d:2,g:"Authentication methods",t:"Authentication methods policy",x:"The single converged tenant policy governing which methods exist and who may register them.",p:"It supersedes both the legacy MFA service settings and the legacy SSPR method settings, which are offered as wrong answers."},
+{d:2,g:"Authentication methods",t:"Microsoft Authenticator",x:"Push approval, passwordless phone sign-in, or TOTP codes."},
+{d:2,g:"Authentication methods",t:"Number matching",x:"The user types a number shown on screen into the app. Defeats MFA fatigue/push bombing."},
+{d:2,g:"Authentication methods",t:"Additional context",x:"Shows app name and sign-in location in the push prompt so the user can spot a fraudulent request."},
+{d:2,g:"Authentication methods",t:"Temporary Access Pass",c:"TAP",x:"A time-limited passcode that satisfies MFA and can be used to register other methods.",p:"The bootstrap answer: onboard a new starter to passwordless without ever issuing a password, or recover a user who lost their only method."},
+{d:2,g:"Authentication methods",t:"FIDO2 security key",x:"A hardware authenticator holding an origin-bound private key. Phishing-resistant."},
+{d:2,g:"Authentication methods",t:"Passkey",x:"A discoverable FIDO2 credential, device-bound or synced. Default-on direction of travel from 1 Sep 2026."},
+{d:2,g:"Authentication methods",t:"Windows Hello for Business",c:"WHfB",x:"FIDO2 bound to a device, unlocked by biometric or PIN. Phishing-resistant."},
+{d:2,g:"Authentication methods",t:"Certificate-based authentication",c:"CBA",x:"X.509 certificates authenticating directly against Entra. Phishing-resistant."},
+{d:2,g:"Authentication methods",t:"Phishing-resistant",x:"A precise category: FIDO2, Windows Hello for Business and certificate-based authentication.",p:"Authenticator push, SMS, voice and OATH codes are NOT phishing-resistant. Any question using this phrase wants the phishing-resistant authentication strength."},
+{d:2,g:"Authentication methods",t:"OATH hardware token",c:"TOTP",x:"A physical code generator for users who cannot use a phone."},
+{d:2,g:"Authentication methods",t:"SMS and voice",x:"Weakest supported methods — phishable and SIM-swappable. Microsoft-provided SMS/voice retire 1 Feb 2027."},
+{d:2,g:"Authentication methods",t:"Combined registration",x:"One flow registering methods for both MFA and SSPR."},
+{d:2,g:"Authentication methods",t:"Registration campaign",x:"Nudges users on weaker methods to register the Authenticator app during sign-in."},
+
+{d:2,g:"Passwords",t:"Self-service password reset",c:"SSPR",x:"Users reset their own password after verifying with registered methods."},
+{d:2,g:"Passwords",t:"Entra Password Protection",x:"Blocks weak passwords using the global banned list plus your custom terms."},
+{d:2,g:"Passwords",t:"Custom banned password list",x:"Your own blocked terms — company name, products, local sports teams. Requires P1."},
+{d:2,g:"Passwords",t:"On-prem password protection agent",x:"Extends banned-list enforcement to domain controllers.",p:"Has an AUDIT mode. Deploy there first — “deployed is not enforced” is a theme across this whole exam."},
+{d:2,g:"Passwords",t:"Smart lockout",x:"Locks out attackers while recognising the legitimate user by familiar location and device.",p:"Naive lockout is a self-inflicted denial of service; smart lockout is the answer to “brute force must not lock out real users”."},
+
+{d:2,g:"Conditional Access",t:"Conditional Access",c:"CA",x:"If–then policy evaluated at sign-in: given this user, app, condition and risk, require these controls."},
+{d:2,g:"Conditional Access",t:"The recall sentence",x:"When WHO, using WHAT, from WHERE, accesses WHICH APP, under WHAT RISK, then enforce WHICH CONTROLS, for HOW LONG. That is the policy blade in field order."},
+{d:2,g:"Conditional Access",t:"Assignments",x:"Users, groups, directory roles, guests and workload identities the policy targets."},
+{d:2,g:"Conditional Access",t:"Exclusions",x:"Principals removed from a policy's scope.",p:"EXCLUSIONS ALWAYS BEAT INCLUSIONS. This is why break-glass exclusion works, and why an over-broad exclusion silently disables your control."},
+{d:2,g:"Conditional Access",t:"Target resources",x:"Cloud apps, user actions (register security info, join device), authentication context, or Global Secure Access traffic."},
+{d:2,g:"Conditional Access",t:"Named location",x:"An IP range or country/region reusable as a policy condition, optionally marked trusted."},
+{d:2,g:"Conditional Access",t:"Client apps condition",x:"Browser, mobile/desktop, Exchange ActiveSync, and other clients — where legacy authentication is blocked."},
+{d:2,g:"Conditional Access",t:"Legacy authentication",x:"Protocols that cannot do MFA — POP, IMAP, SMTP AUTH, older Office. The single highest-value thing to block."},
+{d:2,g:"Conditional Access",t:"Device filter",x:"Targets devices by property or extension attribute — e.g. exclude privileged access workstations."},
+{d:2,g:"Conditional Access",t:"Grant controls",x:"Block, or require MFA, compliant device, hybrid-joined device, approved client app, app protection policy, password change, or terms of use.",p:"MULTIPLE GRANT CONTROLS DEFAULT TO **AND**. You must explicitly pick “Require one of the selected controls” to get OR. This is the most common real-world CA mistake."},
+{d:2,g:"Conditional Access",t:"Block access",x:"An absolute deny.",p:"BLOCK BEATS GRANT. If any applicable policy blocks, nothing grants past it."},
+{d:2,g:"Conditional Access",t:"Authentication strength",x:"A named set of allowed method combinations used as a grant control. Built-ins: MFA, Passwordless MFA, Phishing-resistant MFA.",p:"Turns MFA from a yes/no into a quality bar. “Admins must use phishing-resistant MFA” means a CA policy with that strength."},
+{d:2,g:"Conditional Access",t:"Authentication context",x:"A label letting an app demand step-up authentication for a specific action rather than a whole app."},
+{d:2,g:"Conditional Access",t:"Session controls",x:"Sign-in frequency, persistent browser, app-enforced restrictions, Conditional Access App Control, token protection."},
+{d:2,g:"Conditional Access",t:"Sign-in frequency",x:"Forces re-authentication on a defined interval, overriding default refresh-token behaviour."},
+{d:2,g:"Conditional Access",t:"Persistent browser session",x:"Whether “Stay signed in?” is offered.",p:"“Users on shared or unmanaged devices must not stay signed in” → set it to Never."},
+{d:2,g:"Conditional Access",t:"Continuous access evaluation",c:"CAE",x:"Near-real-time revocation. Resource providers subscribe to critical events and re-evaluate in minutes.",p:"“Stop a terminated employee's access immediately” → CAE, NOT a shorter token lifetime. Sign-in frequency is a timer; CAE is an event."},
+{d:2,g:"Conditional Access",t:"Critical event",x:"Account disabled or deleted, password change, MFA enabled, admin token revocation, high user risk, and network location change."},
+{d:2,g:"Conditional Access",t:"Report-only mode",x:"The policy evaluates and logs but never blocks.",p:"Also the mirror trap: a policy left in report-only for six months protects nobody and an auditor will fail you on it."},
+{d:2,g:"Conditional Access",t:"What If tool",x:"Evaluates a hypothetical sign-in against your policy set without anyone signing in."},
+{d:2,g:"Conditional Access",t:"Break-glass account",x:"Two cloud-only emergency accounts, excluded from every CA policy, stored offline.",p:"Verify by SIGNING IN, not by confirming the account exists. An untested break-glass account is a belief, not a control."},
+{d:2,g:"Conditional Access",t:"Policy templates",x:"Microsoft-supplied starting policies for common scenarios."},
+
+{d:2,g:"Identity Protection",t:"Identity Protection",x:"Risk detection and automated response over sign-in signals. Requires P2."},
+{d:2,g:"Identity Protection",t:"Sign-in risk",x:"Is THIS sign-in suspicious right now? Impossible travel, anonymous IP, unfamiliar properties, malware-linked IP.",p:"Sign-in risk → require MFA."},
+{d:2,g:"Identity Protection",t:"User risk",x:"Do we believe this ACCOUNT is compromised? Chiefly leaked credentials.",p:"User risk → require a secure password change. The two responses differ and the exam tests that they differ."},
+{d:2,g:"Identity Protection",t:"Leaked credentials",x:"The account's credentials appeared in a breach dump.",p:"Requires PHS. No hash in the cloud means no comparison and no detection."},
+{d:2,g:"Identity Protection",t:"Risk level",x:"Low, medium or high — the threshold you set in a risk-based CA policy."},
+{d:2,g:"Identity Protection",t:"Confirm compromised / Confirm safe",x:"Admin feedback that both remediates the user and trains the model."},
+{d:2,g:"Identity Protection",t:"Risky workload identities",x:"Risk detection for service principals — leaked credentials, anomalous sign-ins. Requires Workload Identities Premium."},
+{d:2,g:"Identity Protection",t:"Data latency",x:"Risk detection captures FORWARD ONLY.",p:"A policy enabled today knows nothing about last week. Enable telemetry on day one of an engagement, not on the day you need it."},
+
+{d:2,g:"Monitoring",t:"Sign-in logs",x:"Interactive, non-interactive, service principal and managed identity sign-ins — four separate tabs."},
+{d:2,g:"Monitoring",t:"Audit logs",x:"Directory changes: who changed what, and when."},
+{d:2,g:"Monitoring",t:"Provisioning logs",x:"App provisioning activity — the place to diagnose SCIM failures."},
+{d:2,g:"Monitoring",t:"Diagnostic settings",x:"Routes Entra logs to Log Analytics, storage or Event Hub.",p:"Forward-only, and the default log retention in Entra itself is limited — route them before you need them."},
+{d:2,g:"Monitoring",t:"Log Analytics + KQL",x:"Where Entra logs become queryable. <code>SigninLogs | where ResultType != 0 | summarize count() by UserPrincipalName</code>"},
+{d:2,g:"Monitoring",t:"Workbooks",x:"Prebuilt Entra reports — sign-ins by location, legacy auth usage, CA gaps."},
+
+{d:2,g:"Conditional Access",t:"Token protection",x:"Binds a refresh token to the device it was issued to, so a stolen token is useless elsewhere. Session control."},
+{d:2,g:"Conditional Access",t:"Conditional Access App Control",x:"Routes the session through Defender for Cloud Apps for real-time controls — block download, monitor, restrict copy/paste."},
+{d:2,g:"Conditional Access",t:"Global Secure Access",x:"Microsoft's identity-aware network access. Becomes targetable in CA as network traffic rather than an app."},
+{d:2,g:"Conditional Access",t:"Insider risk condition",x:"A CA condition consuming Purview insider risk levels — elevated risk can require step-up or block."},
+{d:2,g:"Monitoring",t:"AADSTS error codes",c:"AADSTS50020",x:"Sign-in failure codes. <code>AADSTS50020</code> means the user is from a different tenant or cloud — the classic wrong-cloud symptom."},
+{d:2,g:"Monitoring",t:"ResultType",c:"0 = success",x:"The sign-in log field to filter on when hunting failures: <code>SigninLogs | where ResultType != 0</code>"},
+{d:2,g:"Monitoring",t:"Authentication methods activity",x:"Report showing registration and usage by method — how you prove passwordless adoption."},
+
+/* ============ D3 : WORKLOADS ============ */
+{d:3,g:"App objects",t:"Application object",x:"The global definition of an app, living in its home tenant. The blueprint."},
+{d:3,g:"App objects",t:"Service principal",x:"The local instance of an app in YOUR tenant, carrying your consent, permissions and assignments.",p:"Registration = the blueprint; service principal = your robot. Redirect URIs live on the registration; who may use the app lives on the enterprise app."},
+{d:3,g:"App objects",t:"Enterprise application",x:"The portal view of a service principal — assignment, SSO, provisioning, consent."},
+{d:3,g:"App objects",t:"App registration",x:"Where you define redirect URIs, exposed APIs, credentials, and requested permissions."},
+{d:3,g:"App objects",t:"Multi-tenant app",x:"Signs in users from any tenant. A service principal is created in each consenting tenant."},
+{d:3,g:"App objects",t:"Assignment required",x:"When on, only assigned users and groups may sign in to the app."},
+{d:3,g:"App objects",t:"App role",x:"An application-defined role exposed in the token's <code>roles</code> claim for in-app authorisation."},
+
+{d:3,g:"Permissions and consent",t:"Delegated permission",c:"scp",x:"The app acts on behalf of a signed-in user.",p:"Effective rights are the INTERSECTION of the granted scope and what the user could already do."},
+{d:3,g:"Permissions and consent",t:"Application permission",c:"roles",x:"The app acts as itself, with no user, holding the full stated permission tenant-wide.",p:"ALWAYS requires admin consent. A daemon or nightly job with no user must use these."},
+{d:3,g:"Permissions and consent",t:"User consent",x:"Individuals consenting for their own data. Settings: do not allow · verified publishers and low-impact only · allow all."},
+{d:3,g:"Permissions and consent",t:"Admin consent",x:"Consent granted for the whole organisation by a privileged admin."},
+{d:3,g:"Permissions and consent",t:"Admin consent workflow",x:"Users request, designated reviewers approve.",p:"The answer to “stop users consenting but don't create a helpdesk ticket storm”."},
+{d:3,g:"Permissions and consent",t:"Permission classification",x:"Defines which permissions count as low impact for the restricted user-consent setting."},
+{d:3,g:"Permissions and consent",t:"Verified publisher",x:"A Microsoft Partner Network–verified app publisher, used as a user-consent condition."},
+{d:3,g:"Permissions and consent",t:"Illicit consent grant",x:"A phishing link obtains delegated <code>Mail.Read</code>; the attacker then reads mail with a legitimate token.",p:"Resetting the password does NOT revoke it — consent is independent of the credential. Revoke the service principal's grant and its refresh tokens."},
+
+{d:3,g:"Credentials",t:"Client secret",x:"A shared string. Whoever holds it is the app. Expires on a date nobody diarised.",p:"“The app worked for two years and stopped overnight, nothing changed” → expired secret."},
+{d:3,g:"Credentials",t:"Certificate credential",x:"Asymmetric proof of possession. Stronger than a secret; still expires."},
+{d:3,g:"Credentials",t:"Managed identity",x:"An identity for an Azure resource where the platform holds and rotates the credential. You never see it."},
+{d:3,g:"Credentials",t:"System-assigned identity",x:"Tied to one resource. Delete the resource and the identity dies with it."},
+{d:3,g:"Credentials",t:"User-assigned identity",x:"A standalone object many resources can share, surviving redeploys.",p:"“Twenty VMs need the same access and permissions must survive a redeploy” → user-assigned."},
+{d:3,g:"Credentials",t:"Workload identity federation",x:"Trust an external OIDC issuer so a GitHub Action, Kubernetes pod or other cloud gets a token with NO stored secret.",p:"The subject must match exactly. A subject scoped to <code>pull_request</code> lets any fork's PR assume your production identity."},
+{d:3,g:"Credentials",t:"Federated credential",c:"issuer / subject / audience",x:"The three fields that define which external workload is trusted."},
+{d:3,g:"Credentials",t:"Credential preference order",x:"Managed identity → federated credential → certificate → secret. Reach for the highest that fits."},
+
+{d:3,g:"Tokens and protocols",t:"JSON Web Token",c:"JWT",x:"A signed, base64url-encoded set of claims.",p:"Encoded, not encrypted — anyone can read it. The signature stops forgery, not reading."},
+{d:3,g:"Tokens and protocols",t:"aud claim",c:"aud",x:"Audience — who the token is FOR. A wrong audience is a very common 401."},
+{d:3,g:"Tokens and protocols",t:"iss claim",c:"iss",x:"Issuer — which tenant and authority minted the token."},
+{d:3,g:"Tokens and protocols",t:"amr claim",c:"amr",x:"How the user authenticated — <code>pwd</code>, <code>mfa</code>, <code>fido</code>."},
+{d:3,g:"Tokens and protocols",t:"Access token",x:"Presented to an API. Short-lived, roughly an hour by default."},
+{d:3,g:"Tokens and protocols",t:"ID token",x:"Proves authentication to the client app. OpenID Connect only."},
+{d:3,g:"Tokens and protocols",t:"Refresh token",x:"Obtains new access tokens without re-prompting. What CAE and revocation actually target."},
+{d:3,g:"Tokens and protocols",t:"OAuth 2.0",x:"The authorisation framework. Delegated access without sharing credentials."},
+{d:3,g:"Tokens and protocols",t:"OpenID Connect",c:"OIDC",x:"An authentication layer on top of OAuth 2.0, adding the ID token."},
+{d:3,g:"Tokens and protocols",t:"Authorization code flow + PKCE",x:"The correct flow for web and mobile apps. PKCE protects public clients that cannot hold a secret."},
+{d:3,g:"Tokens and protocols",t:"Client credentials flow",x:"App-only, no user. The daemon flow, paired with application permissions."},
+{d:3,g:"Tokens and protocols",t:"Device code flow",x:"For input-constrained devices — the user authenticates on a second device."},
+{d:3,g:"Tokens and protocols",t:"On-behalf-of flow",x:"An API exchanges the caller's token for a downstream token, preserving the user's identity."},
+{d:3,g:"Tokens and protocols",t:"Implicit flow / ROPC",x:"Legacy. Both are wrong answers for new applications."},
+{d:3,g:"Tokens and protocols",t:"SAML 2.0",x:"XML assertion-based federation, still ubiquitous in enterprise SaaS SSO."},
+{d:3,g:"Tokens and protocols",t:"Claims mapping policy",x:"Customises which claims an app receives, and their format."},
+{d:3,g:"Tokens and protocols",t:"jwt.ms",x:"Microsoft's token decoder. Paste a JWT and read the claims."},
+
+{d:3,g:"SaaS integration",t:"SSO methods",x:"SAML-based · OIDC · password-based (Entra vaults and replays the credential) · linked (a tile only, no authentication).",p:"“The app supports neither SAML nor OIDC and the team shares one login” → password-based SSO."},
+{d:3,g:"SaaS integration",t:"Gallery vs non-gallery app",x:"Gallery apps ship with pre-built SSO and provisioning configuration; non-gallery is the same machinery configured by hand."},
+{d:3,g:"SaaS integration",t:"SCIM 2.0",c:"/Users /Groups",x:"The provisioning protocol. Entra acts as a client against the app's SCIM endpoint to create, update and disable accounts.",p:"SSO is authentication; provisioning is LIFECYCLE. Disabling a user in Entra kills SSO but leaves the app-side account until SCIM removes it."},
+{d:3,g:"SaaS integration",t:"Attribute mapping",x:"Which Entra attribute lands in which app attribute, including expression mappings."},
+{d:3,g:"SaaS integration",t:"Scoping filter",x:"Which users are in provisioning scope — by assignment or by attribute rule.",p:"“New user has SSO but the app says account not found” → out of scope, or the cycle has not run."},
+{d:3,g:"SaaS integration",t:"Provisioning cycle",x:"Incremental roughly every 40 minutes; the initial cycle can take hours."},
+{d:3,g:"SaaS integration",t:"Provisioning quarantine",x:"Repeated failures back the job off until you fix the cause and restart it.",p:"The answer to “provisioning silently stopped”."},
+{d:3,g:"SaaS integration",t:"Application Proxy",x:"Publishes an on-prem web app through Entra with no VPN, via an outbound-only connector.",p:"Pre-authentication in Entra means Conditional Access applies to a legacy app. Configured by Application Administrator — Cloud Application Administrator cannot."},
+
+{d:3,g:"App objects",t:"Publisher domain",x:"The verified domain shown on the consent prompt. Unverified publishers look suspicious to users, by design."},
+{d:3,g:"App objects",t:"Service principal owner",x:"Who may manage the app without a directory role. An ungoverned privilege path — audit it.",p:"An app whose owner has left the company has nobody to renew its expiring secret."},
+{d:3,g:"Permissions and consent",t:"App consent policy",x:"The rule set behind “allow user consent for verified publishers and low-impact permissions”. Customisable via Graph."},
+
+/* ============ D4 : GOVERNANCE ============ */
+{d:4,g:"Privileged Identity Management",t:"Privileged Identity Management",c:"PIM",x:"Separates being ENTITLED to a role from currently HOLDING it. Requires P2.",p:"PIM does not change who can do what — it changes for how long. That is the answer to “won't this slow us down?”."},
+{d:4,g:"Privileged Identity Management",t:"Eligible assignment",x:"The user may activate the role on demand."},
+{d:4,g:"Privileged Identity Management",t:"Active assignment",x:"The user holds the role right now."},
+{d:4,g:"Privileged Identity Management",t:"Standing privilege",x:"Permanent + active. The anti-pattern PIM exists to remove."},
+{d:4,g:"Privileged Identity Management",t:"Activation",x:"Elevating from eligible to active for a bounded window."},
+{d:4,g:"Privileged Identity Management",t:"Activation settings",x:"Maximum duration, require MFA, require justification, require ticket info, require approval, and notifications.",p:"“Require MFA to activate” is a PIM setting; “require MFA to sign in” is Conditional Access. The exam mixes them deliberately."},
+{d:4,g:"Privileged Identity Management",t:"Approval on activation",x:"A named approver must consent before the role activates.",p:"The control that defeats a compromised admin session, because the approver is out of band."},
+{d:4,g:"Privileged Identity Management",t:"PIM for Groups",x:"Eligible/active applied to group membership and ownership.",p:"The answer for just-in-time admin access to a SaaS app that has no Entra role of its own."},
+{d:4,g:"Privileged Identity Management",t:"PIM for Azure resources",x:"The same model applied to Azure RBAC roles at subscription, resource group or resource scope."},
+{d:4,g:"Privileged Identity Management",t:"PIM licence expiry",x:"When P2 lapses, ELIGIBLE assignments are DELETED and time-bound ACTIVE assignments become PERMANENT.",p:"A security event dressed as a billing event — the lapse silently converts JIT back into standing privilege."},
+
+{d:4,g:"Access reviews",t:"Access review",x:"A scheduled re-confirmation that people still need what they have."},
+{d:4,g:"Access reviews",t:"Reviewer type",x:"Group owner, manager, selected users, or self-review.",p:"Self-review is the weakest — everyone approves themselves."},
+{d:4,g:"Access reviews",t:"If reviewers don't respond",x:"No change · Remove access · Approve access · Take recommendations.",p:"This single dropdown decides whether the review does anything at all. Most people never respond."},
+{d:4,g:"Access reviews",t:"Auto-apply results",x:"Whether decisions are enforced.",p:"Without it, decisions are recorded and never applied — a compliance artifact, not a control."},
+{d:4,g:"Access reviews",t:"Recommendations",x:"Suggested decisions based on last sign-in — e.g. flag users inactive for 30 days."},
+
+{d:4,g:"Entitlement management",t:"Entitlement management",x:"Bundling everything a role needs into one requestable package with approval and automatic expiry. Requires Governance/P2."},
+{d:4,g:"Entitlement management",t:"Catalog",x:"A container of resources — groups, apps, SharePoint sites — that packages draw from."},
+{d:4,g:"Entitlement management",t:"Catalog owner",x:"A business owner who manages their own catalog without being a directory admin. The delegation answer."},
+{d:4,g:"Entitlement management",t:"Access package",x:"A bundle of resources plus the policies to obtain them.",p:"Access packages grant groups and apps — NOT directory roles. Role assignment is PIM's job."},
+{d:4,g:"Entitlement management",t:"Access package policy",x:"Who may request, who approves, how long it lasts, and whether it is reviewed on renewal."},
+{d:4,g:"Entitlement management",t:"Multi-stage approval",x:"Sequential approvers — for example manager, then resource owner."},
+{d:4,g:"Entitlement management",t:"Connected organization",x:"An external tenant or domain whose people may request packages, with sponsors as approvers.",p:"The guest object is created ON APPROVAL, not invited up front — governance first, object second. A plain B2B invite has no lifecycle at all."},
+{d:4,g:"Entitlement management",t:"Sponsor",x:"The internal or external person who approves for a connected organisation."},
+{d:4,g:"Entitlement management",t:"Separation of duties",x:"Incompatible access packages — holding one blocks requesting the other."},
+
+{d:4,g:"Lifecycle",t:"Lifecycle workflows",x:"Joiner, mover and leaver automation triggered by dates on the user record. Requires the Governance SKU.",p:"NOT included in P2 — a very common wrong assumption."},
+{d:4,g:"Lifecycle",t:"Trigger attributes",c:"employeeHireDate / employeeLeaveDateTime",x:"The dates workflows fire against, with offsets such as 7 days before hire.",p:"An empty <code>employeeLeaveDateTime</code> means the leaver workflow fires for nobody. Check the attribute before blaming the automation."},
+{d:4,g:"Lifecycle",t:"Workflow tasks",x:"Enable/disable account, add or remove group and Teams membership, generate a TAP, email the manager, remove all licences."},
+{d:4,g:"Lifecycle",t:"Terms of use",x:"A document users must accept, enforceable as a Conditional Access grant control, with expiry and re-acceptance."},
+
+{d:4,g:"Privileged Identity Management",t:"PIM alerts",x:"Built-in warnings: too many global administrators, roles assigned outside PIM, accounts not using MFA, stale eligible assignments."},
+{d:4,g:"Privileged Identity Management",t:"Discovery and insights",x:"Finds standing privilege you did not know about and offers to convert it to eligible. The first thing to run in a new tenant."},
+{d:4,g:"Privileged Identity Management",t:"Role settings",x:"Per-role activation configuration. Set once per role, and it governs every eligible holder of it."},
+{d:4,g:"Privileged Identity Management",t:"Access review of privileged roles",x:"A recurring review scoped to directory role holders — the control auditors ask for by name."},
+{d:4,g:"Access reviews",t:"Review recurrence",x:"One-time, weekly, monthly, quarterly, annually. Recurring is what turns a review into a control."},
+{d:4,g:"Access reviews",t:"Guest access review",x:"Reviewing external users specifically — including the “remove inactive guests” pattern."},
+{d:4,g:"Access reviews",t:"Application access review",x:"Reviewing who is assigned to an enterprise application, not just group membership."},
+{d:4,g:"Access reviews",t:"Review scope",x:"Everyone, or guests only. Guest-only scope is the cheap first review most tenants should run."},
+{d:4,g:"Entitlement management",t:"Access package assignment",x:"The granted state after approval, carrying an expiry date. Distinct from the request itself."},
+{d:4,g:"Entitlement management",t:"Requestor scope",x:"Specific users and groups · all members · all configured connected organizations · all users including new external users."},
+{d:4,g:"Entitlement management",t:"Custom extensions",x:"Logic Apps triggered at package lifecycle events — ticketing, provisioning, notification."},
+{d:4,g:"Lifecycle",t:"Mover workflow",x:"Fires on attribute change such as department or job title — the half most organisations skip, and where stale access accumulates."},
+{d:4,g:"Lifecycle",t:"Workflow history",x:"Per-run results showing which users processed and which tasks failed. Where you prove the automation ran."},
+
+/* ============ D0 : FOUNDATIONS ============ */
+{d:0,g:"Tooling",t:"Microsoft Graph",x:"The single REST API for Entra, M365 and security data."},
+{d:0,g:"Tooling",t:"Microsoft Graph PowerShell",c:"Connect-MgGraph",x:"The supported PowerShell surface. Replaces the retired MSOnline and AzureAD modules.",p:"AzureAD and MSOnline are deprecated — any answer using them is dated."},
+{d:0,g:"Tooling",t:"Graph Explorer",x:"Browser tool for trying Graph calls against your own tenant."},
+{d:0,g:"Tooling",t:"Microsoft Entra admin center",c:"entra.microsoft.com",x:"The primary identity portal."},
+{d:0,g:"Tooling",t:"Microsoft Purview portal",c:"purview.microsoft.com",x:"Audit, DLP, insider risk and compliance.",p:"Unified audit logging on a trial tenant is enabled HERE, via the Audit banner — the PowerShell path can dead-end."},
+{d:0,g:"Tooling",t:"Search-UnifiedAuditLog",c:"cmdlet",x:"Proves audit capture is actually working. A configuration flag records intent; only a search records capture."},
+
+{d:0,g:"Principles",t:"Zero Trust",x:"Verify explicitly · use least privilege · assume breach. The framing behind every design answer on this exam."},
+{d:0,g:"Principles",t:"Least privilege",x:"The smallest role that can do the task.",p:"Whenever a question says “least privileged” or “minimum administrative effort”, Global Administrator is wrong."},
+{d:0,g:"Principles",t:"Deployed is not enforced",x:"Report-only CA, audit-mode password protection, a review with auto-apply off, a workflow with no source attribute — controls that look real on a slide and do nothing in production."},
+{d:0,g:"Principles",t:"Telemetry captures forward only",x:"Audit logs, Identity Protection and diagnostic settings record nothing from before you enabled them."},
+{d:0,g:"Principles",t:"U-A-W-G",x:"Users · Access · Workloads · Governance. The four exam domains as four verbs — naming which one narrows the answer space before you read the options."},
+
+{d:0,g:"Exam mechanics",t:"Passing score",c:"700 / 1000",x:"Scaled, not a raw percentage. Questions carry different weights and the mapping is not published."},
+{d:0,g:"Exam mechanics",t:"Repeated-scenario set",x:"Several questions share one scenario, each proposing a different solution: “Does this meet the goal?”",p:"The solutions are INDEPENDENT — two of them can both be correct. Judge each on its own."},
+{d:0,g:"Exam mechanics",t:"You cannot return to this question",x:"Some sections lock behind you.",p:"When you see that banner, finish the question properly. Flagging it for review does nothing."},
+{d:0,g:"Exam mechanics",t:"Constraint words",x:"“least privilege”, “minimum administrative effort”, “fewest changes”, “must not appear in our directory”, “if the on-prem site is down”, “including administrators”. Each one names the answer."}
+];
+
+/* ---------- render ---------- */
+const out=document.getElementById('out'), qEl=document.getElementById('q'),
+      countEl=document.getElementById('count'), progEl=document.getElementById('progbar');
+const KEY='sc300-lexicon-known-v1';
+let known=new Set();
+try{ const s=localStorage.getItem(KEY); if(s) known=new Set(JSON.parse(s)); }catch(e){}
+const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify([...known])); }catch(e){} };
+const id=t=>t.d+'|'+t.t;
+
+let activeDoms=new Set(), trapOnly=false, hideKnown=false;
+
+const STAR='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 2.5l2.35 4.76 5.25.77-3.8 3.7.9 5.23L10 14.49l-4.7 2.47.9-5.23-3.8-3.7 5.25-.77z" stroke-linejoin="round"/></svg>';
+const STAR_ON='<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2.5l2.35 4.76 5.25.77-3.8 3.7.9 5.23L10 14.49l-4.7 2.47.9-5.23-3.8-3.7 5.25-.77z"/></svg>';
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function hi(html,q){
+  if(!q) return html;
+  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+  return html.replace(/(<[^>]+>)|([^<]+)/g,(m,tag,txt)=>tag?tag:txt.replace(re,'<mark>$1</mark>'));
+}
+
+function render(){
+  const q=qEl.value.trim().toLowerCase();
+  const vis=T.filter(t=>{
+    if(activeDoms.size && !activeDoms.has(t.d)) return false;
+    if(trapOnly && !t.p) return false;
+    if(hideKnown && known.has(id(t))) return false;
+    if(q){
+      const hay=(t.t+' '+(t.c||'')+' '+t.x+' '+(t.p||'')+' '+t.g).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  out.innerHTML='';
+  if(!vis.length){
+    out.innerHTML='<div class="empty"><b>Nothing matches</b>Try a shorter search, or clear the filters.</div>';
+  } else {
+    DOMAINS.forEach(dom=>{
+      const items=vis.filter(t=>t.d===dom.id);
+      if(!items.length) return;
+      const sec=document.createElement('section');
+      sec.innerHTML='<div class="sec-head"><h2>'+esc(dom.name)+'</h2><span class="wt">'+dom.wt+'</span><span class="sn">'+items.length+'</span></div>';
+      let lastG=null;
+      items.forEach(t=>{
+        if(t.g!==lastG){ lastG=t.g;
+          const g=document.createElement('div'); g.className='grp'; g.textContent=t.g; sec.appendChild(g);
+        }
+        const k=known.has(id(t));
+        const row=document.createElement('div');
+        row.className='row'+(k?' is-known':'');
+        row.style.setProperty('--dh','var('+dom.v+')');
+        row.innerHTML=
+          '<div class="term">'+hi(esc(t.t),q)+(t.c?' <code>'+hi(esc(t.c),q)+'</code>':'')+'</div>'+
+          '<button class="star" aria-pressed="'+k+'" aria-label="Mark '+esc(t.t)+' as known">'+(k?STAR_ON:STAR)+'</button>'+
+          '<div class="def">'+hi(t.x,q)+'</div>'+
+          (t.p?'<div class="trapline"><b>Trap</b>'+hi(t.p,q)+'</div>':'');
+        row.querySelector('.star').addEventListener('click',()=>{
+          const key=id(t);
+          if(known.has(key)) known.delete(key); else known.add(key);
+          save(); render();
+        });
+        sec.appendChild(row);
+      });
+      out.appendChild(sec);
+    });
+  }
+
+  countEl.innerHTML='<b>'+vis.length+'</b> of '+T.length+' · <b>'+known.size+'</b> known';
+  progEl.style.width=(known.size/T.length*100)+'%';
+  document.querySelectorAll('.chip[data-dom]').forEach(c=>{
+    const d=+c.dataset.dom;
+    c.querySelector('.n').textContent=T.filter(t=>t.d===d).length;
+  });
+  document.querySelector('#trapOnly .n').textContent=T.filter(t=>t.p).length;
+}
+
+document.querySelectorAll('.chip[data-dom]').forEach(c=>{
+  c.addEventListener('click',()=>{
+    const d=+c.dataset.dom;
+    if(activeDoms.has(d)) activeDoms.delete(d); else activeDoms.add(d);
+    c.setAttribute('aria-pressed',activeDoms.has(d));
+    render();
+  });
+});
+document.getElementById('trapOnly').addEventListener('click',e=>{
+  trapOnly=!trapOnly; e.currentTarget.setAttribute('aria-pressed',trapOnly); render();
+});
+document.getElementById('hideKnown').addEventListener('click',e=>{
+  hideKnown=!hideKnown; e.currentTarget.setAttribute('aria-pressed',hideKnown); render();
+});
+qEl.addEventListener('input',render);
+document.addEventListener('keydown',e=>{
+  if(e.key==='/' && document.activeElement!==qEl){ e.preventDefault(); qEl.focus(); }
+  if(e.key==='Escape' && document.activeElement===qEl){ qEl.value=''; render(); qEl.blur(); }
+});
+render();
+</script>
