@@ -1,32 +1,33 @@
-# Exam countdown — SC-300 on Friday 28 August 2026
+# Exam countdown — SC-300 on Monday 31 August 2026
 
 > ⭐ **This file overrides the pacing in [`README.md`](README.md) §4.** That sprint was built to
-> produce a portfolio on a 30-day licence clock. **You now have an exam in 8 days.** Those are
-> different goals and they need different triage.
-> **Written 2026-08-20. Exam 2026-08-28.**
+> produce a portfolio on a 30-day licence clock; this is triage against an exam date.
+> **Rebuilt 2026-08-27 after the exam moved from 28 Aug to 31 Aug. Four days left.**
+>
+> ⚠ **I do not know which lab days you actually completed** — `SC-300-SPRINT/evidence/` holds one
+> file, dated 12 Aug. So this plan is ordered by **exam weight**, not by lab number: if time runs
+> out, what is left undone is the least valuable thing available.
 
 ---
 
 ## 1. ⭐ The arithmetic, stated honestly
 
-You started **Wed 19 Aug** (Day 1). Days 2–7 as written are **~42 hours of labs**. Six days
-remain before revision has to start. That is 7 h/day of labs and **zero hours of revision** —
-and revision is what the exam actually rewards.
+**Four days. Ordered by what the exam actually weights**, so the tail is the cheapest thing to lose.
 
 ```
-Aug 19 Wed   Day 1   DONE (telemetry incomplete - see sec.2)
-Aug 20 Thu   Day 2   auth methods          <- TODAY
-Aug 21 Fri   Day 3   Conditional Access    <- the heaviest exam day
-Aug 22 Sat   Day 4   PIM and roles
-Aug 23 Sun   Day 5   governance
-Aug 24 Mon   Day 6   apps and workload identity
-Aug 25 Tue   Day 7   external ID + Identity Protection
-Aug 26 Wed   REVISION A   full drill pass + the sprint's blind spots
-Aug 27 Thu   REVISION B   weak areas only, then stop early
-Aug 28 Fri   EXAM
+Aug 27 Thu  D-4  <- TODAY   D2 Authentication & Conditional Access     25-30%
+Aug 28 Fri  D-3             D3 Workload identities + D4 Governance     20-25% each
+Aug 29 Sat  D-2             D1 User identities + the GAP-DRILL gaps    20-25%
+Aug 30 Sun  D-1             Everything cold, timed practice, stop 16:00
+Aug 31 Mon  D-0  EXAM
 ```
 
-⭐ **It fits — but only because of the cut in section 3.**
+⭐ **Why D2 today and not "the next lab you haven't done":** it is the single largest block of
+marks, and with four days left you spend them in weight order. ⭐ **A lab you skip in D3 costs
+less than an hour you never spent on Conditional Access.**
+
+⚠ **If you have already labbed a domain, do not re-lab it** — read its [`EXPLAIN/`](EXPLAIN/)
+file out loud instead and move to the drill. Recall is what is short now, not exposure.
 
 ---
 
@@ -112,27 +113,21 @@ recognising them.
 
 ---
 
-## 4. Per-day triage — do the CORE, skip the rest until 29 August
+## 4. The four days, in detail
 
-**CORE** = the exam tests this · **TRIM** = configure it, skip the write-up ·
-**DEFER** = after 28 August
+| Day | Do this | Then drill |
+|---|---|---|
+| ⭐ **D-4 Thu 27** | ⭐ **[D2 all 13 concepts](EXPLAIN/D2-AUTH-AND-ACCESS.md), out loud.** If CA is unlabbed: policy set in report-only, What-If, the AND trap | [`GAP-DRILL.md`](GAP-DRILL.md) §2 roles |
+| **D-3 Fri 28** | [D3](EXPLAIN/D3-WORKLOAD-IDENTITIES.md) `scp` vs `roles`, consent, SCIM · [D4](EXPLAIN/D4-GOVERNANCE.md) PIM 2×2, reviews, packages | §5 connected orgs · §6 consent |
+| **D-2 Sat 29** | [D1](EXPLAIN/D1-USER-IDENTITIES.md) all 10 · ⭐ **the material no lab covered** | §1 admin units · §3 hybrid · §4 groups · §7 external |
+| **D-1 Sun 30** | ⭐ **All four EXPLAIN files cold, answers covered** · Microsoft practice assessment, timed · score it and write down *why* each miss was wrong | ⭐ **Stop at 16:00** |
+| **D-0 Mon 31** | [`EXAM-DAY.md`](EXAM-DAY.md) + the ten one-liners. Nothing new | — |
 
-| Day | CORE — do these | TRIM | DEFER |
-|---|---|---|---|
-| **2** Thu 20 | 2.2 TAP · 2.3 method ladder · 2.4 auth strengths · 2.5 SSPR + registration campaign | 2.6 legacy auth *(cause the failure, log the error, move on)* | 2.1 before/after measurement |
-| **3** Fri 21 | ⭐ 3.1 policy set · 3.2 What-If · 3.3 the AND trap · 3.5 CAE | 3.4 token lifetime · 3.6 move to enforce | — |
-| **4** Sat 22 | 4.2 the 2×2 · 4.3 activate with approval · 4.4 PIM for Groups · 4.5 service principals | deliberate failures *(log errors only)* | 4.1 standing-privilege measurement |
-| **5** Sun 23 | ⭐ 5.1 access review **first** · 5.2 entitlement management · 5.3 lifecycle workflows | the "review that changes nothing" failure | — |
-| **6** Mon 24 | 6.1 read a token · 6.2 delegated vs application · 6.3 consent framework | 6.4 workload identity federation | — |
-| **7** Tue 25 | 7.1 Identity Protection · 7.3 external identities | 7.2 risk policies to enforce | ⭐ **7.4 evidence sweep · 7.5 rehearse expiry — 4 h, zero marks** |
-
-⭐ **Day 3 has no DEFER row on purpose.** Conditional Access is the largest single block of marks
-on this exam and the day is already the tightest. Protect it.
-
-⚠ **Day 5's access review still runs first thing in the morning.** It needs elapsed time to
-produce a result — that constraint is real regardless of exam pressure.
+⭐ **The 104 practice questions are live in your dashboard** at `localhost:9190` → SC-300, and the
+[Lexicon](sc-300-lexicon.html) has 274 terms with 83 traps flagged and a *hide known* filter.
 
 ---
+
 
 ## 5. ⭐ The evening block — 90 minutes, every day, non-negotiable
 
@@ -152,19 +147,17 @@ Reading is recognition. The exam tests recall, and ⭐ **so does every interview
 
 | Evening of | [`EXPLAIN/`](EXPLAIN/) — four levels each | [`GAP-DRILL.md`](GAP-DRILL.md) |
 |---|---|---|
-| Thu 20 | [D1](EXPLAIN/D1-USER-IDENTITIES.md) §1–5 — Entra, tenant, identities, groups, ⭐ AUs | §1–2 |
-| Fri 21 | ⭐ [D2](EXPLAIN/D2-AUTH-AND-ACCESS.md) §8–11 — ⭐ **CA, strengths, CAE** | §3 |
-| Sat 22 | [D4](EXPLAIN/D4-GOVERNANCE.md) §1–2 PIM + [D1](EXPLAIN/D1-USER-IDENTITIES.md) §6 roles | §4 |
-| Sun 23 | [D4](EXPLAIN/D4-GOVERNANCE.md) §3–7 — reviews, packages, lifecycle | §5 |
-| Mon 24 | [D3](EXPLAIN/D3-WORKLOAD-IDENTITIES.md) all — ⭐ `scp` vs `roles` | §6 |
-| Tue 25 | [D2](EXPLAIN/D2-AUTH-AND-ACCESS.md) §12–13 + [D1](EXPLAIN/D1-USER-IDENTITIES.md) §10 | §7 |
+| D-4 Thu 27 | [D1](EXPLAIN/D1-USER-IDENTITIES.md) §1–5 — Entra, tenant, identities, groups, ⭐ AUs | §1–2 |
+| D-3 Fri 28 | ⭐ [D2](EXPLAIN/D2-AUTH-AND-ACCESS.md) §8–11 — ⭐ **CA, strengths, CAE** | §3 |
+| D-2 Sat 29 | [D4](EXPLAIN/D4-GOVERNANCE.md) §1–2 PIM + [D1](EXPLAIN/D1-USER-IDENTITIES.md) §6 roles | §4 |
+| D-1 Sun 30 | [D4](EXPLAIN/D4-GOVERNANCE.md) §3–7 — reviews, packages, lifecycle | §5 |
 
 ⭐ **You read each concept the same evening you labbed it.** The lab builds the memory; explaining
 it that night is what fixes it. ⭐ **Leave it a week and you learn it twice.**
 
 ---
 
-## 6. Revision A — Wednesday 26 August
+## 6. Revision A — folded into D-1 (Sun 30 Aug)
 
 ⭐ **No new material. None.** Anything unlearned by tonight stays unlearned.
 
@@ -187,7 +180,7 @@ here, not on exam eve — you want time to act on the result.
 
 ---
 
-## 7. Revision B — Thursday 27 August, and stop early
+## 7. Exam eve — Sun 30 Aug, stop at 16:00
 
 ```
 09:00  Only the weak areas from yesterday's scoring          3 h

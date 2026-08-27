@@ -346,4 +346,4 @@ resource carries an `expires` tag.
 days ≈ **₹5,091**. ⚠ **The binding constraint is vCPU quota, not money** — Free Trial subscriptions
 cannot request an increase.
 
-⚠ **Do not build it before the 2026-08-28 exam.** See [`lab/README.md`](lab/README.md) §1.
+⚠ **Do not build it before the 2026-08-31 exam.** See [`lab/README.md`](lab/README.md) §1.

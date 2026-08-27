@@ -114,7 +114,7 @@ that gets reliability work prioritised.**
 A1  ⭐ Add "policy must pass 7 days report-only" to the CA checklist
     Owner D. Mwangi   Due 2026-08-21   ⭐ Prevents recurrence
 A2  ⭐ Alert on CA policy modification (activity log alert)
-    Owner L. Petrov   Due 2026-08-28   ⭐ Reduces TTD
+    Owner L. Petrov   Due 2026-08-31   ⭐ Reduces TTD
 A3  ⭐ QUARTERLY break-glass sign-in test, calendared with an owner
     Owner J. Okafor   Due 2026-09-01   ⭐ Reduces TTM  ← ⭐ highest value
 A4  Document the CA rollback command in the runbook

@@ -1,6 +1,6 @@
 # Mission
 
-**Pass SC-300 on Friday 28 August 2026**, then convert certification into real capability on the path to elite cloud security engineer ($200–500k track).
+**Pass SC-300 on Monday 31 August 2026**, then convert certification into real capability on the path to elite cloud security engineer ($200–500k track).
 
 Ground rules established by the learner:
 - No labs before the exam — reading + retrieval only (Days 1–5 of the sprint were not completed)

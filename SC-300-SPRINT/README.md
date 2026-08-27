@@ -1,6 +1,6 @@
 # SC-300 Sprint — 7 days of labs on a 30-day clock
 
-> ⚠ **EXAM BOOKED: Friday 28 August 2026. This README's pacing is superseded.**
+> ⚠ **EXAM BOOKED: Monday 31 August 2026. This README's pacing is superseded.**
 > ⭐ **Go to [`EXAM-COUNTDOWN.md`](EXAM-COUNTDOWN.md)** — it re-triages these seven days against a
 > real exam date, cuts ~6 hours of portfolio work that scores zero marks, and adds the revision
 > days this sprint never had.
@@ -249,7 +249,7 @@ this and it is a real customer scenario:
 Policy, Key Vault, private endpoints, Bicep/Terraform and all of `60-ai-and-secure-ai` are
 **technically runnable**.
 
-> ⚠ **Do not touch any of it before 2026-08-28.**
+> ⚠ **Do not touch any of it before 2026-08-31.**
 >
 > ⭐ **None of it is on SC-300.** SC-300 is four identity domains; Sentinel is SC-200 and
 > Foundry is SC-500. A newly-unblocked subscription 8 days before an identity exam is the most

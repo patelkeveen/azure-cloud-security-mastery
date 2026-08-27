@@ -131,7 +131,7 @@ map, a self-check and a troubleshooting guide. ⭐ **Start with [`DAY-1.md`](SC-
 
 ---
 
-## 6b. ⚠ There is an exam on 2026-08-28. That changes the order
+## 6b. ⚠ There is an exam on 2026-08-31. That changes the order
 
 ⭐ **Evidence capture is deferred until 29 August.** Between now and the exam, three files govern:
 

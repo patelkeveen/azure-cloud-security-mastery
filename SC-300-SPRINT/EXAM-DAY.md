@@ -1,7 +1,7 @@
 # Exam day — technique, and the morning of
 
 > ⭐ **Read this once on Thursday 27 August and once on the morning.** Not more.
-> **Exam: SC-300, Friday 28 August 2026.**
+> **Exam: SC-300, Monday 31 August 2026.**
 
 ---
 
