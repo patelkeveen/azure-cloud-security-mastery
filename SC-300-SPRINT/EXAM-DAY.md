@@ -1,7 +1,23 @@
 # Exam day — technique, and the morning of
 
+> ## ⚠ DATE CORRECTION — 2026-08-31
+>
+> **This document was written for an SC-300 sitting on Monday 31 August 2026. That is wrong.**
+> The real schedule, as stated by Keveen on 2026-08-31:
+>
+> | Exam | Date | |
+> |---|---|---|
+> | **SC-200** Security Operations Analyst | **Saturday 12 September 2026** | sits FIRST |
+> | **SC-300** Identity & Access Administrator | **Friday 18 September 2026** | |
+>
+> Everything below paces a four-day SC-300 sprint that has already elapsed, and it does not
+> mention SC-200 at all. Read it for its content, not for its timing. The live SC-200 material
+> is in the Study console (159 questions, 145 cards, 15 labs) and in
+> `OS/UI/data/study-materials/SC200_*`.
+
+
 > ⭐ **Read this once on Thursday 27 August and once on the morning.** Not more.
-> **Exam: SC-300, Monday 31 August 2026.**
+> **Exams: SC-200 Saturday 12 September 2026 (first), SC-300 Friday 18 September 2026.**
 
 ---
 

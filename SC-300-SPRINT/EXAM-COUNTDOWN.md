@@ -1,4 +1,20 @@
-# Exam countdown — SC-300 on Monday 31 August 2026
+# Exam countdown — SC-200 on Sat 12 Sep 2026, SC-300 on Fri 18 Sep 2026
+
+> ## ⚠ DATE CORRECTION — 2026-08-31
+>
+> **This document was written for an SC-300 sitting on Monday 31 August 2026. That is wrong.**
+> The real schedule, as stated by Keveen on 2026-08-31:
+>
+> | Exam | Date | |
+> |---|---|---|
+> | **SC-200** Security Operations Analyst | **Saturday 12 September 2026** | sits FIRST |
+> | **SC-300** Identity & Access Administrator | **Friday 18 September 2026** | |
+>
+> Everything below paces a four-day SC-300 sprint that has already elapsed, and it does not
+> mention SC-200 at all. Read it for its content, not for its timing. The live SC-200 material
+> is in the Study console (159 questions, 145 cards, 15 labs) and in
+> `OS/UI/data/study-materials/SC200_*`.
+
 
 > ⭐ **This file overrides the pacing in [`README.md`](README.md) §4.** That sprint was built to
 > produce a portfolio on a 30-day licence clock; this is triage against an exam date.

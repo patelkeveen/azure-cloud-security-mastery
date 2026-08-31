@@ -1,6 +1,22 @@
 # SC-300 Sprint — 7 days of labs on a 30-day clock
 
-> ⚠ **EXAM BOOKED: Monday 31 August 2026. This README's pacing is superseded.**
+> ## ⚠ DATE CORRECTION — 2026-08-31
+>
+> **This document was written for an SC-300 sitting on Monday 31 August 2026. That is wrong.**
+> The real schedule, as stated by Keveen on 2026-08-31:
+>
+> | Exam | Date | |
+> |---|---|---|
+> | **SC-200** Security Operations Analyst | **Saturday 12 September 2026** | sits FIRST |
+> | **SC-300** Identity & Access Administrator | **Friday 18 September 2026** | |
+>
+> Everything below paces a four-day SC-300 sprint that has already elapsed, and it does not
+> mention SC-200 at all. Read it for its content, not for its timing. The live SC-200 material
+> is in the Study console (159 questions, 145 cards, 15 labs) and in
+> `OS/UI/data/study-materials/SC200_*`.
+
+
+> ⚠ **EXAMS BOOKED: SC-200 Sat 12 Sep 2026, SC-300 Fri 18 Sep 2026. This README's pacing is superseded.**
 > ⭐ **Go to [`EXAM-COUNTDOWN.md`](EXAM-COUNTDOWN.md)** — it re-triages these seven days against a
 > real exam date, cuts ~6 hours of portfolio work that scores zero marks, and adds the revision
 > days this sprint never had.
