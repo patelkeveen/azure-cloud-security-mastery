@@ -1,8 +1,8 @@
 # SC-200 Resource Library — what a SOC engineer actually reads
 
 > Companion to `SC-300-RESOURCE-LIBRARY.md`, which covers identity. This one covers operations.
-> Built 2026-09-03, **9 days before the exam (Sat 12 Sep 2026)**. Every link verified live that day.
-> Sequenced for 9 days, not for a semester. Read "How to sequence 9 days" first and skip the rest
+> Built 2026-09-04, **8 days before the exam (Sat 12 Sep 2026)**. Every link verified live that day.
+> Sequenced for the days remaining, not for a semester. Read "How to sequence the last 8 days" first and skip the rest
 > if you are short on time.
 
 ---
@@ -157,7 +157,7 @@ not features.
 
 ---
 
-## How to sequence 9 days
+## How to sequence the last 8 days
 
 Nine days, employed, with SC-300 six days after this one. This is a triage plan, not a syllabus.
 

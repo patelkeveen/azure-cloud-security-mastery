@@ -1,6 +1,6 @@
 # Terraform Resource Library — and the artifact that makes the quarter work
 
-> Built 2026-09-03. Every link verified live that day.
+> Built 2026-09-04. Every link verified live that day.
 > This exists because a search of `C:\IT` found **no Terraform material at all** — while K-WIN §1.4
 > names Terraform as the quarter's single committed skill, with an artifact due **30 Sep 2026**.
 > 27 days, employed, with two exams in between. So this is not a syllabus. It is a shipping plan
@@ -14,7 +14,7 @@
 now **redirects** to `…/certification-004`. Anything you find that says "003" is a version behind,
 and most third-party courses still say 003.
 
-Verified from HashiCorp's certification page on 2026-09-03:
+Verified from HashiCorp's certification page on 2026-09-04:
 
 | | Terraform Associate (004) |
 |---|---|
