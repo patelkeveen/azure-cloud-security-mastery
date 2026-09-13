@@ -1,19 +1,24 @@
 # SC-300 Sprint — 7 days of labs on a 30-day clock
 
-> ## ⚠ DATE CORRECTION — 2026-08-31
+> ## ⚠ SUPERSEDED — 2026-09-14
 >
-> **This document was written for an SC-300 sitting on Monday 31 August 2026. That is wrong.**
-> The real schedule, as stated by Keveen on 2026-08-31:
+> **Read [`FINAL-FOUR.md`](FINAL-FOUR.md) instead.** Two things changed on 2026-09-14:
 >
-> | Exam | Date | |
-> |---|---|---|
-> | **SC-200** Security Operations Analyst | **Saturday 12 September 2026** | sits FIRST |
-> | **SC-300** Identity & Access Administrator | **Friday 18 September 2026** | |
+> | | |
+> |---|---|
+> | **SC-200** | **POSTPONED to October 2026.** It is no longer first, and no longer in this window |
+> | **SC-300** | **Friday 18 September 2026, 07:30 IST**, online proctored — the only exam left |
+> | **M365 E5 trial** | **ENDED 2026-09-10.** Azure credits exhausted |
 >
-> Everything below paces a four-day SC-300 sprint that has already elapsed, and it does not
-> mention SC-200 at all. Read it for its content, not for its timing. The live SC-200 material
-> is in the Study console (159 questions, 145 cards, 15 labs) and in
-> `OS/UI/data/study-materials/SC200_*`.
+> **There is no tenant.** Every lab instruction in this pack — `DAY-1.md`…`DAY-7.md`, the
+> `Day0`/`Day1` scripts, the audit-log fix below — is moot. Do not open them.
+>
+> What is still good here: the *technique* and the *content*. What is stale: every date, every
+> lab step, and anything that assumes a live E5 licence.
+>
+> **New for this window:** [`FINAL-FOUR.md`](FINAL-FOUR.md) (the plan, verified exam logistics and
+> the 07:30 protocol) · [`BLIND-SPOTS.md`](BLIND-SPOTS.md) (**three live skill groups with zero
+> coverage in `EXPLAIN/`**) · [`DISCRIMINATORS.md`](DISCRIMINATORS.md) (83 pairs with exam tells).
 
 
 > ⚠ **EXAMS BOOKED: SC-200 Sat 12 Sep 2026, SC-300 Fri 18 Sep 2026. This README's pacing is superseded.**
