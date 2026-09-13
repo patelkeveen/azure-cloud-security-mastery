@@ -29,9 +29,14 @@ removed none, and altered no weights — only five "Minor" skill-group edits. Yo
 D2 25–30% / D3 20–25% / D4 20–25% material is current. **SC-200 was the exam restructured in July,
 not this one.**
 
-**The bad news, also verified today:** three entire live skill groups have **zero** coverage in the
-`EXPLAIN/` files you revise from. They are in [`BLIND-SPOTS.md`](BLIND-SPOTS.md) and they are the
-first thing you should read.
+**The bad news, also verified today:** three entire live skill groups — Global Secure Access,
+Defender for Cloud Apps, and monitoring/logs/workbooks — have **zero** coverage in the four
+`EXPLAIN/` four-level explainer files.
+
+**Measured correction:** your *question bank* does cover them — 6, 10 and 12 questions respectively,
+28 of 180, plus 16 flashcards. So this is not unseen material. It is **28 questions you have no
+explainer behind**, which is why a miss there never converts into a fix.
+[`BLIND-SPOTS.md`](BLIND-SPOTS.md) is the missing explainer layer, and it is the first thing to read.
 
 ---
 
@@ -83,7 +88,7 @@ Morning    Practice assessment COLD, before any revision.            60 min
            (Optional, timeboxed) P2 trial attempt.                   30 min
 Afternoon  BLIND-SPOTS.md §1 Global Secure Access                    60 min
            BLIND-SPOTS.md §3 Monitor identity activity               60 min
-           Both OUT LOUD. These are D2 and D4 material you have zero notes on.
+           Both OUT LOUD. 18 bank questions test these and you have no explainer.
 Evening    EXPLAIN/D2-AUTH-AND-ACCESS.md, all 13 concepts, out loud  90 min
            Applied Skills lab (free real tenant)                     30 min
 ```

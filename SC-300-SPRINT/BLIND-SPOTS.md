@@ -14,8 +14,9 @@ revision changed no group names, added none, removed none, and altered no weight
 carry a "Minor" edit and one, Global Secure Access, is marked "No change", meaning it was already on
 the exam before April.
 
-**But three entire live skill groups have zero coverage in the four `EXPLAIN/` files you revise from**,
-and they sit inside your three largest domains:
+**But three entire live skill groups have zero coverage in the four `EXPLAIN/` files** — the
+four-level explainers you read to understand and remember — and they sit inside your three largest
+domains:
 
 | Missing skill group | Lives in | Domain weight |
 |---|---|---|
@@ -23,13 +24,25 @@ and they sit inside your three largest domains:
 | **Manage and monitor app access by using Microsoft Defender for Cloud Apps** | D3 Workload identities | 20–25% |
 | **Monitor identity activity by using logs, workbooks, and reports** | D4 Governance | 20–25% |
 
-Each domain has four skill groups. If items were spread evenly — they are not, but as a first
-approximation — that is roughly **one quarter of three domains, or about 15–18% of the paper**, on
-material your revision files never mention.
+### ⚠ Correction, measured 2026-09-14 — the gap is narrower than first stated
 
-**This file is that material.** Read it Monday and Tuesday. It is the single highest-value thing you
-can do with the four days, because everything else in your pack is revision of things you already
-half-know, and this is not.
+An earlier version of this file implied these three groups were absent from your revision material
+*as a whole*, and that roughly 15–18% of the paper was unseen. **That was wrong, and the measurement
+is worth having.** Your 180-question SC-300 bank does cover them:
+
+| Skill group | Questions | Flashcards |
+|---|---|---|
+| Global Secure Access | **6** / 180 | 5 / 126 |
+| Defender for Cloud Apps | **10** / 180 | 5 / 126 |
+| Monitor identity activity | **12** / 180 | 6 / 126 |
+
+**The real gap is more specific, and it is still worth four hours of your week.** These groups are
+missing from the four `EXPLAIN/` files — the *understand-and-remember* layer you revise from. So you
+have **28 questions testing material you have no explainer for.** Miss one in practice and there is
+nothing behind it to fix the miss with. You would re-read the question, nod, and forget it.
+
+**This file is that missing explainer layer.** Read it Monday and Tuesday, then the 28 questions
+land on prepared ground instead of bouncing off.
 
 > **One honesty note.** The adversarial verification pass for this sprint was killed by a monthly
 > spend limit, so the facts below were gathered but not independently refuted by a second pass.
@@ -38,7 +51,7 @@ half-know, and this is not.
 
 ---
 
-# 1. Global Secure Access — D2, and completely absent locally
+# 1. Global Secure Access — D2, and absent from every `EXPLAIN/` file
 
 ## What it is, in one paragraph
 
@@ -110,7 +123,7 @@ forwarding profile are available more broadly with Entra ID P1.
 
 ---
 
-# 2. Microsoft Defender for Cloud Apps — D3, and completely absent locally
+# 2. Microsoft Defender for Cloud Apps — D3, and absent from every `EXPLAIN/` file
 
 This is a whole skill group in a 20–25% domain, with **seven bullets**. It is the CASB.
 
@@ -169,7 +182,7 @@ web-only access. No proxy, no MDCA licence, but only works for apps that support
 
 ---
 
-# 3. Monitor identity activity — D4, and completely absent locally
+# 3. Monitor identity activity — D4, and absent from every `EXPLAIN/` file
 
 Four things, and the boundaries between them are the exam.
 
