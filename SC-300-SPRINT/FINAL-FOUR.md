@@ -198,6 +198,50 @@ so any paper Aadhaar is out regardless of condition.
 **PAN and Voter ID are "not enumerated" rather than "published as rejected"** — an unsourced
 negative, not a confirmed exclusion. Use the passport and the question disappears.
 
+### 4.25 If you are using Aadhaar — the decision tree
+
+**Stated 2026-09-14: he intends to use Aadhaar.** That is workable *only* for one specific version
+of the card, and the version most people own is rejected. Work down this list.
+
+**Question 1 — do you have an unexpired Indian passport whose name matches the certification
+profile?** If yes, **use it and stop reading.** It is the first-listed accepted ID, and it carries
+a **signature**, which Microsoft's ID wording requires and which the PVC Aadhaar does not print.
+
+**Question 2 — if not, which Aadhaar do you physically hold?**
+
+| What you have | OnVUE outcome |
+|---|---|
+| **UIDAI-issued PVC card** — ordered from uidai.gov.in, ~₹50, posted to you. Has a **ghost image** and a **guilloche** (wavy line) security pattern | **Accepted** — with the signature caveat below |
+| **Laminated paper Aadhaar** — the common one, printed at home or at a shop and laminated | ❌ **Rejected** |
+| **Privately printed PVC** — from a shop or Common Service Centre, not UIDAI | ❌ **Rejected** |
+| **e-Aadhaar PDF printout** | ❌ **Rejected** |
+| **mAadhaar app / any digital form** | ❌ **Rejected** |
+
+**Check yours now:** hold it up. If there is no faint translucent "ghost" copy of your photo and no
+fine wavy guilloche background, it is not the UIDAI PVC card.
+
+**Question 3 — can you order the PVC card in time?** **No.** UIDAI PVC cards are posted and
+typically take **a week or more**. Friday is in four days. This is not a fix for this sitting.
+
+**The signature caveat, even on the genuine PVC card.** Microsoft's general ID policy asks for name,
+photo **and signature**. The PVC Aadhaar does not carry a signature, and Pearson's own Aadhaar policy
+hedges with *"for most exams"*. So the genuine card is **accepted but not risk-free** — a greeter
+working from the general policy could question it.
+
+**Question 4 — what if your only ID is a rejected form?** Two routes, both today or tomorrow:
+
+1. **A state RTO driving licence card** is on the accepted list — capture front and back. If you
+   have one, it is a better answer than a laminated Aadhaar.
+2. **Call Pearson VUE customer service.** The exception window is **three business days** before the
+   appointment, which for Friday 18 September is **around Tuesday 15 September**. Explain which ID
+   you hold and ask what they will accept. **This is the whole reason that deadline matters.**
+
+> **The honest summary:** passport → no risk. Genuine UIDAI PVC Aadhaar → small residual risk from
+> the missing signature. Anything else → **you will be turned away at check-in, and the fee is
+> forfeited with no refund.**
+
+---
+
 ### 4.3 The room, Friday 07:00
 
 - **Enclosed room, door closed.** Nobody may enter or pass through. Tell the household the night
