@@ -1,7 +1,7 @@
 # SC-300 discriminators — the pairs the exam deliberately confuses
 
-**Built 2026-09-14, four days before the exam (Friday 18 September 2026, 07:30 IST).**
-Blueprint verified live the same day: *skills measured as of 27 April 2026* —
+**Built 2026-09-14. Exam Friday 18 September 2026, 07:30 IST.**
+Blueprint verified live: *skills measured as of 27 April 2026* —
 <https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-300>
 
 > **How to use this.** Cover the right-hand column. Say the distinction out loud, then say the
@@ -445,110 +445,206 @@ Blueprint verified live the same day: *skills measured as of 27 April 2026* —
 
 ## D4 — Plan and automate identity governance · 20-25%
 
-> ⚠ **Sourced differently from D1-D3.** The research agent that owned this domain was killed
-> by a monthly spend limit partway through the run. These pairs are written from the live
-> skill groups and standard SC-300 material rather than fetched and link-verified one by one,
-> so treat the *distinctions* as reliable and **verify any specific number against Microsoft**
-> **Learn before quoting it.** The four live skill groups are: entitlement management · access
-> reviews · privileged access (PIM) · **monitor identity activity using logs, workbooks and reports**.
+> ✅ **Rebuilt and verified 2026-09-14.** An earlier version of this section was hand-written
+> because the research agent that owned D4 was killed by a spend limit. It has now been
+> replaced by a fetched-and-link-verified set, and the hand-written draft was fact-checked:
+> **8 claims confirmed, 9 imprecise, 0 outright wrong.** The corrections that mattered are
+> listed at the end of this section — read them, because each one is a named-role or
+> count-based item the exam likes.
+
+*Revision budget: 90.*
 
 ### Discriminators
 
-**PIM **eligible**** vs **PIM **active****
-- Eligible means the assignment exists but the privilege is not held until the user activates it, with whatever activation controls the role requires. Active means they hold it right now. Both can additionally be permanent or time-bound, giving a 2x2.
-- **Tell:** 'just-in-time', 'only when needed', 'must request', 'approval before use' -> eligible. 'standing access', 'holds the role continuously', 'break-glass' -> active (and usually permanent).
+**Catalog** vs **Access package**
+- A catalog is a CONTAINER of related resources AND of access packages — it is the delegation boundary (catalog owners add resources they own). An access package is the BUNDLE a requester actually receives: resource roles + one or more policies. An access package always lives inside exactly one catalog.
+- **Tell:** 'Delegate to a department the ability to manage their own resources without IT' or 'add a SharePoint site so it can be included' → catalog. 'Users must be able to request X and Y together, approved by their manager, expiring in 90 days' → access package (+ policy).
 
-**PIM for **Entra roles**** vs **PIM for **Azure resources****
-- Two separate blades with separate assignment stores. Entra roles govern the directory (Global Admin, User Admin). Azure resource roles govern subscriptions/resource groups via Azure RBAC (Owner, Contributor).
-- **Tell:** 'Global Administrator', 'User Administrator', 'directory role' -> Entra roles. 'subscription', 'resource group', 'Owner on the production subscription' -> Azure resources.
+**Access package** vs **Policy (access package assignment policy)**
+- The access package says WHAT you get (resource roles). The policy says WHO can request/be assigned, WHO approves, and HOW LONG access lasts. One access package can carry multiple policies — classically one for internal employees and one for external users.
+- **Tell:** 'Employees need manager approval, partners need two-stage approval, same resources' → one access package, TWO policies. Any stem containing 'approval', 'expiration', 'who can request' is a policy question, not an access package question.
 
-**PIM for **Groups**** vs **Role-assignable group**
-- PIM for Groups makes *membership or ownership of a group* eligible/active. A role-assignable group is a group that can have a directory role assigned to it at all. They compose: make a group role-assignable, assign it a role, then use PIM for Groups so membership is JIT.
-- **Tell:** 'activate membership', 'eligible member of the group' -> PIM for Groups. 'assign a role to a group' -> role-assignable group.
+**Connected organization** vs **External collaboration settings vs cross-tenant access settings**
+- Connected organization is an entitlement-management object naming an external identity source so its users may REQUEST access packages. External collaboration settings control WHO in your tenant may invite guests and what guests can see. Cross-tenant access settings (B2B collaboration/direct connect inbound-outbound trust) control whether MFA/device claims from the partner tenant are trusted.
+- **Tell:** 'Users from Contoso must be able to request the Marketing access package' → connected organization. 'Only User Administrators may invite guests' → external collaboration settings. 'Trust MFA claims from Fabrikam' → cross-tenant access settings.
 
-****Access review**** vs ****Entitlement management****
-- A review *certifies access that already exists* and produces an approve/deny decision. Entitlement management *grants access in the first place*, packaged as a catalog + access package + policy, with a request, approval and expiry.
-- **Tell:** 'recertify', 'confirm they still need it', 'quarterly attestation' -> access review. 'request access', 'self-service', 'bundle of resources', 'time-limited assignment', 'external partner requests' -> entitlement management.
+**Configured connected organization** vs **Proposed connected organization**
+- Configured = an admin created or approved it; it appears in pickers and is in scope for policies targeting 'all configured connected organizations'. Proposed = auto-created when an unknown external user was approved through an 'All users (All connected organizations + any new external users)' policy; it is NOT in scope for 'all configured' and can only be named explicitly.
+- **Tell:** 'External users who requested access appear as an organization we never created' → proposed. 'Why can't users from that org see the package scoped to all configured organizations?' → it is proposed, not configured.
 
-****Access package**** vs ****Catalog****
-- A catalog is the container of resources (groups, apps, SharePoint sites) that can be offered. An access package is a bundle of some of those resources plus one or more policies saying who may request it and on what terms.
-- **Tell:** 'group resources so a department owner can manage them' -> catalog. 'what the requester actually receives' -> access package.
+**Request policy (users can request access)** vs **Auto-assignment policy**
+- Request policy: user goes to My Access, requests, an approver decides. Auto-assignment policy: a membership rule on user attributes (e.g. department eq 'Sales') silently assigns and, when the attribute changes, REMOVES access — no request, no approver. Auto-assignment requires the Entra ID Governance SKU; plain request policies work at P2.
+- **Tell:** 'Access must be granted automatically based on department and removed when the user moves' → auto-assignment policy. 'Users must justify and get manager approval' → request policy.
 
-**Entitlement-management **policy**** vs **Conditional Access policy**
-- In entitlement management, 'policy' means *who may request this package, who approves, how long it lasts*. It has nothing to do with sign-in conditions.
-- **Tell:** If the stem is about requesting and approving access -> EM policy. If it is about a sign-in being allowed or blocked -> CA.
+**Incompatible access packages** vs **Incompatible groups**
+- Separation of duties in entitlement management is configured on an access package's 'Separation of duties' blade and accepts BOTH other access packages AND security-enabled groups. Relationships are UNIDIRECTIONAL — you must add the reverse entry on the other package to block both directions.
+- **Tell:** 'Users already in the on-premises-synced Marketing security group must not be able to request this package' → incompatible GROUP (an access-package-only answer is wrong). 'Users with Eastern Territory must not get Western Territory and vice versa' → add the incompatible relationship on BOTH packages.
 
-****Connected organization**** vs **B2B guest / external collaboration settings**
-- A connected organization is an entitlement-management object that names an external tenant or domain so its users can *request* access packages. External collaboration settings decide who may *invite* guests at all; cross-tenant access settings decide trust.
-- **Tell:** 'partner organization should be able to request access to the package' -> connected organization. 'who can invite guests' -> external collaboration settings. 'trust their MFA / accept their compliant device' -> cross-tenant access settings.
+**Internal sponsor** vs **External sponsor**
+- Both are set on the connected organization and can be chosen as approvers in a policy. Internal sponsors are MEMBER users in your own directory who own the partner relationship. External sponsors are GUEST users from that connected organization already invited into your directory.
+- **Tell:** 'Someone at the partner company must approve their own people's requests' → external sponsor. 'Our account manager approves all Contoso requests' → internal sponsor. If the stem says 'sponsor from the assignee's user profile' that is a different, Governance-SKU-only approver type.
 
-**Access review **for guests**** vs **Inactive-guest insights**
-- A review decides per-guest whether access continues. Inactive-guest insights surface guests with no recent sign-in and are an Entra ID Governance SKU feature, not plain P2.
-- **Tell:** 'has not signed in for 90 days, report it' -> inactive guest insights (and note the licence). 'reviewer decides' -> access review.
+**Catalog creator** vs **Catalog owner / Access package manager**
+- Catalog creator is a tenant-level delegation: a collection of users allowed to create NEW catalogs (and they automatically own what they create). Catalog owner manages an existing catalog and its resources. Access package manager manages access packages and policies inside a catalog but cannot add resources to it.
+- **Tell:** 'A department lead must be able to spin up their own catalog' → catalog creator. 'They must create packages but must not add new resources' → access package manager.
 
-**Reviewer = **self**** vs **Reviewer = manager / group owner / selected users**
-- Self-review asks the user to attest to their own access. The others put the decision with someone accountable. The exam likes self-review for large guest populations and manager review for employees.
-- **Tell:** 'ask the users themselves to confirm' -> self. 'their manager should decide' -> manager. 'the group owner' -> group owner.
+**Auto apply results to resource** vs **If reviewers don't respond**
+- Two independent settings on the same 'Upon completion settings' pane. 'Auto apply results' decides whether decisions are enforced automatically or must be applied manually. 'If reviewers don't respond' decides the DEFAULT DECISION for un-reviewed users: No change / Remove access / Approve access / Take recommendations. Together, 'Remove access' + auto-apply can strip everyone if reviewers ignore the review.
+- **Tell:** 'Reviewers made decisions but nothing changed' → Auto apply is disabled. 'Users nobody reviewed lost access' → If reviewers don't respond = Remove access (or Take recommendations) with auto-apply on.
 
-****If reviewers don't respond**** vs **Auto-apply results**
-- Two different settings. 'If reviewers don't respond' sets the *decision* for un-actioned items (No change / Remove access / Approve access / Take recommendations). 'Auto apply results to resource' controls whether decisions are *enforced* automatically when the review ends.
-- **Tell:** 'nobody responded, what happens to their access' -> the don't-respond action. 'decisions must take effect without an admin clicking Apply' -> auto-apply.
+**Access review created in the Access Reviews area** vs **Access review created in PIM**
+- Groups, applications, and custom data resources are reviewed from ID Governance > Access reviews. Microsoft Entra ROLES and AZURE RESOURCE roles are reviewed from ID Governance > Privileged Identity Management. Access PACKAGE assignments are reviewed from entitlement management on the access package itself.
+- **Tell:** Any stem naming Global Administrator, Security Administrator, Owner, or User Access Administrator as the thing being reviewed → PIM, not Access reviews. The reviewer experience is also the tell: PIM reviews are done in the Entra admin center; group/app/access-package reviews are done in My Access.
 
-****Lifecycle workflows**** vs **Entitlement management**
-- Lifecycle workflows automate *joiner/mover/leaver tasks* triggered by attributes such as employeeHireDate and employeeLeaveDateTime. Entitlement management is request-driven. Lifecycle workflows need the Entra ID Governance SKU, not P2.
-- **Tell:** '30 days before the hire date, generate a TAP and email the manager' -> lifecycle workflow. 'user asks for access to a package' -> entitlement management.
+**'No sign-in within 30 days' recommendation** vs **'User-to-Group Affiliation' recommendation**
+- The 30-day recommendation is inactivity-based (signed in in the last 30 days → approve; not → deny). User-to-Group Affiliation is ML-based on the org reporting structure: users distant from the rest of the group get a deny recommendation. Affiliation recommendations require the Entra ID Governance SKU; the 30-day one works at P2.
+- **Tell:** 'Recommend denial for users who don't look like they belong to this team' → User-to-Group Affiliation. 'Recommend based on last sign-in' → inactivity. If the stem says 'reviews scoped to inactive users only' that is a third, Governance-only feature.
 
-****Separation of duties**** vs **Incompatible access package**
-- In entitlement management you can mark two access packages incompatible, so holding one blocks requesting the other. That is the concrete implementation of separation of duties.
-- **Tell:** 'a user who has Finance-Approver must not be able to get Finance-Payments' -> incompatible access packages.
+**Single-stage access review** vs **Multi-stage access review**
+- Single stage: all reviewers decide in the same window and the LAST decision recorded wins. Multi-stage: 2 or 3 sequential independent sets of reviewers; stage N+1 starts only after stage N records a decision, and you choose which reviewees (approved / denied / not reviewed / 'Don't know' / all) carry forward. B2B direct connect users are only included in SINGLE-stage reviews.
+- **Tell:** 'Escalate to a second group of reviewers' or 'reduce burden on senior reviewers' → multi-stage. 'Two reviewers disagreed, whose answer counts?' → single stage, last decision wins.
 
-****Sign-in logs**** vs ****Audit logs****
-- Sign-in logs record authentication events (who signed in, from where, which app, CA result). Audit logs record *changes to the directory* (who created the user, who changed the policy).
-- **Tell:** 'which policy applied to this sign-in' / 'why was this blocked' -> sign-in logs. 'who deleted the group' / 'who changed the CA policy' -> audit logs.
+**'Remove user's membership from the resource'** vs **'Block user from signing-in for 30 days, then remove user from the tenant'**
+- Both are values of 'Action to apply on denied guest users', and that setting only appears when the review is scoped to GUEST USERS ONLY. Option A removes access to the reviewed group/app only; option B disables the guest account tenant-wide and deletes it after 30 days (recoverable inside that window).
+- **Tell:** 'Stale guests must be removed from the tenant entirely' → block-then-delete. If the review is scoped to 'Everyone', this setting is not configurable at all and the default (remove membership) applies — a common wrong-answer trap.
 
-****Provisioning logs**** vs **Audit logs**
-- Provisioning logs are specific to SCIM/app provisioning and HR-driven inbound provisioning - what was created, updated or skipped in the target app and why.
-- **Tell:** 'why was this user not created in ServiceNow' -> provisioning logs.
+**Primary reviewer** vs **Fallback reviewer**
+- Fallback reviewers only exist when the reviewer type is 'Managers of users' or 'Group owner(s)', and they act when the user has no manager or the group has no owner. Fallback reviewers CANNOT be removed once added; primary reviewers can. For PIM for Groups reviews with group owner as reviewer, a fallback is MANDATORY.
+- **Tell:** 'Some users have no manager in the directory' → fallback reviewer. 'We need to swap out a named reviewer' → primary reviewer.
 
-**Log **retention in Entra**** vs **Diagnostic settings to Log Analytics**
-- Entra retains sign-in and audit logs for a limited window by licence (7 days free, 30 days with P1/P2). To keep them longer or query them with KQL you send them via diagnostic settings to a Log Analytics workspace, a storage account, or an Event Hub.
-- **Tell:** 'keep for a year', 'run a KQL query', 'build a workbook' -> diagnostic settings + Log Analytics. 'need it right now for last week' -> the portal logs.
+**Eligible assignment** vs **Active assignment**
+- Eligible = the assignment exists but the privilege is NOT held until the user activates it (just-in-time). Active = the user holds the permission right now with no activation step. Activation settings (MFA, justification, approval, max duration) only apply to ELIGIBLE assignments.
+- **Tell:** 'Must request and justify before using the role' → eligible. 'Requires MFA when the assignment is created but the admin can use it immediately' → active (Require MFA on active assignment). Break-glass accounts are the documented exception: permanent ACTIVE Global Administrator.
 
-****Workbook**** vs **Usage and insights report**
-- Workbooks are customisable KQL-backed reports over the Log Analytics data. Usage and insights are Microsoft's pre-built application/sign-in reports inside Entra.
-- **Tell:** 'custom visualisation, our own query' -> workbook. 'which apps are used most' -> usage and insights.
+**Permanent assignment** vs **Time-bound assignment**
+- Orthogonal to eligible/active — it is a 2x2: permanent eligible, permanent active, time-bound eligible, time-bound active. Whether permanent is even offered is controlled by the ASSIGNMENT settings ('Allow permanent eligible assignment' / 'Expire eligible assignment after', and the same pair for active).
+- **Tell:** 'Administrators must not be able to create assignments that never expire' → turn OFF Allow permanent, set Expire … after. Note this is an assignment-duration setting, NOT the activation maximum duration slider.
 
-****Identity Secure Score**** vs **Microsoft Secure Score**
-- Identity Secure Score is the identity-only percentage inside Entra with improvement actions. Microsoft Secure Score is the wider M365 posture score across identity, devices, apps and data.
-- **Tell:** If the stem is only about Entra ID posture -> Identity Secure Score.
+**PIM for Microsoft Entra roles** vs **PIM for Azure resources**
+- Not just different screens — different governance. Entra roles: managed by Privileged Role Administrator (or Global Administrator), scoped to the tenant or an administrative unit, driven by Microsoft Graph. Azure resource roles: managed by the Azure RBAC Owner or User Access Administrator on the resource, scoped to management group / subscription / resource group / resource, driven by ARM. Privileged Role Administrators, Security Administrators and Security Readers do NOT by default see Azure resource role assignments.
+- **Tell:** 'Least privileged role to make someone eligible for Exchange Administrator' → Privileged Role Administrator. 'Least privileged to make someone eligible for Contributor on a subscription' → User Access Administrator (or Owner) — Privileged Role Administrator is the trap answer.
 
-****Privileged Role Administrator**** vs **Global Administrator**
-- Privileged Role Administrator can manage role assignments and configure PIM - which is everything PIM questions need - without being Global Admin. Least privilege means it is almost always the right answer.
-- **Tell:** 'configure PIM settings', 'assign directory roles', 'least privileged' -> Privileged Role Administrator.
+**PIM for Groups** vs **Role-assignable group**
+- INDEPENDENT properties. PIM for Groups makes MEMBERSHIP or OWNERSHIP of a group just-in-time (two policies per group: one for member activation, one for owner activation). Role-assignable (isAssignableToRole) is set only at CREATION, is immutable, forces membership type Assigned (no dynamic), blocks nesting, and is what lets a DIRECTORY ROLE be assigned to the group. Since January 2023 a group does NOT have to be role-assignable to be enabled in PIM for Groups; any security or M365 group except dynamic-membership and on-prem-synced groups qualifies. The 500 cap is on role-assignable groups, not PIM-enabled groups.
+- **Tell:** 'Assign the Helpdesk Administrator role to a group' → must be role-assignable (and it cannot be converted, so recreate). 'One activation should grant access to Key Vault, Intune and a SaaS app at once' → PIM for Groups. 'Make an existing group role-assignable' → impossible, create a new one.
 
-****Identity Governance Administrator**** vs **User Administrator**
-- Identity Governance Administrator owns access packages, access reviews and lifecycle workflows. User Administrator manages users and groups and cannot configure governance.
-- **Tell:** 'create the catalog / access package / review' -> Identity Governance Administrator.
+**On activation, require multifactor authentication** vs **On activation, require Microsoft Entra Conditional Access authentication context**
+- Plain 'require MFA' can be satisfied by MFA already performed earlier in the session — it may not re-prompt. Authentication context hands enforcement to a Conditional Access policy, so you can demand a specific authentication strength, a compliant device, ToU acceptance, or sign-in frequency 'Every time' to force re-authentication at each activation. If no CA policy targets the configured auth context, PIM silently falls back to requiring MFA.
+- **Tell:** 'Must re-authenticate with a phishing-resistant method every single activation' or 'must activate from an Intune-compliant device' → authentication context + CA policy (+ sign-in frequency Every time). Plain 'require MFA' is the trap.
 
-****Approval** in PIM activation** vs ****Justification** and **MFA** in PIM activation**
-- Three independent activation controls per role: require justification (free text), require MFA on activation, require approval (names approvers). Maximum activation duration is set separately.
-- **Tell:** 'someone must sign off before the role becomes active' -> require approval. 'must state why' -> justification.
+**Require justification on activation** vs **Require ticket information on activation**
+- Justification is free-text business reason. Ticket information asks for a ticket number and system and is INFORMATION-ONLY — PIM does not validate it against any ticketing system. Both are independent of Require approval to activate.
+- **Tell:** 'Must record the change-management ticket' → require ticket information; if the stem adds 'and the request must be validated against ServiceNow', the correct answer is that PIM cannot do that.
+
+**Activation settings** vs **Assignment settings**
+- Activation settings govern the act of elevating: activation maximum duration (1–24 hours), require MFA, require CA authentication context, require justification, require ticket information, require approval + approvers. Assignment settings govern how assignments may be created: allow/expire permanent eligible, allow/expire permanent active, require MFA on active assignment, require justification on active assignment. Settings are PER ROLE and every assignment of that role inherits them.
+- **Tell:** 'Sessions must end after 4 hours' → activation maximum duration. 'Assignments must not last more than 6 months' → Expire eligible/active assignment after. If the stem says 'for the Exchange Administrator role only', remember role settings are per-role and independent.
+
+**Sign-in logs vs Audit logs** vs **Provisioning logs**
+- Sign-in logs = authentication events (interactive, non-interactive, service principal, managed identity). Audit logs = CHANGES to the directory (user/group/role/policy/ToU consent events). Provisioning logs = outcomes of provisioning users/groups to and from external systems over SCIM and HR-driven inbound, with Action (Create/Update/Delete/Disable/StagedDelete/Other) and Status (Success/Failure/Skipped/Warning).
+- **Tell:** 'Who changed the Conditional Access policy?' → audit. 'Why did this user fail MFA?' → sign-in. 'Why wasn't the user created in ServiceNow / why was a Workday joiner skipped?' → provisioning. Reports Reader is the least-privileged role for all three.
+
+**Log Analytics workspace vs Storage account vs Event hub** vs **(and the fourth destination: partner solution)**
+- Diagnostic settings have FOUR destinations. Log Analytics workspace = KQL queries, workbooks, alerts, Microsoft Sentinel. Storage account = cheap long-term archive, no querying. Event hub = stream to a third-party SIEM (Splunk, QRadar). Partner solution = Azure Native ISV services from the Marketplace. Configuring diagnostic settings requires an Azure subscription and at least the Security Administrator role; expect up to three days before data appears.
+- **Tell:** 'Must run KQL / build a workbook / alert' → Log Analytics. 'Keep 7 years at lowest cost' → storage account. 'Send to our existing Splunk' → event hub. If the answer set offers 'Reports Reader' for configuring diagnostic settings, that is wrong — Reports Reader only READS logs.
+
+**Identity Secure Score** vs **Microsoft Secure Score**
+- Identity Secure Score is the IDENTITY slice, shown as a percentage in the Entra admin center under Entra ID > Identity Secure Score (also surfaced in Entra recommendations), recalculated every 24 hours, available to free and paid tenants. Microsoft Secure Score in the Defender portal spans FIVE categories: Identity, Data, Devices, Apps and Infrastructure — the identity portion is the same recommendations.
+- **Tell:** 'Improve posture for identity only, inside Entra' → Identity Secure Score. 'Single score across endpoints and data too' → Microsoft Secure Score in the Defender XDR portal. Statuses to recognize: To address, Planned, Risk accepted (scores 0), Resolved through third party / alternate mitigation (scores full points).
+
+### High-yield facts
+
+- Entra activity log retention is exactly: Audit logs and Sign-ins — seven days on Entra ID Free, 30 days on P1, 30 days on P2. P2 does NOT buy longer audit/sign-in retention. Microsoft Entra MFA usage is 30 days on all three tiers. Security signals differ: risky users have no limit on any tier; risky sign-ins are 7 / 30 / 90 days for Free / P1 / P2. Retention changes are not retroactive — upgrading from Free surfaces at most the seven days still alive.  
+  <https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-reports-data-retention>
+- When a Microsoft Entra ID P2, Microsoft Entra ID Governance, or trial licence expires: active PERMANENT assignments are unaffected; active TIME-BOUND assignments become active permanent (they stop expiring); ELIGIBLE assignments are REMOVED; PIM blades/API/PowerShell become unavailable; ongoing access reviews of Entra roles end and PIM configuration settings are removed; PIM stops sending emails and alerts. This applies to PIM for Entra roles, PIM for Azure resources, and PIM for Groups alike.  
+  <https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals>
+- Lifecycle Workflows require a Microsoft Entra ID Governance or Microsoft Entra Suite licence — the features-by-licence table shows NO checkmark for Lifecycle Workflows under Free, P1, or P2. Microsoft also states that no new IGA features will be added to the P2 SKU. Entitlement management, access reviews and PIM retain their previously-GA P2 capabilities, but everything newer (auto-assignment policies, custom extensions, Verified ID integration, ML review recommendations, mark guest as governed, eligible group membership in access packages) is Governance-only.  
+  <https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals>
+- Lifecycle workflows cover three phases — Joiner, Mover, Leaver — and an automatic workflow's execution condition is a scope (who) plus a trigger (when) based on user attributes; the canonical example is 'seven days before the value in the employeeHireDate attribute'. Workflows also run on demand. The docs state a limit of 100 workflows and up to 100 custom task extensions (the licensing page still says 50 workflows — a live inconsistency, so do not bet an answer on the number).  
+  <https://learn.microsoft.com/en-us/entra/id-governance/what-are-lifecycle-workflows>
+- 'If reviewers don't respond' has exactly four values — No change, Remove access, Approve access, Take recommendations — and is a separate setting from 'Auto apply results to resource'. Microsoft explicitly warns that Remove access or Take recommendations combined with auto-apply can revoke all access to the resource if reviewers fail to respond.  
+  <https://learn.microsoft.com/en-us/entra/id-governance/create-access-review>
+- Separation of duties in entitlement management is configured per access package under 'Separation of duties' and supports BOTH an Incompatible access packages tab and an Incompatible groups tab (any security-enabled group, including one synced from on-premises AD via Entra Connect). Relationships are unidirectional — you must add the mirror entry on the other package. Once configured, even an administrator cannot create the conflicting assignment; the existing assignment must be removed first.  
+  <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-package-incompatible>
+- A connected organization can be built from four identity-source types: another Microsoft Entra directory (any Microsoft cloud), a non-Microsoft directory federated via SAML/WS-Fed direct federation, a plain email domain authenticated by email one-time passcode, or Microsoft Accounts. It has two states — configured (admin-created, in scope for policies targeting 'all configured connected organizations') and proposed (auto-created when an unknown external user was approved; NOT in scope for 'all configured'). Sponsors can be internal (member users) or external (guests from that organization) and can be used as approvers.  
+  <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-organization>
+- PIM role settings are per role and require at least the Privileged Role Administrator role to change. Activation controls are: Activation maximum duration (1 to 24 hours), On activation require MFA, On activation require Microsoft Entra Conditional Access authentication context, Require justification on activation, Require ticket information on activation (information only — not validated), and Require approval to activate with named approvers. If approval is required and no approvers are configured, active Privileged Role Administrators/Global Administrators become the default approvers.  
+  <https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings>
+- PIM assignments form a 2x2: permanent eligible, permanent active, time-bound eligible (with start/end dates), time-bound active. Microsoft's guidance is to keep zero permanently active assignments for every role except emergency access accounts, and to have two cloud-only break-glass accounts permanently assigned Global Administrator. For Entra roles in PIM, only Privileged Role Administrator or Global Administrator can manage assignments for other administrators; Global Administrators, Security Administrators, Global Readers and Security Readers can view them.  
+  <https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan>
+- Role-assignable groups: isAssignableToRole can only be set at creation and is immutable — you cannot convert an existing group. Membership type must be Assigned (never dynamic), group nesting is not supported, at least Privileged Role Administrator is needed to create one, at least Privileged Authentication Administrator is needed to change credentials of its members/owners, Graph needs RoleManagement.ReadWrite.Directory (Group.ReadWrite.All will not work), and a maximum of 500 exist per tenant. The feature itself needs only P1; PIM just-in-time activation needs P2.  
+  <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept>
+- PIM for Groups and role-assignable are independent properties. Any Microsoft Entra security group or Microsoft 365 group — except dynamic-membership groups and groups synchronised from on-premises — can be enabled in PIM for Groups; it does NOT have to be role-assignable (that restriction was removed in January 2023, so more than 500 groups can be PIM-enabled while only 500 can be role-assignable). Each PIM-enabled group carries two policies: one for membership activation and one for ownership activation. To give JIT access to SharePoint/Exchange/Purview roles, use PIM for Entra roles rather than PIM for Groups to avoid activation delays.  
+  <https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups>
+- Access reviews of Microsoft Entra roles and Azure resource roles are created inside PIM, not in the Access reviews area. Creating an Entra-role review needs at least Privileged Role Administrator; creating an Azure-resource review needs the Azure RBAC Owner or User Access Administrator role. You can scope the review by assignment type: eligible assignments only, active assignments only, or all active and eligible assignments. For Entra roles, a role-assignable group shows as the group (approve/deny the whole group); for Azure resource roles, security groups are expanded to individual users and denying a user does NOT remove them from the group.  
+  <https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review>
+- Microsoft Entra diagnostic settings send logs to a Log Analytics workspace, an event hub, a storage account, or a partner solution via Azure Native ISV services in the Marketplace. They require an Azure subscription, at least the Security Administrator role (Attribute Log Administrator for custom security attribute logs), and a pre-existing destination. It can take up to three days for logs to start appearing.  
+  <https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-configure-diagnostic-settings>
+- Identity Secure Score is a percentage, recalculated every 24 hours, available to free and paid tenants, viewable at Entra ID > Identity Secure Score (or via Entra recommendations filtered to Security). Improvement-action statuses: To address, Planned, Risk accepted (awards zero points), Resolved through third party / Resolved through alternate mitigation (awards full points). It is the Identity portion of Microsoft Secure Score, which has five categories: Identity, Data, Devices, Infrastructure, Apps.  
+  <https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-identity-secure-score>
+- Least-privileged roles for D4 tasks per Microsoft's own delegate-by-task table: Tasks in Entitlement Management → Identity Governance Administrator (with catalog owner / access package manager available as lower delegations inside EM); Create a lifecycle workflow → Lifecycle Workflows Administrator (a distinct role, NOT Identity Governance Administrator); PIM assign users to roles and configure role settings → Privileged Role Administrator; PIM view audit activity and role memberships → Security Reader; Create/update/delete an access review of a group or app → User Administrator; Read audit, sign-in and provisioning logs → Reports Reader.  
+  <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/delegate-by-task>
+- Terms of use requires Microsoft Entra ID P1, is a PDF enforced as a Conditional Access GRANT control, is limited to 40 terms per tenant, supports per-language documents (browser language decides; first uploaded is the default), 'Require users to expand the terms of use', 'Require users to consent on every device' (device must be Entra-registered; not supported for B2B guests or the Intune Enrollment app), and expiry via 'Expire consents' schedule or 'Duration before re-acceptance required (days)'. Create/modify needs at least Conditional Access Administrator; reading needs Security Reader. Consent events land in the audit log (30 days), while the accept/decline report is kept for the life of the ToU.  
+  <https://learn.microsoft.com/en-us/entra/identity/conditional-access/terms-of-use>
+- Entitlement management terminology, verbatim from Microsoft: an access package is 'a bundle of resources that a team or project needs and is governed with policies' and 'is always contained in a catalog'; a catalog is 'a container of related resources and access packages'; a policy is 'a set of rules that defines the access lifecycle'. The resources you can put in an access package are: Entra security group membership, Microsoft 365 Group/Teams membership, enterprise application assignment, SharePoint Online site membership, plus (preview) Entra roles, SAP IAG business roles and API permissions for agent IDs.  
+  <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview>
 
 ### Traps
 
 | The wrong answer that looks right | Why it is wrong |
 |---|---|
-| Answering 'access review' when the stem describes granting new access to an external partner. | Granting is entitlement management: a catalog, an access package, a policy, and a connected organization for the partner. Reviews only certify access that already exists. |
-| Assuming lifecycle workflows are included in Entra ID P2. | They require the Microsoft Entra ID Governance SKU. Microsoft has said no new governance features will be added to P2. If the stem says 'we have P2' and asks for automated joiner tasks, check whether Governance is stated. |
-| Choosing Global Administrator for a PIM configuration task. | Privileged Role Administrator is sufficient and is the least-privileged answer. Global Admin is offered specifically to catch the reflex. |
-| Thinking eligible assignments survive a licence lapse. | When P2 lapses, eligible assignments are removed and time-bound active assignments become permanent. This is a real security event, and it happened in your own tenant on 2026-09-10. |
-| Treating 'auto apply results' and 'if reviewers don't respond' as the same setting. | They are independent. A review can decide 'Remove access' for non-responses and still not enforce it until an admin applies the results, if auto-apply is off. |
-| Reaching for Log Analytics when the question only needs the portal. | If the data is inside the retention window and no custom query is required, the answer is the sign-in or audit log blade. Diagnostic settings are the answer when the stem says long retention, KQL, workbooks, or SIEM. |
-| Confusing the review scope 'Everyone' with 'Guest users only'. | Guest-only reviews are the standard pattern for external access recertification and are frequently the intended answer when the stem mentions partners. |
-| Assuming PIM covers group membership by default. | That is PIM for Groups, configured separately, and the group must be role-assignable if a directory role is attached to it. |
+| 'The organization needs 90 days of sign-in log history, so upgrade from P1 to P2.' | Wrong. Audit and sign-in retention is 30 days on BOTH P1 and P2. Only risky sign-ins go to 90 days with P2. For longer sign-in/audit retention you must configure diagnostic settings to a Log Analytics workspace or storage account (or use Microsoft Purview Audit Premium with E5). |
+| 'P2 gives you all of identity governance, so lifecycle workflows are covered by Microsoft 365 E5.' | Wrong. Lifecycle Workflows require the Microsoft Entra ID Governance add-on or Microsoft Entra Suite. So do auto-assignment policies, custom extensions/Logic Apps, Verified ID integration, ML (user-to-group affiliation) review recommendations, inactive-user-only reviews, and eligible group membership in access packages. E5 alone gives P2, not Governance. |
+| 'A group must be role-assignable before it can be used with PIM for Groups.' | Wrong since January 2023. Any Entra security group or Microsoft 365 group can be PIM-enabled except dynamic-membership groups and on-premises-synced groups. Role-assignable is only required to assign a DIRECTORY ROLE to the group. The two are independent properties, and the 500 cap applies only to role-assignable groups. |
+| 'Set the group's Microsoft Entra roles can be assigned to the group option to Yes on the existing group.' | Impossible. isAssignableToRole is immutable and can only be set at creation. The correct remediation is to create a NEW role-assignable group with Assigned membership and migrate members. |
+| 'Privileged Role Administrator is the least-privileged role for everything in PIM.' | Only for PIM for Microsoft Entra roles (assign users to roles, configure role settings, create Entra-role access reviews). For PIM for AZURE RESOURCES you need the Azure RBAC Owner or User Access Administrator on the resource — Privileged Role Administrators, Security Administrators and Security Readers have no default visibility into Azure resource role assignments at all. |
+| 'Turn on Require MFA on activation so administrators must re-authenticate every time they elevate.' | Insufficient. 'On activation, require multifactor authentication' is satisfied by MFA performed earlier in the session and may not prompt. To force re-authentication per activation, configure 'On activation, require Microsoft Entra Conditional Access authentication context' and a CA policy with Sign-in frequency = Every time (and Authentication Strengths if a specific method is required). |
+| 'Reviewers approved everyone, but access was still removed — the reviewers must have made a mistake.' | Almost always a configuration answer: 'If reviewers don't respond' was set to Remove access or Take recommendations for users nobody actually reviewed, with 'Auto apply results to resource' enabled. That setting only affects UN-reviewed users and is independent of the auto-apply switch. |
+| 'Set Action to apply on denied guest users to block-then-delete so stale guests leave the tenant.' | That option only appears when the review scope is Guest users only. On a review scoped to Everyone (or to 'All Microsoft 365 groups with guest users') it is not configurable and the default — remove membership from the resource — is used, so denied guests keep their tenant account. |
+| 'Separation of duties means marking the other access package incompatible; the requirement is then satisfied.' | Two omissions. First, you can also mark a security GROUP incompatible — often the only way to cover access granted outside entitlement management or synced from on-premises AD. Second, incompatibility is unidirectional: you must add the mirror entry on the other access package to block both directions. |
+| 'Assign Reports Reader so the analyst can send Entra logs to Log Analytics and write KQL.' | Reports Reader can READ audit, sign-in and provisioning logs in the admin center. CONFIGURING diagnostic settings requires an Azure subscription and at least the Security Administrator role (Attribute Log Administrator for custom security attribute logs). |
+| 'Microsoft Entra roles and Azure resource roles are both reviewed from ID Governance > Access reviews.' | No. Role reviews of both kinds are created inside Privileged Identity Management. Access reviews covers groups, applications and custom data resources; access package assignment reviews are created in entitlement management on the access package itself. |
+
+### ⚠ Corrections to the earlier hand-written D4 — the ones that change an answer
+
+**[IMPRECISE]** ~~[2] PIM for Entra roles vs PIM for Azure resources: separate blades, separate assignment stores.~~
+- **Corrected:** True but nearly useless for the exam — 'separate blades' is a UI artefact and no item will test it. The decisive differences are administrative and they are what gets tested: (a) who administers — Entra roles require Privileged Role Administrator or Global Administrator, whereas Azure resource roles require the Azure RBAC Owner or User Access Administrator on the resource, and Microsoft states that 'Users who are Privileged Role Administrators, Security Administrators, or Security Readers don't by default have access to view assignments to Azure resource roles'; (b) scope — tenant/administrative unit versus management group, subscription, resource group, resource; (c) API — Microsoft Graph for Entra roles, Azure Resource Manager for Azure roles; (d) group eligibility — for Entra roles the group must be a newly created role-assignable group, for Azure roles any Entra security group works. Rewrite the discriminator around 'who is least-privileged to configure it', not around blades.
+- <https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan>
+
+**[IMPRECISE]** ~~[5] Catalog = container of resources; access package = the bundle a requester receives.~~
+- **Corrected:** The access package half is verbatim right ('A bundle of resources that a team or project needs and is governed with policies'). The catalog half is incomplete in a way the exam exploits: Microsoft defines a catalog as 'a container of related resources AND access packages' — access packages live inside catalogs, and 'an access package is always contained in a catalog'. Also state the purpose clause: 'Catalogs are used for delegation, so that nonadministrators can create their own access packages', with catalog creator (may create new catalogs and automatically owns them), catalog owner, and access package manager as the delegation tiers. A stem about letting a department manage its own resources without IT is a CATALOG answer, and the wrong answer is 'access package'.
+- <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview>
+
+**[IMPRECISE]** ~~[6] Connected organization = entitlement-management object naming an external tenant/domain so its users can REQUEST packages. Distinct from external collaboration settings (who may invite) and cross-tenant access settings (trust).~~
+- **Corrected:** The three-way contrast is right and worth keeping, but 'external tenant/domain' undercounts. Microsoft lists FOUR identity sources: users in another Microsoft Entra directory (from any Microsoft cloud), users in a non-Microsoft directory configured for SAML/WS-Fed identity provider federation, users whose email addresses share a domain (authenticated by email one-time passcode), and users with a Microsoft Account such as live.com. The corresponding authentication types are Microsoft Entra ID same cloud / another cloud / SAML-WS-Fed IdP federation / One-time passcode (domain) / Microsoft Account. Critically, you also omitted the STATE property, which is heavily testable: configured (admin-created, appears in pickers, in scope for policies targeting 'all configured connected organizations') versus proposed (auto-created when an unknown external user was approved under an 'All users' policy, NOT in scope for 'all configured', usable only in policies naming it specifically). Add sponsors too: internal sponsors are member users in your directory, external sponsors are guests from that organization, and both can be used as approvers.
+- <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-organization>
+
+**[IMPRECISE]** ~~[8] Lifecycle workflows are triggered by employeeHireDate / employeeLeaveDateTime and require the Entra ID Governance SKU, NOT P2.~~
+- **Corrected:** The licensing half is CONFIRMED and is the most valuable claim in your draft: 'Using this feature requires Microsoft Entra ID Governance or Microsoft Entra Suite licenses', and the features-by-licence table shows no checkmark for Lifecycle Workflows under Free, P1 or P2. Microsoft additionally states 'no new Identity Governance & Administration (IGA) features or capabilities will be added to the Microsoft Entra ID P2 SKU'. The trigger half is too narrow. Correct wording: a workflow has an execution condition made of a SCOPE (who — any user or extended attribute, e.g. department) and a TRIGGER (when). Scheduled triggers are expressed relative to a date attribute — the doc's worked example is 'seven days before the employeeHireDate attribute value' — but workflows also run ON DEMAND, and there are three categories, Joiner, Mover and Leaver, so a mover workflow is not keyed to a hire or leave date at all. Note also a live doc inconsistency: the lifecycle workflows overview says a limit of 100 workflows while the licensing page says 50 — do not answer a numeric limit question from memory.
+- <https://learn.microsoft.com/en-us/entra/id-governance/what-are-lifecycle-workflows>
+
+**[IMPRECISE]** ~~[9] Separation of duties is implemented as incompatible access packages.~~
+- **Corrected:** Incomplete in the exact place the exam probes. Separation of duties on an access package has TWO tabs: Incompatible access packages and Incompatible GROUPS — 'you can configure that a user who is a member of a security group or who already has an assignment to one access package can't request another access package'. The group route is the documented way to cover access granted outside entitlement management, including an AD security group synced in by Microsoft Entra Connect. Add two more facts: each incompatible relationship is UNIDIRECTIONAL, so you must mirror it on the other package; and once configured, even an access package manager cannot create the conflicting assignment — the existing one must be removed first. Separation of duties is available at Microsoft Entra ID P2 per the licensing table, unlike most other newer EM capabilities.
+- <https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-package-incompatible>
+
+**[IMPRECISE]** ~~[12] Log Analytics = KQL + workbooks; Storage account = cheap archive; Event Hub = third-party SIEM.~~
+- **Corrected:** The three mappings are each correct, but there are FOUR destinations and the fourth is a plausible distractor: besides Log Analytics workspace, event hub and storage account, 'Through Azure Native ISV services, you can send logs to services through the Azure Marketplace' (partner solution). Add the operational facts that get tested: configuring diagnostic settings requires an Azure subscription, a destination that already exists, and at least the SECURITY ADMINISTRATOR role (Attribute Log Administrator for custom security attribute logs — a separate subset of the audit log); and 'It might take up to three days for the logs to start appearing in the destination.'
+- <https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-configure-diagnostic-settings>
+
+**[IMPRECISE]** ~~[13] Identity Secure Score is identity-only inside Entra; Microsoft Secure Score spans identity, devices, apps and data.~~
+- **Corrected:** You dropped a category. Microsoft Secure Score 'contains five distinct control and score categories: Identity, Data, Devices, Infrastructure, Apps' — Infrastructure is missing from your list, and a five-vs-four count is exactly the kind of thing a multi-select item checks. The rest is right: 'The Identity Secure Score represents the identity part of the Microsoft secure score' and the recommendations are the same. Add: it is expressed as a PERCENTAGE, is recalculated every 24 hours, is available to free and paid tenants, lives at Entra ID > Identity Secure Score, and the full Microsoft Secure Score with its history tab is in the Microsoft Defender XDR portal. Know the statuses: To address, Planned, Risk accepted (zero points, hidden from the list), Resolved through third party / Resolved through alternate mitigation (full points awarded).
+- <https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-identity-secure-score>
+
+**[IMPRECISE]** ~~[14] Privileged Role Administrator (not Global Administrator) is the least-privileged role that can configure PIM and assign directory roles.~~
+- **Corrected:** True for PIM for Microsoft Entra roles only, and stated that broadly it will cost marks. Confirmed part: 'You must have at least the Privileged Role Administrator role to manage PIM role settings for a Microsoft Entra role', and the least-privileged-by-task table lists Privileged Role Administrator for both 'Assign users to roles' and 'Configure role settings'. What is missing: for PIM for AZURE RESOURCES, 'only an owner or User Access Administrator can manage assignments for other administrators', and creating an Azure resource access review requires the Owner or User Access Administrator role — Privileged Role Administrator is the designed wrong answer there. Also add the read-only tier: Security Reader is least-privileged to 'View audit activity' and 'View role memberships' in PIM. Rewrite as: 'Privileged Role Administrator is least-privileged for PIM for Entra roles and for directory role assignment; Azure RBAC Owner or User Access Administrator is least-privileged for PIM for Azure resources.'
+- <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/delegate-by-task>
+
+**[IMPRECISE]** ~~[15] Identity Governance Administrator owns access packages, access reviews and lifecycle workflows.~~
+- **Corrected:** Two-thirds right, one-third wrong, and the wrong third is a named-role item. Confirmed: Identity Governance Administrator is the least-privileged role for 'Tasks in Entitlement Management', and the access review how-to tells you to sign in 'as at least an Identity Governance Administrator' to create reviews and to enable group owners to run their own. WRONG for lifecycle workflows: Microsoft's least-privileged table gives 'Create a workflow' to the LIFECYCLE WORKFLOWS ADMINISTRATOR, a distinct built-in role described as 'Create and manage all aspects of workflows and tasks associated with Lifecycle Workflows in Microsoft Entra ID' (adding a Logic Apps custom extension additionally needs the Azure Logic App Contributor or Owner role). Also note a real doc split on reviews: delegate-by-task lists USER ADMINISTRATOR as least-privileged for 'Create, update, or delete access review of a group or of an app', while the how-to article says Identity Governance Administrator — if an item offers both, User Administrator is the least-privileged answer for a GROUP or APP review, and Privileged Role Administrator for an Entra ROLE review. The role name Identity Governance Administrator is current and correctly used throughout the live docs.
+- <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/delegate-by-task>
 
 ---
 
-> **Related:** [`BLIND-SPOTS.md`](BLIND-SPOTS.md) — the three skill groups with *zero* local
-> coverage · [`FINAL-FOUR.md`](FINAL-FOUR.md) — the four-day plan and the exam-morning protocol ·
+> **Related:** [`BLIND-SPOTS.md`](BLIND-SPOTS.md) — the three skill groups with no `EXPLAIN/`
+> coverage · [`FINAL-FOUR.md`](FINAL-FOUR.md) — the plan and the 07:00 protocol ·
 > [`GAP-DRILL.md`](GAP-DRILL.md) · [`EXPLAIN/`](EXPLAIN/)

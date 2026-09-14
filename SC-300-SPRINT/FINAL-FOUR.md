@@ -40,39 +40,44 @@ explainer behind**, which is why a miss there never converts into a fix.
 
 ---
 
-## 2. The one decision to make before you start
+## 2. The tenant question — answered, and the answer is no
 
-**Do you spend Monday morning trying to get a tenant back?**
+> ### ⚠ Correction — verified 2026-09-14, refuted 3 skeptics to 0
+>
+> An earlier version of this file called a P2 trial on your old tenant *"a real path"* and told you
+> to timebox it to 30 minutes. **Three independent checks refuted it. Do not attempt it.**
 
-The research found a real path: your `KWin.onmicrosoft.com` tenant and everything in it — CA
-policies, app registrations, catalogs, access packages — **still exists**. The E5 subscription
-expired but the directory objects were frozen, not deleted. A standalone **Entra ID P2 30-day
-trial** activated on that tenant would unfreeze P2 features in 15–30 minutes.
+**Four reasons, each sufficient on its own:**
 
-**The honest cost-benefit:**
+1. **You are probably not eligible.** Trials are one per tenant per product, and
+   `KWin.onmicrosoft.com` already ran Microsoft 365 E5 — which provisioned `AAD_PREMIUM_P2`.
+   Microsoft's documented gate for the sibling Governance trial is that the tenant *"isn't already
+   using or has previously trialed"* the product. The button may simply not appear.
+2. **There is no billing profile to reuse.** Microsoft has not stored card details for India since
+   **30 September 2022** under the RBI directive. You would be entering a **live card**, not
+   re-using one.
+3. **It auto-converts to a paid ANNUAL subscription** at whatever licence count the order page
+   defaults to. On a furloughed budget that is a real, recurring liability for a lab you need for
+   three days.
+4. **The restoration promise was false for the part you cared about.** When the P2 licence lapsed,
+   **PIM eligible assignments were removed** and time-bound active ones became permanent. Your CA
+   policies and app registrations survive; your PIM configuration did not.
 
-| For | Against |
-|---|---|
-| P2 features become clickable again — CA, PIM, ID Protection, access reviews | **A payment method is required on the billing profile even at ₹0** — verified; there is no card-free path |
-| Everything you built in August is still there | **Auto-converts to paid at ~$10/user/month** if recurring billing is not switched off |
-| Restores roughly half the blueprint as live labs | The trial button being offered to *your specific tenant* is **unverified** — medium confidence |
-| | You have four days. Marginal value of clicking over reciting is **low** this late |
-
-**My recommendation: skip it, or timebox it to 30 minutes on Monday and abandon it if it resists.**
-The four days below are built to work with no tenant at all. If you do activate it, set **two phone
-alarms for 10 October** and turn off recurring billing the moment the order completes.
+**So: no tenant. The four days below are built for that, and it costs you less than it feels like.**
+With three and a half days left the binding constraint is recall and discrimination, not exposure —
+your own August pack said exactly that.
 
 **What is genuinely free and worth the time instead:**
 
 | Asset | Cost | Use it |
 |---|---|---|
-| [SC-300 practice assessment](https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/practice/assessment?assessment-type=practice&assessmentId=60&practice-assessment-type=certification) | Free, unlimited | **Monday cold**, then Wednesday, then Thursday |
+| [SC-300 practice assessment](https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/practice/assessment?assessment-type=practice&assessmentId=60&practice-assessment-type=certification) | Free, unlimited | **Today, cold**, then Wednesday, then Thursday |
 | [Exam sandbox — `aka.ms/examdemo`](https://aka.ms/examdemo) | Free, no sign-in | **Thursday, 20 min.** Every question type in the real UI |
 | [Applied Skills: identities and access](https://learn.microsoft.com/en-us/credentials/applied-skills/get-started-with-identities-and-access-using-microsoft-entra/) | Free | A **real Microsoft-provisioned tenant**, 30 min, graded. 72-hour cooldown, so at most two runs before Friday |
-| [OnVUE system test](https://system-test.onvue.com/system_test?customer=pearson_vue&clientcode=MICROSOFT&locale=en_US) | Free | **Today, Wednesday, and Friday morning** — on the exam machine, in the exam room |
+| [OnVUE system test](https://system-test.onvue.com/system_test?customer=pearson_vue&clientcode=MICROSOFT&locale=en_US) | Free | **Today, Wednesday, Friday morning** — same machine, same network, same room |
 
-That Applied Skills lab is the closest thing to a free tenant you have, and it covers users, groups,
-SSPR, MFA and Conditional Access tasks. **Run it Monday evening.**
+That Applied Skills lab is the closest thing to a free tenant you have — users, groups, SSPR, MFA
+and Conditional Access tasks in a real directory. **Run it tonight.**
 
 ---
 
@@ -156,9 +161,17 @@ Friday.**
 ### 4.1 The name check — do this now, not Thursday
 
 > **The first and last name on your physical ID must EXACTLY match your Microsoft Certification
-> profile.** Renewal paperwork and name-change documents are **not accepted** for online exams, and
-> any ID exception needs Microsoft pre-approval **at least five business days ahead** — which is
-> already too late for Friday.
+> profile.** Renewal paperwork and name-change documents are **not accepted** for online proctored
+> exams (test centres do accept them — online does not).
+>
+> ### ⚠ Corrected 2026-09-14 — refuted 3/3, and this one is actionable
+>
+> An earlier version said an ID exception needs **Microsoft** approval **five business days** ahead
+> and was therefore already too late. **Both parts were wrong.** An exception is pre-approved by
+> **Pearson VUE customer service**, at least **three business days** before the appointment. For an
+> 18 September sitting that deadline is around **Tuesday 15 September — tomorrow.**
+>
+> **So if you have an ID problem, it is still fixable. Call Pearson VUE today.**
 
 Check it here: <https://learn.microsoft.com/en-us/credentials/certifications/manage-certification-profile>
 
@@ -172,8 +185,15 @@ Check it here: <https://learn.microsoft.com/en-us/credentials/certifications/man
 | **Rejected** | e-Aadhaar printout · laminated paper Aadhaar · **privately printed PVC Aadhaar** · photocopies · digital/phone-app IDs · expired or damaged IDs |
 | **Not on the accepted list** | PAN card, Voter ID — do not rely on them |
 
-*(Per Pearson's Aadhaar ID Policy v1.2, May 2026. The PAN/Voter exclusion is inferred from the
-accepted-ID list rather than stated explicitly — so use the passport and remove the question.)*
+*(Per Pearson's Aadhaar ID Policy v1.2, May 2026.)*
+
+**Two additions from the verification pass:** Microsoft's ID wording requires **name, photo AND
+signature** — the passport carries all three, the PVC Aadhaar does not list a signature. And
+**paper IDs are accepted in only four countries** (Algeria, Brazil, Cameroon, Dominican Republic),
+so any paper Aadhaar is out regardless of condition.
+
+**PAN and Voter ID are "not enumerated" rather than "published as rejected"** — an unsourced
+negative, not a confirmed exclusion. Use the passport and the question disappears.
 
 ### 4.3 The room, Friday 07:00
 
@@ -191,7 +211,13 @@ accepted-ID list rather than stated explicitly — so use the passport and remov
 
 ### 4.4 The machine
 
-- **Personal, not employer-managed**, Windows 10+ with local admin. Your own laptop.
+- **Local administrator rights** — this is the actual requirement. **Corrected 2026-09-14:** the
+  machine does **not** have to be personally owned; Microsoft only *recommends* a personal over a
+  work machine. **Do not migrate laptops on Thursday night** — a familiar machine that has passed
+  the system test beats an unfamiliar "compliant" one.
+- **Not a virtual machine.** Add an antivirus/firewall exception for the **OnVUE Secure Browser
+  executable**, and make sure there is **no proxy or packet inspection** on the line. Those three
+  are what actually block the launch.
 - **Disconnect every VPN.** Close every application — OnVUE force-closes them and that can crash
   the launch and forfeit the fee.
 - **Wired Ethernet if possible**; at least 6 Mbps down / 2 Mbps up. Ask the household not to stream.
@@ -209,8 +235,12 @@ accepted-ID list rather than stated explicitly — so use the passport and remov
 07:30  Exam.
 ```
 
-**Missing the check-in window is a no-show with no refund.** Starting at 07:00 gives you thirty
-minutes of margin on a process that routinely takes fifteen.
+**Missing the check-in window is a no-show with no refund.** The hard cutoff for a 07:30 start is
+**07:45**. Starting at 07:00 gives you thirty minutes of margin on a process that routinely takes
+fifteen and takes longer on a slow machine.
+
+**Also verified:** any reschedule made **inside 24 hours** forfeits the fee, and Microsoft requires
+you to be a legitimate resident of the country you sit in.
 
 **Read nothing new on Friday.** `GAP-DRILL.md` §8 — the ten one-liners — and the DISCRIMINATORS
 tells. That is all.
@@ -314,11 +344,13 @@ imply otherwise and it collapses on the first follow-up.
 licences you no longer hold. They are examinable as decision models, and
 [`BLIND-SPOTS.md`](BLIND-SPOTS.md) is those decision models.
 
-**It was not fully adversarially verified.** The skeptic pass that normally refutes every
-time-sensitive claim in a pack like this was killed partway by a monthly spend limit. The blueprint,
-logistics and proctoring facts came back verified with URLs; **the P2-trial availability and the D4
-discriminators did not get a second opinion.** Treat specific numbers as checkable, the reasoning as
-sound.
+**It has now been adversarially verified, and two published claims failed.** The skeptic pass ran
+on 2026-09-14. The **P2 trial** was refuted 3/3 and is removed. The **ID-exception rule** was
+refuted 3/3 — it is Pearson VUE at three business days, not Microsoft at five — and that correction
+turned an "already too late" into an action you can still take. The **D4 discriminators**, which I
+hand-wrote when the first agent died, were fact-checked at **8 confirmed / 9 imprecise / 0 wrong**
+and have been replaced with a verified set; the corrections are listed at the end of
+[`DISCRIMINATORS.md`](DISCRIMINATORS.md).
 
 > **Related:** [`BLIND-SPOTS.md`](BLIND-SPOTS.md) — three uncovered skill groups ·
 > [`DISCRIMINATORS.md`](DISCRIMINATORS.md) — 83 pairs with exam tells ·
