@@ -234,6 +234,36 @@ negative, not a confirmed exclusion. Use the passport and the question disappear
 - **Plug in the power cord.** Pause antivirus real-time scanning.
 - **Run the system test Thursday and again Friday morning**, on the same machine, network and room.
 
+### 4.45 Five failure modes nobody plans for
+
+From the verification pass, ranked by how likely they are to actually bite:
+
+**1. Indian passport name rendering.** This is *the* classic OnVUE India failure. Passports
+frequently render the name as **SURNAME then GIVEN NAME**, or carry a single-field name, or expand
+an initial that your Microsoft Learn profile abbreviates. **Put the passport physically beside the
+certification profile and compare character by character** — not "does it look like me", but does
+the *first name field* and the *last name field* match. This is the one with a deadline
+(Pearson VUE, ~Tue 15 Sep).
+
+**2. No backup connectivity.** Hyderabad, 07:00, single home line. **Charge a phone and test a
+mobile hotspot against the OnVUE system test once this week**, so the fallback is known-good rather
+than improvised at 07:05.
+
+**3. The bathroom.** A 100-minute paper at 07:30 with morning coffee. The plan says take no break —
+correct — but if you need one, it costs you every question you have already seen, not just the
+clock. **Manage the input, not the urge.**
+
+**4. Licence-tier blindness.** You have worked in E5 tenants for five years and your trial was E5
+until 10 September, so **every feature you have ever touched was available to you.** The exam asks
+which SKU a feature needs. Free vs P1 vs P2 vs Governance vs Entra Suite is a real answer category
+and your instinct has no data on it — see [`PRACTITIONER-TRAPS.md`](PRACTITIONER-TRAPS.md).
+
+**5. Sleep.** A 07:30 start means awake and sharp by 06:30. The timestamps on these files say you
+were working at 03:05 on Monday. **Thursday's 17:00 stop exists because of that**, and it is the
+instruction in this pack most likely to be ignored.
+
+---
+
 ### 4.5 Friday morning — the timeline
 
 ```
