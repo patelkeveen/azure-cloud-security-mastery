@@ -137,6 +137,9 @@ Evening    Practice assessment, SECOND pass, timed                   60 min
 ```
 Morning    DISCRIMINATORS.md, all four domains, tells only           90 min
            Cover the left column. Say the tell.
+           PRACTITIONER-TRAPS.md — all 22, out loud                  45 min
+           The highest-value file in the pack. Where your own
+           experience makes you pick the wrong answer.
            GAP-DRILL.md §8 — the ten one-liners                      20 min
 Afternoon  Practice assessment THIRD pass                            60 min
            Only the topics you missed twice                          60 min
@@ -204,8 +207,15 @@ negative, not a confirmed exclusion. Use the passport and the question disappear
 - **One display.** Unplug and turn away any second monitor; switch off other computers in the room.
 - **No headphones or earbuds** — speakers and mic must work. No watch, no smartwatch, no hat or
   hood, no jacket.
-- **Phone stays in the room**, out of arm's reach, ringer on, with **+91 on your Learn profile**.
-  Do not touch it, including during a break.
+- **Your phone is REQUIRED for check-in, then goes away.** Verified 2026-09-14 and not in the
+  earlier version of this file: *"Mobile phone photos must be uploaded to launch your exam."* You
+  use the phone to capture and upload your **headshot, your ID and the room scan** — **the exam
+  will not launch without them.** Charge it tonight.
+- **Once check-in is done**, the phone goes out of arm's reach — floor behind you, another table —
+  ringer on, with **+91 on your Learn profile** so the proctor can call. Do not touch it again,
+  including during a break.
+- **Sessions use facial comparison against your ID photo and AI-assisted monitoring**, and
+  **using any AI tool during the exam is explicitly prohibited.**
 - You will take **four room photos, a headshot and ID photos** at check-in, and may be asked for a
   **360° room scan** at check-in or mid-exam.
 
@@ -256,7 +266,7 @@ questions**, **700 of 1000 scaled** to pass, **no penalty for guessing**. Answer
 
 | | |
 |---|---|
-| **Problem-solution "Yes/No" sets** | *"Does this solution meet the goal?"* — once answered you **cannot return**, and they never appear on the review screen. **The solutions are independent: two can both be Yes.** |
+| **Problem-solution "Yes/No" sets** | *"Does this solution meet the goal?"* — once answered you **cannot return**, and they never appear on the review screen. **The solutions are independent: more than one can be Yes, and it is also possible that none of them is.** Two decision rules, verified: a solution that only *partially* solves the problem, or is merely the *first step*, is a **No**. And judge against *"does it meet the stated goal"*, never *"is this how I would build it"* — see [`PRACTITIONER-TRAPS.md`](PRACTITIONER-TRAPS.md) #20. **Never leave one blank; guess.** |
 | **Case studies** | Reviewable within the case, but **once you leave a case study you cannot return to it** |
 | **After a break** | You **cannot return to any question seen before the break**, even unanswered or flagged ones |
 
@@ -279,6 +289,12 @@ practice assessments, no profile). **The timer keeps running.**
 > **Use it for one to three lookups on questions you have flagged, at the end — never as a crutch
 > mid-paper.** Most candidates either forget it exists or burn twenty minutes in it. Decide now which
 > you will be: two lookups, maximum, in the last ten minutes.
+>
+> **Two mechanics worth knowing:** no extra time is added, and **Ctrl+F searches inside the Learn
+> pane only — not the exam question.**
+
+**One more break restriction:** you **cannot start a break in the middle of a problem-solution set**
+(or a lab) — only before or after one.
 
 ### 5.4 Pacing
 
@@ -352,7 +368,8 @@ hand-wrote when the first agent died, were fact-checked at **8 confirmed / 9 imp
 and have been replaced with a verified set; the corrections are listed at the end of
 [`DISCRIMINATORS.md`](DISCRIMINATORS.md).
 
-> **Related:** [`BLIND-SPOTS.md`](BLIND-SPOTS.md) — three uncovered skill groups ·
+> **Related:** [`PRACTITIONER-TRAPS.md`](PRACTITIONER-TRAPS.md) — **read this Thursday** ·
+> [`BLIND-SPOTS.md`](BLIND-SPOTS.md) — three uncovered skill groups ·
 > [`DISCRIMINATORS.md`](DISCRIMINATORS.md) — 83 pairs with exam tells ·
 > [`GAP-DRILL.md`](GAP-DRILL.md) · [`EXPLAIN/`](EXPLAIN/) ·
 > [`sc-300-lexicon.html`](sc-300-lexicon.html) — 274 terms, 83 traps flagged
